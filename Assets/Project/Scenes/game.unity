@@ -1464,6 +1464,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 1102502941}
+  moveSpeed: 5
+  smoothTime: 0.1
+  gravity: -9.81
+  jumpForce: 5
 --- !u!114 &1102502943
 MonoBehaviour:
   m_ObjectHideFlags: 0
