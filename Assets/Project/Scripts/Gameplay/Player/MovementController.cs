@@ -8,6 +8,7 @@ public class MovementController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float smoothTime = 0.1f;
+    [SerializeField] private float rotationSpeed = 10f;
 
     [Header("Jump & Gravity")]
     [SerializeField] private float gravity = -9.81f;
@@ -17,10 +18,15 @@ public class MovementController : MonoBehaviour
     private Vector3 _smoothDirection; // Текущее сглаженное направление
     private float _verticalVelocity;  // Вертикальное движение (гравитация/прыжок)
 
+    public float VerticalSpeed => characterController.velocity.y; // только по Y
+    public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude; // только по XZ
+    public float TotalSpeed => characterController.velocity.magnitude; // вся скорость
+
     public void Move(Vector2 inputDirection)
     {
         ApplyHorizontalMovement(inputDirection);
         ApplyGravity();
+        RotateTowardsMovement();
 
         Vector3 move = (_smoothDirection * moveSpeed) + Vector3.up * _verticalVelocity;
         characterController.Move(move * Time.deltaTime);
@@ -49,6 +55,23 @@ public class MovementController : MonoBehaviour
         else
         {
             _verticalVelocity += gravity * Time.deltaTime;
+        }
+    }
+    
+    private void RotateTowardsMovement()
+    {
+        Vector3 horizontalDir = new Vector3(_smoothDirection.x, 0, _smoothDirection.z);
+
+        if (horizontalDir.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(horizontalDir, Vector3.up);
+
+            // Плавно поворачиваем персонажа
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
         }
     }
 }

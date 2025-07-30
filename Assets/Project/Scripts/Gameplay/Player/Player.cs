@@ -9,6 +9,8 @@ namespace Player
     {
         [SerializeField]
         private MovementController movementController;
+        [SerializeField]
+        private AnimationController animationController;
         
         private IInputService _input;
     
@@ -21,6 +23,9 @@ namespace Player
         private void Update()
         {
             movementController.Move(_input.MoveAxis);
+            animationController.UpdateSpeed(movementController.HorizontalSpeed);
+            
+            Debug.Log(movementController.HorizontalSpeed);
         }
     }
 }
