@@ -8,6 +8,8 @@ public class Spawner : MonoBehaviour
     private PlayerController _playerController;
     private ICameraService _cameraService;
     
+    private Transform _player;
+    
     [Inject]
     private void Construct(IFactory<Character> characterFactory, PlayerController playerController, ICameraService cameraService)
     {
@@ -28,6 +30,8 @@ public class Spawner : MonoBehaviour
         
         player.transform.position = new Vector3(0, 0, 0);
         
+        _player = player.transform;
+        
         player.SetController(_playerController);
         
         _cameraService.SetTarget(player.transform);
@@ -41,7 +45,7 @@ public class Spawner : MonoBehaviour
         
         ConditionNode playerInRange = new ConditionNode(character =>
         {
-            var player = character.transform;
+            var player = _player.transform;
             if (player == null) return false;
             float distance = Vector3.Distance(character.transform.position, player.position);
             return distance <= 10f;
@@ -49,18 +53,20 @@ public class Spawner : MonoBehaviour
 
         ActionNode moveToPlayer = new ActionNode(character =>
         {
-            var player = character.transform;
+            var player = _player.transform;
             if (player == null) return NodeState.Failure;
-
+            
             Vector3 direction = player.position - character.transform.position;
             float distance = direction.magnitude;
 
-            if (distance <= 0.5f)
+            Debug.Log(distance);
+            
+            if (distance <= 1f)
             {
                 character.Movement.Move(Vector2.zero);
                 return NodeState.Success;
             }
-
+            
             direction.y = 0;
             direction.Normalize();
 
@@ -71,7 +77,8 @@ public class Spawner : MonoBehaviour
             float inputY = Vector3.Dot(direction, forward);
 
             Vector2 input = new Vector2(inputX, inputY);
-            character.Movement.Move(input);
+            
+            character.Movement.Move(new Vector2(direction.x, direction.z));
 
             return NodeState.Running;
         });

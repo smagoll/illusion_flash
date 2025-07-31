@@ -43,26 +43,9 @@ public class MovementController : MonoBehaviour
 
     private void ApplyHorizontalMovement(Vector2 input)
     {
-        // 1. Получаем forward и right камеры
-        Vector3 camForward = _cameraService.Forward;
-        Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
+        Vector3 targetDirection = new Vector3(input.x, 0, input.y);
 
-        // 2. Убираем Y, чтобы не учитывался наклон камеры
-        camForward.y = 0;
-        camRight.y = 0;
-        camForward.Normalize();
-        camRight.Normalize();
-
-        // 3. Переводим оси ввода в мировое направление
-        Vector3 targetDirection = (camForward * input.y + camRight * input.x).normalized;
-
-        // 4. Сглаживаем движение
-        _smoothDirection = Vector3.SmoothDamp(
-            _smoothDirection,
-            targetDirection,
-            ref _currentVelocity,
-            smoothTime
-        );
+        _smoothDirection = Vector3.SmoothDamp(_smoothDirection, targetDirection, ref _currentVelocity, smoothTime);
     }
 
     private void ApplyGravity()
