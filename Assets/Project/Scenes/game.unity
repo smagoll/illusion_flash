@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 1102502942}
   - component: {fileID: 1102502944}
   - component: {fileID: 1102502945}
+  - component: {fileID: 1102502947}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -886,6 +887,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementController: {fileID: 1102502942}
   animationController: {fileID: 1102502944}
+  characterView: {fileID: 1102502947}
+--- !u!114 &1102502947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102502939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9d251b22f4460fb628f85bc8355799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1174714145
 GameObject:
   m_ObjectHideFlags: 0

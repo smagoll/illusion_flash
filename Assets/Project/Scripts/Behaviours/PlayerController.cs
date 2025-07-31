@@ -18,5 +18,10 @@ public class PlayerController : ICharacterController
     public void Tick()
     {
         character.Movement.Move(_input.MoveAxis);
+
+        if (_input.JumpPressed)
+        {
+            character.Movement.Jump();
+        }
     }
 }

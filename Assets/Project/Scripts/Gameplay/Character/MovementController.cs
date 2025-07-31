@@ -69,8 +69,8 @@ public class MovementController : MonoBehaviour
     {
         if (characterController.isGrounded)
         {
-            _verticalVelocity = -1f;
-
+            if (_verticalVelocity < 0)
+                _verticalVelocity = -1f;
         }
         else
         {
@@ -92,6 +92,14 @@ public class MovementController : MonoBehaviour
                 targetRotation,
                 rotationSpeed * Time.deltaTime
             );
+        }
+    }
+    
+    public void Jump()
+    {
+        if (characterController.isGrounded)
+        {
+            _verticalVelocity = jumpForce;
         }
     }
 }
