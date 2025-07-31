@@ -40,6 +40,6 @@ public class PlayerController : ICharacterController
         
         Vector3 moveDir = (camForward * _input.MoveAxis.y + camRight * _input.MoveAxis.x).normalized;
 
-        character.Movement.Move(moveDir);
+        character.Movement.Move(new Vector2(moveDir.x, moveDir.z));
     }
 }
