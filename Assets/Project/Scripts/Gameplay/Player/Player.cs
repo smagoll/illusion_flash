@@ -11,21 +11,12 @@ namespace Player
         private MovementController movementController;
         [SerializeField]
         private AnimationController animationController;
-        
-        private IInputService _input;
     
-        [Inject]
-        public void Construct(IInputService input)
-        {
-            _input = input;
-        }
+        public MovementController Movement => movementController;
 
         private void Update()
         {
-            movementController.Move(_input.MoveAxis);
             animationController.UpdateSpeed(movementController.HorizontalSpeed);
-            
-            Debug.Log(movementController.HorizontalSpeed);
         }
     }
 }

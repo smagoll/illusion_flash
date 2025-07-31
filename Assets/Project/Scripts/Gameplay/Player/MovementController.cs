@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 public class MovementController : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class MovementController : MonoBehaviour
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude; // только по XZ
     public float TotalSpeed => characterController.velocity.magnitude; // вся скорость
 
+    private ICameraService _cameraService;
+    
+    [Inject]
+    private void Construct(ICameraService cameraService)
+    {
+        _cameraService = cameraService;
+    }
+    
     public void Move(Vector2 inputDirection)
     {
         ApplyHorizontalMovement(inputDirection);
@@ -34,13 +43,24 @@ public class MovementController : MonoBehaviour
 
     private void ApplyHorizontalMovement(Vector2 input)
     {
-        Vector3 targetDirection = new Vector3(input.x, 0, input.y).normalized;
+        // 1. Получаем forward и right камеры
+        Vector3 camForward = _cameraService.Forward;
+        Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
 
-        // Сглаживаем движение для мягкости
+        // 2. Убираем Y, чтобы не учитывался наклон камеры
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // 3. Переводим оси ввода в мировое направление
+        Vector3 targetDirection = (camForward * input.y + camRight * input.x).normalized;
+
+        // 4. Сглаживаем движение
         _smoothDirection = Vector3.SmoothDamp(
-            _smoothDirection, 
-            targetDirection, 
-            ref _currentVelocity, 
+            _smoothDirection,
+            targetDirection,
+            ref _currentVelocity,
             smoothTime
         );
     }
