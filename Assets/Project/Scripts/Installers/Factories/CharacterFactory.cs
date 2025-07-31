@@ -16,7 +16,7 @@ public class CharacterFactory : IFactory<Character>
     public Character Create()
     {
         var character = _container.InstantiatePrefabForComponent<Character>(_characterPrefab);
-
+        
         var root = new Selector(new List<Node>
         {
             new Sequence(new List<Node>
@@ -25,7 +25,11 @@ public class CharacterFactory : IFactory<Character>
             })
         });
         
-        character.SetController(new AIController(root));
+        _container.Bind<ICharacterController>()
+            .To<AIController>()
+            .AsTransient()
+            .WithArguments(root)
+            .WhenInjectedInto<Character>();
 
         return character;
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -9,7 +10,7 @@ public class Character : MonoBehaviour
     private ICharacterController _controller;
 
     public MovementController Movement => movementController;
-
+    
     public void SetController(ICharacterController controller)
     {
         _controller = controller;
@@ -17,12 +18,14 @@ public class Character : MonoBehaviour
 
         var entity = new CharacterModel(100, 100);
         characterView.Init(entity);
+        
+        Debug.Log("Character Initialized");
     }
-    
+
     private void Update()
     {
-        animationController.UpdateSpeed(movementController.HorizontalSpeed);
+        _controller?.Tick();
         
-        if(UnityEngine.Input.GetKeyDown(KeyCode.Space)) characterView.TakeDamage(10);
+        animationController.UpdateSpeed(movementController.HorizontalSpeed);
     }
 }

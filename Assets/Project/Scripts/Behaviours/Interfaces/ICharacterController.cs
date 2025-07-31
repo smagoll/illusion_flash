@@ -1,7 +1,5 @@
-﻿using Zenject;
-
-public interface ICharacterController : ITickable
+﻿public interface ICharacterController
 {
     void Init(Character character);
-    new void Tick();
+    void Tick();
 }
