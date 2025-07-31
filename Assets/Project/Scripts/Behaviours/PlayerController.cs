@@ -1,19 +1,22 @@
 ﻿using Input;
-using Zenject;
 
-public class PlayerController : ITickable
+public class PlayerController : ICharacterController
 {
     private readonly IInputService _input;
-    private readonly Player.Player _player;
+    private Character character;
 
-    public PlayerController(IInputService input, Player.Player player)
+    public PlayerController(IInputService input)
     {
         _input = input;
-        _player = player;
+    }
+
+    public void Init(Character character)
+    {
+        this.character = character;
     }
 
     public void Tick()
     {
-        _player.Movement.Move(_input.MoveAxis);
+        character.Movement.Move(_input.MoveAxis);
     }
 }

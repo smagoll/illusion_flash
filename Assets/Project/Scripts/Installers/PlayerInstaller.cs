@@ -3,12 +3,17 @@ using Zenject;
 
 public class PlayerInstaller : MonoInstaller
 {
-    [SerializeField] private Player.Player player;
+    [SerializeField] private Character character;
 
     public override void InstallBindings()
     {
-        Container.Bind<Player.Player>().FromInstance(player).AsSingle();
+        Container.Bind<Character>().FromInstance(character).AsSingle();
         
-        Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerController>()
+            .AsSingle()
+            .OnInstantiated<PlayerController>((ctx, controller) =>
+            {
+                character.SetController(controller);
+            });
     }
 }

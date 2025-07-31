@@ -767,7 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1102502940}
   - component: {fileID: 1102502941}
-  - component: {fileID: 1102502943}
+  - component: {fileID: 1102502946}
   - component: {fileID: 1102502942}
   - component: {fileID: 1102502944}
   - component: {fileID: 1102502945}
@@ -837,20 +837,6 @@ MonoBehaviour:
   rotationSpeed: 20
   gravity: -9.81
   jumpForce: 5
---- !u!114 &1102502943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102502939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e6544cc7872334194816590a44a6be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementController: {fileID: 1102502942}
-  animationController: {fileID: 1102502944}
 --- !u!114 &1102502944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +872,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1102502946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102502939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e6544cc7872334194816590a44a6be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 1102502942}
+  animationController: {fileID: 1102502944}
 --- !u!1 &1174714145
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b87e8b3ca140d9882ab61083f9f17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1102502943}
+  character: {fileID: 1102502946}
 --- !u!1 &1376569519
 GameObject:
   m_ObjectHideFlags: 0
