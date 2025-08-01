@@ -31,7 +31,5 @@ public class Character : MonoBehaviour
     private void Update()
     {
         _controller?.Tick();
-        
-        animationController.UpdateSpeed(movementController.HorizontalSpeed);
     }
 }

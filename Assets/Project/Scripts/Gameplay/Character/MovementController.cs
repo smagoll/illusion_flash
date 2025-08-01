@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -5,6 +6,7 @@ public class MovementController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private CharacterController characterController;
+    [SerializeField] private AnimationController animationController;
 
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
@@ -23,14 +25,11 @@ public class MovementController : MonoBehaviour
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude; // только по XZ
     public float TotalSpeed => characterController.velocity.magnitude; // вся скорость
 
-    private ICameraService _cameraService;
-    
-    [Inject]
-    private void Construct(ICameraService cameraService)
+    private void Update()
     {
-        _cameraService = cameraService;
+        animationController.UpdateSpeed(HorizontalSpeed);
     }
-    
+
     public void Move(Vector2 inputDirection)
     {
         ApplyHorizontalMovement(inputDirection);
@@ -83,6 +82,7 @@ public class MovementController : MonoBehaviour
         if (characterController.isGrounded)
         {
             _verticalVelocity = jumpForce;
+            animationController.Jump();
         }
     }
 }
