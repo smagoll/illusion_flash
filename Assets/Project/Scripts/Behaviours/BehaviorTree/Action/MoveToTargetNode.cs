@@ -4,14 +4,15 @@
 public class MoveToTargetNode : ActionNode
 {
     [SerializeField] private float stopDistance = 1f;
-    [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private string targetTag = "Player";
     
     private Transform target;
+    private Transform owner;
     
     public override NodeState ExecuteAction(Character character)
     {
-        target = GameObject.FindWithTag(targetTag).transform;
+        if (!owner) owner = character.transform;
+        
+        target = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerTransform);
         if (target == null) return NodeState.Failure;
         
         Vector3 direction = target.transform.position - character.transform.position;
@@ -23,15 +24,19 @@ public class MoveToTargetNode : ActionNode
             return NodeState.Success;
         }
         
-        Vector2 moveDirection = new Vector2(direction.x, direction.z).normalized * moveSpeed;
-        character.Movement.Move(moveDirection);
+        direction.Normalize();
+        
+        character.Movement.Move(new Vector2(direction.x, direction.z));
         
         return NodeState.Running;
     }
     
     public override void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(target.transform.position, stopDistance);
+        if (owner != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(target.transform.position, owner.transform.position);
+        }
     }
 }

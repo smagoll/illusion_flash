@@ -5,17 +5,19 @@ public class DistanceCheckNode : ConditionNode
 {
     [SerializeField] private float maxDistance = 10f;
     [SerializeField] private bool checkPlayer = true;
-    [SerializeField] private string targetTag = "Player";
     
     private Transform target;
+    private Transform owner;
     
     public override bool CheckCondition(Character character)
     {
+        if (!owner) owner = character.transform;
+        
         target = null;
         
         if (checkPlayer)
         {
-            var player = GameObject.FindWithTag(targetTag);
+            var player = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerTransform);
             target = player?.transform;
         }
         
@@ -27,7 +29,10 @@ public class DistanceCheckNode : ConditionNode
     
     public override void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(target.transform.position, maxDistance);
+        if (owner != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(owner.transform.position, maxDistance);
+        }
     }
 }

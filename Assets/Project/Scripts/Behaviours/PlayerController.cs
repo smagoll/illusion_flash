@@ -16,6 +16,8 @@ public class PlayerController : ICharacterController
     public void Init(Character character)
     {
         this.character = character;
+        
+        character.Blackboard.GlobalBlackboard.SetValue(BBKeys.PlayerTransform, character.gameObject.transform);
     }
 
     public void Tick()
@@ -26,6 +28,8 @@ public class PlayerController : ICharacterController
         {
             character.Movement.Jump();
         }
+
+        UpdateBlackboard();
     }
 
     private void Move()
@@ -41,5 +45,10 @@ public class PlayerController : ICharacterController
         Vector3 moveDir = (camForward * _input.MoveAxis.y + camRight * _input.MoveAxis.x).normalized;
 
         character.Movement.Move(new Vector2(moveDir.x, moveDir.z));
+    }
+
+    private void UpdateBlackboard()
+    {
+        
     }
 }

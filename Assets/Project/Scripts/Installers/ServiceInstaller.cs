@@ -11,5 +11,9 @@ public class ServiceInstaller : MonoInstaller
     {
         Container.Bind<IInputService>().FromInstance(_inputService).AsSingle();
         Container.Bind<ICameraService>().FromInstance(_cameraService).AsSingle();
+
+        var blackboard = new Blackboard();
+        
+        Container.Bind<Blackboard>().FromInstance(blackboard).AsSingle();
     }
 }

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99355fe753364ccc979539a8f93fc811, type: 3}
-  m_Name: Selector 1
+  m_Script: {fileID: 11500000, guid: ee39318a72e847e0bd3a98ce4ebc7e5a, type: 3}
+  m_Name: MoveToTarget
   m_EditorClassIdentifier: 
-  nodeName: Select
+  nodeName: MoveToTarget
   description: 
-  children: []
+  stopDistance: 2
+  moveSpeed: 1
+  targetTag: Player
