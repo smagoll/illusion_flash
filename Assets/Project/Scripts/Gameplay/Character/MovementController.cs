@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Zenject;
 
@@ -29,6 +30,9 @@ public class MovementController : MonoBehaviour
     private void Update()
     {
         animationController.UpdateSpeed(HorizontalSpeed);
+        animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
+        
+        Debug.Log(!characterController.isGrounded && VerticalSpeed < -1);
     }
 
     public void Move(Vector2 inputDirection, float speed)

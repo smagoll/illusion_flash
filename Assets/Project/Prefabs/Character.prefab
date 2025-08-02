@@ -97,7 +97,7 @@ MonoBehaviour:
   smoothTime: 0.1
   rotationSpeed: 20
   gravity: -9.81
-  jumpForce: 5
+  jumpForce: 4
 --- !u!114 &8102810475405245728
 MonoBehaviour:
   m_ObjectHideFlags: 0

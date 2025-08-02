@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
@@ -13,11 +14,13 @@ public class AnimationController : MonoBehaviour
 
     private static readonly int Run = Animator.StringToHash("isRun");
     private static readonly int Walk = Animator.StringToHash("isWalk");
+    private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
 
     private void Start()
     {
         animator.SetBool(Run, false);
+        animator.SetBool(Walk, false);
     }
 
     public void UpdateSpeed(float speed)
@@ -45,5 +48,10 @@ public class AnimationController : MonoBehaviour
     public void Jump()
     {
         animator.SetTrigger(JumpTrigger);
+    }
+
+    public void UpdateIsFalling(bool isFalling)
+    {
+        animator.SetBool(IsFalling, isFalling);
     }
 }
