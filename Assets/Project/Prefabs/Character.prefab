@@ -92,7 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 2688327369465301060}
   animationController: {fileID: 8102810475405245728}
-  moveSpeed: 7
+  runSpeed: 7
+  walkSpeed: 2
   smoothTime: 0.1
   rotationSpeed: 20
   gravity: -9.81
@@ -110,7 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1599699902047332577}
-  horizontalSpeedForRun: 2
+  horizontalSpeedForRun: 2.5
+  horizontalSpeedForWalk: 0.5
 --- !u!95 &1599699902047332577
 Animator:
   serializedVersion: 7

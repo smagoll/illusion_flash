@@ -9,7 +9,8 @@ public class MovementController : MonoBehaviour
     [SerializeField] private AnimationController animationController;
 
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float runSpeed = 7f;
+    [SerializeField] private float walkSpeed = 2f;
     [SerializeField] private float smoothTime = 0.1f;
     [SerializeField] private float rotationSpeed = 10f;
 
@@ -30,14 +31,24 @@ public class MovementController : MonoBehaviour
         animationController.UpdateSpeed(HorizontalSpeed);
     }
 
-    public void Move(Vector2 inputDirection)
+    public void Move(Vector2 inputDirection, float speed)
     {
         ApplyHorizontalMovement(inputDirection);
         ApplyGravity();
         RotateTowardsMovement();
-
-        Vector3 move = (_smoothDirection * moveSpeed) + Vector3.up * _verticalVelocity;
+        
+        Vector3 move = (_smoothDirection * speed) + Vector3.up * _verticalVelocity;
         characterController.Move(move * Time.deltaTime);
+    }
+
+    public void Walk(Vector2 inputDirection)
+    {
+        Move(inputDirection, walkSpeed);
+    }
+    
+    public void Run(Vector2 inputDirection)
+    {
+        Move(inputDirection, runSpeed);
     }
 
     private void ApplyHorizontalMovement(Vector2 input)

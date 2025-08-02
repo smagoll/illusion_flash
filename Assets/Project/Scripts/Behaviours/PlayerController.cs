@@ -44,7 +44,14 @@ public class PlayerController : ICharacterController
         
         Vector3 moveDir = (camForward * _input.MoveAxis.y + camRight * _input.MoveAxis.x).normalized;
 
-        character.Movement.Move(new Vector2(moveDir.x, moveDir.z));
+        if (_input.AltPressed)
+        {
+            character.Movement.Walk(new Vector2(moveDir.x, moveDir.z));
+        }
+        else
+        {
+            character.Movement.Run(new Vector2(moveDir.x, moveDir.z));   
+        }
     }
 
     private void UpdateBlackboard()
