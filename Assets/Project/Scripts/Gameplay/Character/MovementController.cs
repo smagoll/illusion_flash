@@ -31,8 +31,6 @@ public class MovementController : MonoBehaviour
     {
         animationController.UpdateSpeed(HorizontalSpeed);
         animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
-        
-        Debug.Log(!characterController.isGrounded && VerticalSpeed < -1);
     }
 
     public void Move(Vector2 inputDirection, float speed)
