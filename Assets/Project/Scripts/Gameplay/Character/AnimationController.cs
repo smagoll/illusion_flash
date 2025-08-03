@@ -60,4 +60,14 @@ public class AnimationController : MonoBehaviour
     {
         animator.SetBool(IsFalling, isFalling);
     }
+
+    public void EquipWeapon()
+    {
+        animator.SetBool("hasWeapon", true);
+    }
+    
+    public void UnequipWeapon()
+    {
+        animator.SetBool("hasWeapon", false);
+    }
 }

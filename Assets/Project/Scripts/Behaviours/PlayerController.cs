@@ -30,6 +30,11 @@ public class PlayerController : ICharacterController
         }
 
         UpdateBlackboard();
+
+        if (_input.FirstItemPressed)
+        {
+            character.ToggleWeapon();
+        }
     }
 
     private void Move()
