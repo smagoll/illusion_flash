@@ -18,10 +18,14 @@ public class AnimationController : MonoBehaviour
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
     private static readonly int AttackTrigger = Animator.StringToHash("attack");
 
+    private static int WeaponLayer;
+
     private void Start()
     {
         animator.SetBool(Run, false);
         animator.SetBool(Walk, false);
+        
+        WeaponLayer =  animator.GetLayerIndex("Weapon Layer");
     }
 
     public void UpdateSpeed(float speed)
@@ -63,11 +67,11 @@ public class AnimationController : MonoBehaviour
 
     public void EquipWeapon()
     {
-        animator.SetBool("hasWeapon", true);
+        animator.SetLayerWeight(WeaponLayer, 1f);
     }
     
     public void UnequipWeapon()
     {
-        animator.SetBool("hasWeapon", false);
+        animator.SetLayerWeight(WeaponLayer, 0f);
     }
 }

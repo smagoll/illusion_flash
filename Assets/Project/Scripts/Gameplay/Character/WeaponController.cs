@@ -26,6 +26,9 @@ public class WeaponController : MonoBehaviour
         if (_currentWeapon == null || IsWeaponDrawn) return;
 
         _currentWeaponGO = Instantiate(_currentWeapon.Prefab, weaponSocket);
+        _currentWeaponGO.transform.localPosition = Vector3.zero;
+        _currentWeaponGO.transform.localRotation = Quaternion.identity;
+        
         _animationController.EquipWeapon();
 
         IsWeaponDrawn = true;
