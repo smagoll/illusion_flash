@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public struct IKFootConfig
+public class IKFootConfig
 {
     [Header("Raycast Settings")]
     public LayerMask groundMask;
