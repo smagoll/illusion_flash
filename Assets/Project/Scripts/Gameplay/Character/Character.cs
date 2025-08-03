@@ -6,17 +6,21 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private MovementController movementController;
     [SerializeField] private AnimationController animationController;
+    [SerializeField] private AttackController attackController;
     [SerializeField] private CharacterView characterView;
 
     [Inject] private Blackboard globalBackboard;
     
     private ICharacterController _controller;
-
+    
+    public AttackController Attack => attackController;
     public MovementController Movement => movementController;
     public LocalBlackboard Blackboard { get; private set; }
     
     public void SetController(ICharacterController controller)
     {
+        attackController.Init(animationController);
+        
         Blackboard = new LocalBlackboard(globalBackboard);
         
         _controller = controller;

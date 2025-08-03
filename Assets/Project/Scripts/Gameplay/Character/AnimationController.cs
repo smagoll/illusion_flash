@@ -16,6 +16,7 @@ public class AnimationController : MonoBehaviour
     private static readonly int Walk = Animator.StringToHash("isWalk");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
+    private static readonly int AttackTrigger = Animator.StringToHash("attack");
 
     private void Start()
     {
@@ -48,6 +49,11 @@ public class AnimationController : MonoBehaviour
     public void Jump()
     {
         animator.SetTrigger(JumpTrigger);
+    }
+    
+    public void Attack()
+    {
+        animator.SetTrigger(AttackTrigger);
     }
 
     public void UpdateIsFalling(bool isFalling)
