@@ -8,6 +8,7 @@ public class ModelEventsHandler : MonoBehaviour
     public event Action OnEquipWeapon;
     public event Action OnUnequipWeapon;
     public event Action OnEndAttack;
+    public event Action OnImpulse;
     
     public void EnableWeaponHitbox()
     {
@@ -32,5 +33,10 @@ public class ModelEventsHandler : MonoBehaviour
     public void EndAttack()
     {
         OnEndAttack?.Invoke();
+    }
+
+    public void Impulse()
+    {
+        OnImpulse?.Invoke();
     }
 }

@@ -34,10 +34,9 @@ public class Character : MonoBehaviour
         _inventory = new Inventory();
         
         animationController.Init(modelFacade.animator, modelFacade.eventsHandler);
-        weaponController = new WeaponController(animationController, modelFacade.socketHolder);
-        attackController = new AttackController(animationController, weaponController);
         movementController.Init(animationController);
-        
+        weaponController = new WeaponController(animationController, modelFacade.socketHolder);
+        attackController = new AttackController(animationController, weaponController, movementController);
         
         var sword = new Weapon("Меч", swordPrefab, 25);
         _inventory.AddItem(sword);
