@@ -1,21 +1,27 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 public class Character : MonoBehaviour
 {
+    [Header("Controllers")]
     [SerializeField] private MovementController movementController;
     [SerializeField] private AnimationController animationController;
-    [SerializeField] private AttackController attackController;
-    [SerializeField] private WeaponController weaponController;
+    [FormerlySerializedAs("attackController")] [SerializeField] private AttackController attackControllerController;
     [SerializeField] private CharacterView characterView;
+    
+    [Header("Model")]
+    [SerializeField] private ModelFacade modelFacade;
 
     [Inject] private Blackboard globalBackboard;
     
     private ICharacterController _controller;
     private Inventory _inventory;
     
-    public AttackController Attack => attackController;
+    private WeaponController weaponController;
+    
+    public AttackController AttackController => attackControllerController;
     public MovementController Movement => movementController;
     public WeaponController WeaponController => weaponController;
     public LocalBlackboard Blackboard { get; private set; }
@@ -27,8 +33,9 @@ public class Character : MonoBehaviour
     {
         _inventory = new Inventory();
         
-        attackController.Init(animationController);
-        weaponController.Init(animationController);
+        animationController.Init(modelFacade.animator);
+        attackControllerController.Init(animationController);
+        weaponController = new WeaponController(animationController, modelFacade.socketHolder);
         
         var sword = new Weapon("Меч", swordPrefab, 25);
         _inventory.AddItem(sword);

@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController
 {
-    [SerializeField] private Transform weaponSocket;
-
     private AnimationController _animationController;
+    private SocketHolder _socketHolder;
     
     private GameObject _currentWeaponGO;
     private Weapon _currentWeapon;
 
     public bool IsWeaponDrawn { get; private set; }
 
-    public void Init(AnimationController animationController)
+    public WeaponController(AnimationController animationController, SocketHolder socketHolder)
     {
         _animationController = animationController;
+        _socketHolder = socketHolder;
     }
     
     public void SetWeapon(Weapon weapon)
@@ -25,7 +25,7 @@ public class WeaponController : MonoBehaviour
     {
         if (_currentWeapon == null || IsWeaponDrawn) return;
 
-        _currentWeaponGO = Instantiate(_currentWeapon.Prefab, weaponSocket);
+        _currentWeaponGO = Object.Instantiate(_currentWeapon.Prefab, _socketHolder.weapon);
         _currentWeaponGO.transform.localPosition = Vector3.zero;
         _currentWeaponGO.transform.localRotation = Quaternion.identity;
         
@@ -39,7 +39,7 @@ public class WeaponController : MonoBehaviour
         if (!IsWeaponDrawn) return;
 
         if (_currentWeaponGO != null)
-            Destroy(_currentWeaponGO);
+            Object.Destroy(_currentWeaponGO);
 
         _animationController.UnequipWeapon();
 

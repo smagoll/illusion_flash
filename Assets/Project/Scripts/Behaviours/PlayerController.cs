@@ -35,6 +35,11 @@ public class PlayerController : ICharacterController
         {
             character.ToggleWeapon();
         }
+
+        if (_input.AttackPressed)
+        {
+            character.AttackController.Attack();
+        }
     }
 
     private void Move()

@@ -12,5 +12,7 @@ public class AttackController : MonoBehaviour
     public void Attack()
     {
         _animationController.Attack();
+        
+        Debug.Log("attack");
     }
 }

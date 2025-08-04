@@ -5,12 +5,11 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField]
-    private Animator animator;
-    
-    [SerializeField]
     private float horizontalSpeedForRun = 2.5f;
     [SerializeField]
     private float horizontalSpeedForWalk = 0.5f;
+
+    private Animator _animator;
 
     private static readonly int Run = Animator.StringToHash("isRun");
     private static readonly int Walk = Animator.StringToHash("isWalk");
@@ -20,58 +19,65 @@ public class AnimationController : MonoBehaviour
 
     private static int WeaponLayer;
 
-    private void Start()
+    public void Init(Animator animator)
     {
-        animator.SetBool(Run, false);
-        animator.SetBool(Walk, false);
+        _animator = animator;
         
-        WeaponLayer =  animator.GetLayerIndex("Weapon Layer");
+        Setup();
+    }
+    
+    private void Setup()
+    {
+        _animator.SetBool(Run, false);
+        _animator.SetBool(Walk, false);
+        
+        WeaponLayer =  _animator.GetLayerIndex("Weapon Layer");
     }
 
     public void UpdateSpeed(float speed)
     {
         if (speed > horizontalSpeedForRun)
         {
-            animator.SetBool(Run, true);
+            _animator.SetBool(Run, true);
             return;
         }
         else
         {
-            animator.SetBool(Run, false);
+            _animator.SetBool(Run, false);
         }
         
         if (speed > horizontalSpeedForWalk)
         {
-            animator.SetBool(Walk, true);
+            _animator.SetBool(Walk, true);
         }
         else
         {
-            animator.SetBool(Walk, false);
+            _animator.SetBool(Walk, false);
         }
     }
 
     public void Jump()
     {
-        animator.SetTrigger(JumpTrigger);
+        _animator.SetTrigger(JumpTrigger);
     }
     
     public void Attack()
     {
-        animator.SetTrigger(AttackTrigger);
+        _animator.SetTrigger(AttackTrigger);
     }
 
     public void UpdateIsFalling(bool isFalling)
     {
-        animator.SetBool(IsFalling, isFalling);
+        _animator.SetBool(IsFalling, isFalling);
     }
 
     public void EquipWeapon()
     {
-        animator.SetLayerWeight(WeaponLayer, 1f);
+        _animator.SetLayerWeight(WeaponLayer, 1f);
     }
     
     public void UnequipWeapon()
     {
-        animator.SetLayerWeight(WeaponLayer, 0f);
+        _animator.SetLayerWeight(WeaponLayer, 0f);
     }
 }

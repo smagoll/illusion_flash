@@ -64,6 +64,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4306f9d0-0351-4396-9e20-d3b491b1aeaa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -154,6 +163,17 @@ namespace Input
                     ""action"": ""FirstItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44aff543-8cf1-485d-9e7a-6bc501cf68e1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +186,7 @@ namespace Input
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Walk = m_Player.FindAction("Walk", throwIfNotFound: true);
             m_Player_FirstItem = m_Player.FindAction("FirstItem", throwIfNotFound: true);
+            m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -236,6 +257,7 @@ namespace Input
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Walk;
         private readonly InputAction m_Player_FirstItem;
+        private readonly InputAction m_Player_Attack;
         public struct PlayerActions
         {
             private @PlayerInput m_Wrapper;
@@ -244,6 +266,7 @@ namespace Input
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Walk => m_Wrapper.m_Player_Walk;
             public InputAction @FirstItem => m_Wrapper.m_Player_FirstItem;
+            public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -265,6 +288,9 @@ namespace Input
                 @FirstItem.started += instance.OnFirstItem;
                 @FirstItem.performed += instance.OnFirstItem;
                 @FirstItem.canceled += instance.OnFirstItem;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -281,6 +307,9 @@ namespace Input
                 @FirstItem.started -= instance.OnFirstItem;
                 @FirstItem.performed -= instance.OnFirstItem;
                 @FirstItem.canceled -= instance.OnFirstItem;
+                @Attack.started -= instance.OnAttack;
+                @Attack.performed -= instance.OnAttack;
+                @Attack.canceled -= instance.OnAttack;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -304,6 +333,7 @@ namespace Input
             void OnJump(InputAction.CallbackContext context);
             void OnWalk(InputAction.CallbackContext context);
             void OnFirstItem(InputAction.CallbackContext context);
+            void OnAttack(InputAction.CallbackContext context);
         }
     }
 }
