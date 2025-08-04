@@ -1082,7 +1082,6 @@ GameObject:
   - component: {fileID: 8533373309967329}
   - component: {fileID: 8102810475405245728}
   - component: {fileID: 4570766234597673884}
-  - component: {fileID: 7680823609003033329}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1145,7 +1144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementController: {fileID: 8533373309967329}
   animationController: {fileID: 8102810475405245728}
-  attackController: {fileID: 7680823609003033329}
   characterView: {fileID: 4570766234597673884}
   modelFacade: {fileID: 2269614787946389440}
   swordPrefab: {fileID: 5096797749881093665, guid: c7349441bb611af45ad4757004d4542b, type: 3}
@@ -1162,7 +1160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 2688327369465301060}
-  animationController: {fileID: 8102810475405245728}
   runSpeed: 7
   walkSpeed: 2
   smoothTime: 0.1
@@ -1193,18 +1190,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce9d251b22f4460fb628f85bc8355799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7680823609003033329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5349437489821230086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe381ed1d1e448c2a9a25ae10b21ca24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5808886173034804400

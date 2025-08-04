@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class AttackController : MonoBehaviour
+public class AttackController
 {
     private AnimationController _animationController;
     
-    public void Init(AnimationController animationController)
+    public AttackController(AnimationController animationController)
     {
         _animationController = animationController;
     }

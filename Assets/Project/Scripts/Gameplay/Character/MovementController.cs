@@ -6,7 +6,6 @@ public class MovementController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private AnimationController animationController;
 
     [Header("Movement Settings")]
     [SerializeField] private float runSpeed = 7f;
@@ -26,7 +25,14 @@ public class MovementController : MonoBehaviour
     public float VerticalSpeed => characterController.velocity.y; 
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
     public float TotalSpeed => characterController.velocity.magnitude;
+    
+    private AnimationController _animationController;
 
+    public void Init(AnimationController animationController)
+    {
+        _animationController = animationController;
+    }
+    
     private void Update()
     {
         ApplyGravity();
@@ -34,8 +40,8 @@ public class MovementController : MonoBehaviour
         Vector3 move = (_moveDirection) + Vector3.up * _verticalVelocity;
         characterController.Move(move * Time.deltaTime);
 
-        animationController.UpdateSpeed(HorizontalSpeed);
-        animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
+        _animationController.UpdateSpeed(HorizontalSpeed);
+        _animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
 
         RotateTowardsMovement();
 
@@ -97,7 +103,7 @@ public class MovementController : MonoBehaviour
         if (characterController.isGrounded)
         {
             _verticalVelocity = jumpForce;
-            animationController.Jump();
+            _animationController.Jump();
         }
     }
 }

@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     [Header("Controllers")]
     [SerializeField] private MovementController movementController;
     [SerializeField] private AnimationController animationController;
-    [FormerlySerializedAs("attackController")] [SerializeField] private AttackController attackControllerController;
+    [SerializeField] private AttackController attackController;
     [SerializeField] private CharacterView characterView;
     
     [Header("Model")]
@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
     
     private WeaponController weaponController;
     
-    public AttackController AttackController => attackControllerController;
+    public AttackController AttackController => attackController;
     public MovementController Movement => movementController;
     public WeaponController WeaponController => weaponController;
     public LocalBlackboard Blackboard { get; private set; }
@@ -34,12 +34,12 @@ public class Character : MonoBehaviour
         _inventory = new Inventory();
         
         animationController.Init(modelFacade.animator);
-        attackControllerController.Init(animationController);
+        attackController = new AttackController(animationController);
+        movementController.Init(animationController);
         weaponController = new WeaponController(animationController, modelFacade.socketHolder);
         
         var sword = new Weapon("Меч", swordPrefab, 25);
         _inventory.AddItem(sword);
-
         weaponController.SetWeapon(_inventory.EquippedWeapon);
         
         Blackboard = new LocalBlackboard(globalBackboard);
@@ -56,10 +56,5 @@ public class Character : MonoBehaviour
     private void Update()
     {
         _controller?.Tick();
-    }
-
-    public void ToggleWeapon()
-    {
-        weaponController.ToggleWeapon();
     }
 }

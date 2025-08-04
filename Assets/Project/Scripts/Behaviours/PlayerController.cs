@@ -33,7 +33,7 @@ public class PlayerController : ICharacterController
 
         if (_input.FirstItemPressed)
         {
-            character.ToggleWeapon();
+            character.WeaponController.ToggleWeapon();
         }
 
         if (_input.AttackPressed)
