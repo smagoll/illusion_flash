@@ -4,18 +4,16 @@ public class WeaponController
 {
     private AnimationController _animationController;
     private SocketHolder _socketHolder;
-    private ModelEventsHandler _modelModelEventsHandler;
     
     private WeaponView _currentWeaponGO;
     private Weapon _currentWeapon;
 
     public bool IsWeaponDrawn { get; private set; }
 
-    public WeaponController(AnimationController animationController, SocketHolder socketHolder, ModelEventsHandler modelEventsHandler)
+    public WeaponController(AnimationController animationController, SocketHolder socketHolder)
     {
         _animationController = animationController;
         _socketHolder = socketHolder;
-        _modelModelEventsHandler = modelEventsHandler;
         
         RegisterEvents();
     }
@@ -77,10 +75,10 @@ public class WeaponController
 
     private void RegisterEvents()
     {
-        _modelModelEventsHandler.OnWeaponHitboxEnabled += EnableHitbox;
-        _modelModelEventsHandler.OnWeaponHitboxDisabled += DisableHitbox;
-        _modelModelEventsHandler.OnEquipWeapon += CreateWeapon;
-        _modelModelEventsHandler.OnUnequipWeapon += DestroyWeapon;
+        _animationController.ModelEventsHandler.OnWeaponHitboxEnabled += EnableHitbox;
+        _animationController.ModelEventsHandler.OnWeaponHitboxDisabled += DisableHitbox;
+        _animationController.ModelEventsHandler.OnEquipWeapon += CreateWeapon;
+        _animationController.ModelEventsHandler.OnUnequipWeapon += DestroyWeapon;
     }
 
     public int GetDamage()

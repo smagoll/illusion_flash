@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
@@ -19,10 +17,13 @@ public class AnimationController : MonoBehaviour
     private static readonly int HasWeapon = Animator.StringToHash("hasWeapon");
 
     private static int WeaponLayer;
+    
+    public ModelEventsHandler ModelEventsHandler { get; private set; }
 
-    public void Init(Animator animator)
+    public void Init(Animator animator, ModelEventsHandler modelEventsHandler)
     {
         _animator = animator;
+        ModelEventsHandler = modelEventsHandler;
         
         Setup();
     }
