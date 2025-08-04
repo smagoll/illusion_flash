@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class CharacterModel
 {
     public Health Health { get; }
@@ -12,6 +14,7 @@ public class CharacterModel
     public void TakeDamage(int amount)
     {
         Health.TakeDamage(amount);
+        Debug.Log("Take damage");
     }
 
     public void RestoreMana(int amount)

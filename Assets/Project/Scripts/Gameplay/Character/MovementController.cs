@@ -4,35 +4,40 @@ using Zenject;
 
 public class MovementController : MonoBehaviour
 {
-    [Header("Components")]
-    [SerializeField] private CharacterController characterController;
+    [Header("Components")] [SerializeField]
+    private CharacterController characterController;
 
-    [Header("Movement Settings")]
-    [SerializeField] private float runSpeed = 7f;
+    [Header("Movement Settings")] [SerializeField]
+    private float runSpeed = 7f;
+
     [SerializeField] private float walkSpeed = 2f;
     [SerializeField] private float smoothTime = 0.1f;
     [SerializeField] private float rotationSpeed = 10f;
 
-    [Header("Jump & Gravity")]
-    [SerializeField] private float gravity = -9.81f;
+    [Header("Jump & Gravity")] [SerializeField]
+    private float gravity = -9.81f;
+
     [SerializeField] private float jumpForce = 5f;
 
-    private Vector3 _currentVelocity;   // Для сглаживания движения
-    private Vector3 _smoothDirection;   // Текущее сглаженное направление
-    private float _verticalVelocity;    // Вертикальное движение (гравитация/прыжок)
-    private Vector3 _moveDirection;     // Итоговое накопленное направление
+    private Vector3 _currentVelocity; // Для сглаживания движения
+    private Vector3 _smoothDirection; // Текущее сглаженное направление
+    private float _verticalVelocity; // Вертикальное движение (гравитация/прыжок)
+    private Vector3 _moveDirection; // Итоговое накопленное направление
 
-    public float VerticalSpeed => characterController.velocity.y; 
-    public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
+    public float VerticalSpeed => characterController.velocity.y;
+
+    public float HorizontalSpeed =>
+        new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
+
     public float TotalSpeed => characterController.velocity.magnitude;
-    
+
     private AnimationController _animationController;
 
     public void Init(AnimationController animationController)
     {
         _animationController = animationController;
     }
-    
+
     private void Update()
     {
         ApplyGravity();
@@ -50,15 +55,15 @@ public class MovementController : MonoBehaviour
 
     public void Walk(Vector2 inputDirection)
     {
-        AddMovement(inputDirection, walkSpeed);
+        Move(inputDirection, walkSpeed);
     }
 
     public void Run(Vector2 inputDirection)
     {
-        AddMovement(inputDirection, runSpeed);
+        Move(inputDirection, runSpeed);
     }
 
-    private void AddMovement(Vector2 inputDirection, float speed)
+    public void Move(Vector2 inputDirection, float speed)
     {
         ApplyHorizontalMovement(inputDirection);
         _moveDirection += _smoothDirection * speed;

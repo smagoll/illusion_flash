@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7666448512490555499}
   - component: {fileID: 7666448512489556651}
   - component: {fileID: 6402946795856184995}
+  - component: {fileID: 8691906725050146207}
   m_Layer: 0
   m_Name: PP_Sword_0018
   m_TagString: Untagged
@@ -109,3 +110,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: fe6dc511950eb6a4fb8d1605e7f7e1bd, type: 3}
+--- !u!114 &8691906725050146207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666448512491557995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b83fec527383e8341b866a21168afa5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
