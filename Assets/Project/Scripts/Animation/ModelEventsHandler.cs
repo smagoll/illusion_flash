@@ -5,6 +5,8 @@ public class ModelEventsHandler : MonoBehaviour
 {
     public event Action OnWeaponHitboxEnabled;
     public event Action OnWeaponHitboxDisabled;
+    public event Action OnEquipWeapon;
+    public event Action OnUnequipWeapon;
     
     public void EnableWeaponHitbox()
     {
@@ -14,5 +16,15 @@ public class ModelEventsHandler : MonoBehaviour
     public void DisableWeaponHitbox()
     {
         OnWeaponHitboxDisabled?.Invoke();
+    }
+
+    public void EquipWeapon()
+    {
+        OnEquipWeapon?.Invoke();
+    }
+
+    public void UnequipWeapon()
+    {
+        OnUnequipWeapon?.Invoke();
     }
 }

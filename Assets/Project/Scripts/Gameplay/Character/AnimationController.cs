@@ -16,6 +16,7 @@ public class AnimationController : MonoBehaviour
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
     private static readonly int AttackTrigger = Animator.StringToHash("attack");
+    private static readonly int HasWeapon = Animator.StringToHash("hasWeapon");
 
     private static int WeaponLayer;
 
@@ -73,11 +74,15 @@ public class AnimationController : MonoBehaviour
 
     public void EquipWeapon()
     {
-        _animator.SetLayerWeight(WeaponLayer, 1f);
+        //_animator.SetLayerWeight(WeaponLayer, 1f);
+        _animator.SetBool(HasWeapon, true);
+        _animator.SetTrigger("equipWeapon");
     }
     
     public void UnequipWeapon()
     {
-        _animator.SetLayerWeight(WeaponLayer, 0f);
+        //_animator.SetLayerWeight(WeaponLayer, 0f);
+        _animator.SetBool(HasWeapon, false);
+        _animator.SetTrigger("unequipWeapon");
     }
 }

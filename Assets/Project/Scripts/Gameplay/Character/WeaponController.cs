@@ -28,35 +28,41 @@ public class WeaponController
     private void DrawWeapon()
     {
         if (_currentWeapon == null || IsWeaponDrawn) return;
+        
+        _animationController.EquipWeapon();
+    }
 
+    private void CreateWeapon()
+    {
         _currentWeaponGO = Object.Instantiate(_currentWeapon.Prefab, _socketHolder.weapon);
         _currentWeaponGO.transform.localPosition = Vector3.zero;
         _currentWeaponGO.transform.localRotation = Quaternion.identity;
         _currentWeaponGO.Init(this);
         
-        _animationController.EquipWeapon();
-
         IsWeaponDrawn = true;
+    }
+
+    private void DestroyWeapon()
+    {
+        if (_currentWeaponGO != null)
+            Object.Destroy(_currentWeaponGO.gameObject);
+        
+        IsWeaponDrawn = false;
     }
 
     private void SheatheWeapon()
     {
         if (!IsWeaponDrawn) return;
-
-        if (_currentWeaponGO != null)
-            Object.Destroy(_currentWeaponGO);
-
+        
         _animationController.UnequipWeapon();
-
-        IsWeaponDrawn = false;
     }
 
-    public void EnableHitbox()
+    private void EnableHitbox()
     {
         _currentWeaponGO.gameObject.GetComponent<Collider>().enabled = true;
     }
     
-    public void DisableHitbox()
+    private void DisableHitbox()
     {
         _currentWeaponGO.gameObject.GetComponent<Collider>().enabled = false;
     }
@@ -73,6 +79,8 @@ public class WeaponController
     {
         _modelModelEventsHandler.OnWeaponHitboxEnabled += EnableHitbox;
         _modelModelEventsHandler.OnWeaponHitboxDisabled += DisableHitbox;
+        _modelModelEventsHandler.OnEquipWeapon += CreateWeapon;
+        _modelModelEventsHandler.OnUnequipWeapon += DestroyWeapon;
     }
 
     public int GetDamage()
