@@ -1,14 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 public class MovementController : MonoBehaviour
 {
-    [Header("Components")] [SerializeField]
-    private CharacterController characterController;
+    [Header("Components")] 
+    [SerializeField] private CharacterController characterController;
+    [SerializeField] private NavMeshAgent navMeshAgent;
 
-    [Header("Movement Settings")] [SerializeField]
-    private float runSpeed = 7f;
+    [Header("Movement Settings")] 
+    [SerializeField] private float runSpeed = 7f;
 
     [SerializeField] private float walkSpeed = 2f;
     [SerializeField] private float smoothTime = 0.1f;
@@ -25,6 +27,11 @@ public class MovementController : MonoBehaviour
 
     private bool isMove = true;
 
+    private NavMeshMover navMeshMover;
+
+    public float RunSpeed => runSpeed;
+    public float WalkSpeed => walkSpeed;
+    
     public float VerticalSpeed => characterController.velocity.y;
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
     public float TotalSpeed => characterController.velocity.magnitude;
@@ -33,14 +40,18 @@ public class MovementController : MonoBehaviour
     public bool IsGrounded => characterController.isGrounded;
     
     private AnimationController _animationController;
+    public NavMeshMover NavMeshMover => navMeshMover;
 
     public void Init(AnimationController animationController)
     {
         _animationController = animationController;
+        navMeshMover = new NavMeshMover(this, navMeshAgent);
     }
 
     private void Update()
     {
+        navMeshMover.Tick();
+        
         ApplyGravity();
 
         Vector3 move = _moveDirection + Vector3.up * _verticalVelocity + _attackImpulse;
@@ -63,11 +74,15 @@ public class MovementController : MonoBehaviour
     public void Walk(Vector2 inputDirection)
     {
         Move(inputDirection, walkSpeed);
+        
+        navMeshMover.Stop();
     }
 
     public void Run(Vector2 inputDirection)
     {
         Move(inputDirection, runSpeed);
+        
+        navMeshMover.Stop();
     }
 
     public void Move(Vector2 inputDirection, float speed)
@@ -76,6 +91,13 @@ public class MovementController : MonoBehaviour
         
         ApplyHorizontalMovement(inputDirection);
         _moveDirection += _smoothDirection * speed;
+    }
+    
+    public void MoveTo(Vector3 inputDirection, float speed)
+    {
+        if (!isMove) return;
+        
+        navMeshMover.MoveTo(inputDirection);
     }
 
     private void ApplyHorizontalMovement(Vector2 input)
