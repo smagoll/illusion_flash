@@ -20,13 +20,13 @@ public class MoveToTargetNode : ActionNode
         
         if (distance <= stopDistance)
         {
-            character.Movement.Walk(Vector2.zero);
+            character.MovementController.Walk(Vector2.zero);
             return NodeState.Success;
         }
         
         direction.Normalize();
         
-        character.Movement.Walk(new Vector2(direction.x, direction.z));
+        character.MovementController.Walk(new Vector2(direction.x, direction.z));
         
         return NodeState.Running;
     }

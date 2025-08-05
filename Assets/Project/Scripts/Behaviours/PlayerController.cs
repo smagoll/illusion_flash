@@ -26,7 +26,7 @@ public class PlayerController : ICharacterController
 
         if (_input.JumpPressed)
         {
-            character.Movement.Jump();
+            character.MovementController.Jump();
         }
 
         UpdateBlackboard();
@@ -38,7 +38,7 @@ public class PlayerController : ICharacterController
 
         if (_input.AttackPressed)
         {
-            character.AttackController.Attack();
+            character.AbilityController.TryExecute(AbilityKeys.Attack);
         }
     }
 
@@ -56,11 +56,11 @@ public class PlayerController : ICharacterController
 
         if (_input.AltPressed)
         {
-            character.Movement.Walk(new Vector2(moveDir.x, moveDir.z));
+            character.MovementController.Walk(new Vector2(moveDir.x, moveDir.z));
         }
         else
         {
-            character.Movement.Run(new Vector2(moveDir.x, moveDir.z));   
+            character.MovementController.Run(new Vector2(moveDir.x, moveDir.z));   
         }
     }
 

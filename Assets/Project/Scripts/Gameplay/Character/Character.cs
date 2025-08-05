@@ -18,16 +18,21 @@ public class Character : MonoBehaviour
     private ICharacterController _controller;
     private Inventory _inventory;
     
+    // Controllers
     private WeaponController weaponController;
-    private AttackController attackController;
+    private AbilityController abilityController;
     
-    public AttackController AttackController => attackController;
-    public MovementController Movement => movementController;
+    public MovementController MovementController => movementController;
     public WeaponController WeaponController => weaponController;
+    public AbilityController AbilityController => abilityController;
+    public AnimationController AnimationController => animationController;
+    
+    
     public LocalBlackboard Blackboard { get; private set; }
     
     //Tests
     [SerializeField] private WeaponView swordPrefab;
+    [SerializeField] private CharacterConfig characterConfig;
     
     public void SetController(ICharacterController controller)
     {
@@ -36,7 +41,7 @@ public class Character : MonoBehaviour
         animationController.Init(modelFacade.animator, modelFacade.eventsHandler);
         movementController.Init(animationController);
         weaponController = new WeaponController(animationController, modelFacade.socketHolder);
-        attackController = new AttackController(animationController, weaponController, movementController);
+        abilityController = new AbilityController(this, characterConfig.abilities);
         
         var sword = new Weapon("Меч", swordPrefab, 25);
         _inventory.AddItem(sword);
@@ -47,7 +52,7 @@ public class Character : MonoBehaviour
         _controller = controller;
         _controller.Init(this);
 
-        var model = new CharacterModel(100, 100);
+        var model = new CharacterModel(characterConfig.hp, characterConfig.mp);
         characterView.Init(model);
         
         Debug.Log("Character Initialized");
