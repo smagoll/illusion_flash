@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Ability/Attack")]
-public class Attack : AbilitySO
+public class AttackSO : AbilitySO
 {
     public override Ability Create()
     {

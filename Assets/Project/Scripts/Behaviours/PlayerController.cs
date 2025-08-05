@@ -26,7 +26,7 @@ public class PlayerController : ICharacterController
 
         if (_input.JumpPressed)
         {
-            character.MovementController.Jump();
+            character.AbilityController.TryExecute(AbilityKeys.Jump);
         }
 
         UpdateBlackboard();

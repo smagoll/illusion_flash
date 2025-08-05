@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c6d1b6d1f4341dbbba504557bf817d1, type: 3}
-  m_Name: DefaultConfig
+  m_Script: {fileID: 11500000, guid: 30dc5bebcd1e4cae92f8a44c98354f22, type: 3}
+  m_Name: Jump
   m_EditorClassIdentifier: 
-  hp: 100
-  mp: 100
-  abilities:
-  - {fileID: 11400000, guid: 9cd3f8db70dddcd479c690f2db7912e5, type: 2}
-  - {fileID: 11400000, guid: 45cd8ed52ce8d1541bec1e52a2e54c04, type: 2}
+  id: Jump
+  jumpForce: 4

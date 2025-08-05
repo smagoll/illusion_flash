@@ -17,8 +17,6 @@ public class MovementController : MonoBehaviour
     [Header("Jump & Gravity")] [SerializeField]
     private float gravity = -9.81f;
 
-    [SerializeField] private float jumpForce = 5f;
-
     private Vector3 _currentVelocity; // Для сглаживания движения
     private Vector3 _smoothDirection; // Текущее сглаженное направление
     private float _verticalVelocity; // Вертикальное движение (гравитация/прыжок)
@@ -32,6 +30,7 @@ public class MovementController : MonoBehaviour
     public float TotalSpeed => characterController.velocity.magnitude;
     
     public Vector3 Forward => characterController.transform.forward;
+    public bool IsGrounded => characterController.isGrounded;
     
     private AnimationController _animationController;
 
@@ -113,13 +112,9 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void Jump()
+    public void ApplyVerticalVelocity(float velocity)
     {
-        if (characterController.isGrounded)
-        {
-            _verticalVelocity = jumpForce;
-            _animationController.Jump();
-        }
+        _verticalVelocity = velocity;
     }
 
     public void StopMove()

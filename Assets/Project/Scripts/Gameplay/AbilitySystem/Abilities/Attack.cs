@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Ability/Attack")]
 public class AttackAbility : Ability
 {
     private AnimationController _animationController;
