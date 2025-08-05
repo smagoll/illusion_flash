@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
     
     
     public LocalBlackboard Blackboard { get; private set; }
+    public CharacterModel Model { get; private set; }
     
     //Tests
     [SerializeField] private WeaponView swordPrefab;
@@ -43,7 +44,7 @@ public class Character : MonoBehaviour
         weaponController = new WeaponController(animationController, modelFacade.socketHolder);
         abilityController = new AbilityController(this, characterConfig.abilities);
         
-        var sword = new Weapon("Меч", swordPrefab, 25);
+        var sword = new Weapon("Меч", swordPrefab, 200);
         _inventory.AddItem(sword);
         weaponController.SetWeapon(_inventory.EquippedWeapon);
         
@@ -52,8 +53,8 @@ public class Character : MonoBehaviour
         _controller = controller;
         _controller.Init(this);
 
-        var model = new CharacterModel(characterConfig.hp, characterConfig.mp);
-        characterView.Init(model);
+        Model = new CharacterModel(characterConfig.hp, characterConfig.mp);
+        characterView.Init(this);
         
         Debug.Log("Character Initialized");
     }

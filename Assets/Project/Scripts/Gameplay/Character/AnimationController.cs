@@ -86,4 +86,9 @@ public class AnimationController : MonoBehaviour
         _animator.SetBool(HasWeapon, false);
         _animator.SetTrigger("unequipWeapon");
     }
+
+    public void Death()
+    {
+        _animator.SetTrigger("death");
+    }
 }
