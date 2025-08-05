@@ -18,6 +18,7 @@ public class PlayerController : ICharacterController
         this.character = character;
         
         character.Blackboard.GlobalBlackboard.SetValue(BBKeys.PlayerTransform, character.gameObject.transform);
+        character.Blackboard.GlobalBlackboard.SetValue(BBKeys.PlayerCharacter, character);
     }
 
     public void Tick()

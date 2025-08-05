@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99355fe753364ccc979539a8f93fc811, type: 3}
-  m_Name: Selector
+  m_Script: {fileID: 11500000, guid: 54229356650b420ca7131e6780900309, type: 3}
+  m_Name: Player Is Alive Node
   m_EditorClassIdentifier: 
-  nodeName: Root
+  nodeName: Check player is alive
   description: 
-  children:
-  - {fileID: 11400000, guid: 8528504ed6b6f6f4f92e9fc0edc19a6c, type: 2}

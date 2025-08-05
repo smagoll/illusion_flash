@@ -12,7 +12,7 @@ public class MoveToTargetNode : ActionNode
     {
         if (!owner) owner = character.transform;
         
-        target = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerTransform);
+        target = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerCharacter).gameObject.transform;
         if (target == null) return NodeState.Failure;
         
         Vector3 direction = target.transform.position - character.transform.position;

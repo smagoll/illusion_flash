@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99355fe753364ccc979539a8f93fc811, type: 3}
-  m_Name: Selector
+  m_Script: {fileID: 11500000, guid: d2595ca3f40c48b3b78d91de23cbe6b5, type: 3}
+  m_Name: Has Weapon In Backpack
   m_EditorClassIdentifier: 
-  nodeName: Root
+  nodeName: Has weapon in backpack
   description: 
-  children:
-  - {fileID: 11400000, guid: 8528504ed6b6f6f4f92e9fc0edc19a6c, type: 2}

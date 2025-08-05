@@ -9,6 +9,7 @@ public class WeaponController
     private Weapon _currentWeapon;
 
     public bool IsWeaponDrawn { get; private set; }
+    public bool IsWeapon => _currentWeapon != null;
 
     public WeaponController(AnimationController animationController, SocketHolder socketHolder)
     {
@@ -21,13 +22,6 @@ public class WeaponController
     public void SetWeapon(Weapon weapon)
     {
         _currentWeapon = weapon;
-    }
-
-    private void DrawWeapon()
-    {
-        if (_currentWeapon == null || IsWeaponDrawn) return;
-        
-        _animationController.EquipWeapon();
     }
 
     private void CreateWeapon()
@@ -47,8 +41,15 @@ public class WeaponController
         
         IsWeaponDrawn = false;
     }
+    
+    public void DrawWeapon()
+    {
+        if (_currentWeapon == null || IsWeaponDrawn) return;
+        
+        _animationController.EquipWeapon();
+    }
 
-    private void SheatheWeapon()
+    public void SheatheWeapon()
     {
         if (!IsWeaponDrawn) return;
         

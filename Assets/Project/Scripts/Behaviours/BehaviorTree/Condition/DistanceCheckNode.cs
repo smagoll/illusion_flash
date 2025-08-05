@@ -17,13 +17,14 @@ public class DistanceCheckNode : ConditionNode
         
         if (checkPlayer)
         {
-            var player = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerTransform);
-            target = player?.transform;
+            var player = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerCharacter);
+            target = player.gameObject.transform;
         }
         
         if (target == null) return false;
         
         float distance = Vector3.Distance(character.transform.position, target.position);
+        
         return distance <= maxDistance;
     }
     

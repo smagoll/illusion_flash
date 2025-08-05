@@ -21,6 +21,7 @@ public static class BBKeys
     // Player related
     public static readonly BlackboardKey<Vector3> PlayerPosition = new("PlayerPosition");
     public static readonly BlackboardKey<Transform> PlayerTransform = new("PlayerTransform");
+    public static readonly BlackboardKey<Character> PlayerCharacter = new("PlayerCharacter");
     public static readonly BlackboardKey<Vector3> PlayerLastKnownPosition = new("PlayerLastKnownPosition");
     public static readonly BlackboardKey<bool> IsPlayerVisible = new("IsPlayerVisible");
     public static readonly BlackboardKey<float> DistanceToPlayer = new("DistanceToPlayer");
