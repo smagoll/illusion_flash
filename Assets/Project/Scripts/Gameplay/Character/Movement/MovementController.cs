@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
-using Zenject;
 
 public class MovementController : MonoBehaviour
 {
@@ -20,10 +18,12 @@ public class MovementController : MonoBehaviour
     private Vector3 _moveDirection; // Итоговое накопленное направление
     private Vector3 _impulse;
 
-    private bool isMove = true;
-
-    private NavMeshMover navMeshMover;
     private MovementStateMachine _movementStateMachine;
+    
+    private MovementState freeMovementState;
+    private MovementState lockOnMovementState;
+    private MovementState navMeshMovementState;
+    private MovementState stunnedMovementState;
 
     public MovementConfig MovementConfig => movementConfig;
     
@@ -39,16 +39,19 @@ public class MovementController : MonoBehaviour
     public void Init(AnimationController animationController)
     {
         _animationController = animationController;
-        navMeshMover = new NavMeshMover(this, navMeshAgent);
         
         _movementStateMachine = new MovementStateMachine();
+
+        freeMovementState = new FreeMovementState(this);
+        navMeshMovementState = new NavMeshMovementState(this, navMeshAgent);
+        stunnedMovementState = new StunnedMovementState(this);
+        
         _movementStateMachine.SetState(new FreeMovementState(this));
     }
 
     private void Update()
     {
         _movementStateMachine.Tick();
-        navMeshMover.Tick();
         
         ApplyGravity();
 
@@ -72,29 +75,26 @@ public class MovementController : MonoBehaviour
     public void Walk(Vector2 inputDirection)
     {
         Move(inputDirection, movementConfig.walkSpeed);
-        
-        navMeshMover.Stop();
     }
 
     public void Run(Vector2 inputDirection)
     {
         Move(inputDirection,  movementConfig.runSpeed);
-        
-        navMeshMover.Stop();
     }
 
     public void Move(Vector2 inputDirection, float speed)
     {
-        if (!isMove) return;
-        
         _movementStateMachine.HandleMovement(inputDirection, speed);
     }
     
-    public void MoveTo(Vector3 inputDirection, float speed)
+    public void MoveTo(Vector3 destination, float speed)
     {
-        if (!isMove) return;
+        _movementStateMachine.SetState(navMeshMovementState);
         
-        navMeshMover.MoveTo(inputDirection);
+        if (_movementStateMachine.CurrentState is IMoveToTarget moveToState)
+        {
+            moveToState.MoveTo(destination);
+        }
     }
 
     public void ApplyMovement(Vector3 velocity)
@@ -122,14 +122,12 @@ public class MovementController : MonoBehaviour
 
     public void StopMove()
     {
-        isMove = false;
-        
-        navMeshMover.Stop();
+        _movementStateMachine.SetState(stunnedMovementState);
     }
 
     public void ResumeMove()
     {
-        isMove = true;
+        _movementStateMachine.SetState(_movementStateMachine.PrevState);
     }
     
     public void ApplyImpulse(Vector3 direction, float strength)

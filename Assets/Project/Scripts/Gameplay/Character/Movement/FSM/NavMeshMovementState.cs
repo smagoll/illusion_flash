@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshMover
+public class NavMeshMovementState : FreeMovementState, IMoveToTarget
 {
-    private MovementController _movementController;
     private NavMeshAgent _navMeshAgent;
-
-    private bool isActive;
+    
     private float stoppingDistance;
     
-    public bool IsActive => isActive;
-
-    public NavMeshMover(MovementController movementController, NavMeshAgent navMeshAgent)
+    public NavMeshMovementState(MovementController controller, NavMeshAgent navMeshAgent) : base(controller)
     {
-        _movementController = movementController;
         _navMeshAgent = navMeshAgent;
 
         _navMeshAgent.updatePosition = false;
@@ -26,39 +21,36 @@ public class NavMeshMover
     public void MoveTo(Vector3 target)
     {
         _navMeshAgent.SetDestination(target);
-        isActive = true;
         _navMeshAgent.isStopped = false;
     }
-    public void Stop()
+    
+    public override void Tick()
     {
-        isActive = false;
-        _navMeshAgent.isStopped = true;
-    }
-
-    public void Tick()
-    {
-        if (!isActive) return;
+        base.Tick();
         
-        // Проверяем, достигли ли цели
         if (_navMeshAgent.remainingDistance <= stoppingDistance && !_navMeshAgent.pathPending)
         {
             Stop();
             return;
         }
         
-        // Получаем желаемое направление от NavMeshAgent
         Vector3 desiredVelocity = _navMeshAgent.desiredVelocity;
         desiredVelocity.y = 0;
         
         if (desiredVelocity.sqrMagnitude > 0.01f)
         {
             Vector2 inputDirection = new Vector2(desiredVelocity.x, desiredVelocity.z).normalized;
-            _movementController.Move(inputDirection, _movementController.MovementConfig.walkSpeed);
+            controller.Move(inputDirection, controller.MovementConfig.walkSpeed);
         }
         
-        _navMeshAgent.nextPosition = _movementController.transform.position;
+        _navMeshAgent.nextPosition = controller.transform.position;
 
         DebugDrawPath();
+    }
+    
+    public void Stop()
+    {
+        _navMeshAgent.isStopped = true;
     }
     
 #if UNITY_EDITOR
