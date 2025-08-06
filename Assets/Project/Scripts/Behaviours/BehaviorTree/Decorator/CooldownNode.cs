@@ -8,7 +8,7 @@ public class CooldownNode : DecoratorNode
     
     private Dictionary<Character, float> lastExecutionTimes = new Dictionary<Character, float>();
     
-    public override NodeState Tick(Character character)
+    protected override NodeState Tick(Character character)
     {
         if (child == null) return NodeState.Failure;
         
@@ -20,7 +20,7 @@ public class CooldownNode : DecoratorNode
                 return NodeState.Failure;
         }
         
-        var result = child.Tick(character);
+        var result = child.TickNode(character);
         
         if (result == NodeState.Success)
         {

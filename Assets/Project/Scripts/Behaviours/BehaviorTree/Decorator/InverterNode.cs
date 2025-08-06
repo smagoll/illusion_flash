@@ -3,11 +3,11 @@
 [CreateAssetMenu(fileName = "New Inverter", menuName = "BehaviourTree/Decorator/Inverter")]
 public class InverterNode : DecoratorNode
 {
-    public override NodeState Tick(Character character)
+    protected override NodeState Tick(Character character)
     {
         if (child == null) return NodeState.Failure;
         
-        var result = child.Tick(character);
+        var result = child.TickNode(character);
         switch (result)
         {
             case NodeState.Success: return NodeState.Failure;

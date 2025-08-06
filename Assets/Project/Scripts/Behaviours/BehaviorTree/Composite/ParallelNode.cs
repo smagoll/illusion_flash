@@ -6,7 +6,7 @@ public class ParallelNode : CompositeNode
     [SerializeField] private int requiredSuccesses = 1;
     [SerializeField] private bool failOnFirst = false;
     
-    public override NodeState Tick(Character character)
+    protected override NodeState Tick(Character character)
     {
         int successCount = 0;
         int failureCount = 0;
@@ -16,7 +16,7 @@ public class ParallelNode : CompositeNode
         {
             if (child == null) continue;
             
-            var state = child.Tick(character);
+            var state = child.TickNode(character);
             switch (state)
             {
                 case NodeState.Success:

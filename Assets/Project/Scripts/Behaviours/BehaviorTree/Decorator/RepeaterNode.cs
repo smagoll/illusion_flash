@@ -8,7 +8,7 @@ public class RepeaterNode : DecoratorNode
     
     private int currentRepeats = 0;
     
-    public override NodeState Tick(Character character)
+    protected override NodeState Tick(Character character)
     {
         if (child == null) return NodeState.Failure;
         
@@ -18,7 +18,7 @@ public class RepeaterNode : DecoratorNode
             return NodeState.Success;
         }
         
-        var result = child.Tick(character);
+        var result = child.TickNode(character);
         
         if (result == NodeState.Success || (result == NodeState.Failure && !stopOnFailure))
         {

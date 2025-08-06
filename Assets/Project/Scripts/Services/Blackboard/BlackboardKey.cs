@@ -41,4 +41,7 @@ public static class BBKeys
     public static readonly BlackboardKey<List<GameObject>> NearbyEnemies = new("NearbyEnemies");
     public static readonly BlackboardKey<List<Vector3>> PatrolPoints = new("PatrolPoints");
     public static readonly BlackboardKey<int> CurrentPatrolIndex = new("CurrentPatrolIndex");
+    
+    // BT
+    public static readonly BlackboardKey<HashSet<int>> RunningNodesKey = new("BT_RunningNodes");
 }

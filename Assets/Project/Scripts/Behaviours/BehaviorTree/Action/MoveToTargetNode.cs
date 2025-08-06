@@ -4,15 +4,15 @@
 public class MoveToTargetNode : ActionNode
 {
     [SerializeField] private float stopDistance = 1f;
-    
-    private Transform target;
-    private Transform owner;
-    
+
+    public override void OnStart(Character character)
+    {
+        character.MovementController.ResumeMove();
+    }
+
     public override NodeState ExecuteAction(Character character)
     {
-        if (!owner) owner = character.transform;
-        
-        target = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerCharacter).gameObject.transform;
+        var target = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerCharacter).gameObject.transform;
         if (target == null) return NodeState.Failure;
         
         Vector3 direction = target.transform.position - character.transform.position;
@@ -20,7 +20,6 @@ public class MoveToTargetNode : ActionNode
         
         if (distance <= stopDistance)
         {
-            character.MovementController.StopMove();
             return NodeState.Success;
         }
         
@@ -30,13 +29,9 @@ public class MoveToTargetNode : ActionNode
         
         return NodeState.Running;
     }
-    
-    public override void OnDrawGizmos()
+
+    public override void OnStop(Character character)
     {
-        if (owner != null)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(target.transform.position, owner.transform.position);
-        }
+        character.MovementController.StopMove();
     }
 }

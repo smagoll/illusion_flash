@@ -142,6 +142,8 @@ public class MovementController : MonoBehaviour
     public void StopMove()
     {
         isMove = false;
+        
+        navMeshMover.Stop();
     }
 
     public void ResumeMove()

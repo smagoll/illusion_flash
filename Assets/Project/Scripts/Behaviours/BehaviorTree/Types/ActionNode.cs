@@ -2,7 +2,7 @@
 {
     public abstract NodeState ExecuteAction(Character character);
     
-    public override NodeState Tick(Character character)
+    protected override NodeState Tick(Character character)
     {
         return ExecuteAction(character);
     }

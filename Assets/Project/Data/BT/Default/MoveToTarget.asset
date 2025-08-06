@@ -15,5 +15,3 @@ MonoBehaviour:
   nodeName: MoveToTarget
   description: 
   stopDistance: 2
-  moveSpeed: 1
-  targetTag: Player
