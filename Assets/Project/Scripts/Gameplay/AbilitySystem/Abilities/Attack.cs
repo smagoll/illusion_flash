@@ -31,8 +31,6 @@ public class AttackAbility : Ability
 
     public override void Execute()
     {
-        Debug.Log("attack");
-        
         if (!CanExecute())
             return;
 

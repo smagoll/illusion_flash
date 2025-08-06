@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public abstract class Ability : IAbility
+﻿public abstract class Ability : IAbility
 {
     public string Id { get; private set; }
     protected Character Character { get; private set; }
