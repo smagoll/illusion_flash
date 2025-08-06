@@ -53,7 +53,7 @@ public class NavMeshMover
         if (desiredVelocity.sqrMagnitude > 0.01f)
         {
             Vector2 inputDirection = new Vector2(desiredVelocity.x, desiredVelocity.z).normalized;
-            _movementController.Move(inputDirection, _movementController.WalkSpeed);
+            _movementController.Move(inputDirection, _movementController.MovementConfig.walkSpeed);
         }
         
         _navMeshAgent.nextPosition = _movementController.transform.position;

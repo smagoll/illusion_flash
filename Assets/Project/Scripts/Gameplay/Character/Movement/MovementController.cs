@@ -10,27 +10,22 @@ public class MovementController : MonoBehaviour
     [SerializeField] private NavMeshAgent navMeshAgent;
 
     [Header("Movement Settings")] 
-    [SerializeField] private float runSpeed = 7f;
-
-    [SerializeField] private float walkSpeed = 2f;
-    [SerializeField] private float smoothTime = 0.1f;
-    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private MovementConfig movementConfig;
 
     [Header("Jump & Gravity")] [SerializeField]
     private float gravity = -9.81f;
 
     private Vector3 _currentVelocity; // Для сглаживания движения
-    private Vector3 _smoothDirection; // Текущее сглаженное направление
     private float _verticalVelocity; // Вертикальное движение (гравитация/прыжок)
     private Vector3 _moveDirection; // Итоговое накопленное направление
-    private Vector3 _attackImpulse;
+    private Vector3 _impulse;
 
     private bool isMove = true;
 
     private NavMeshMover navMeshMover;
+    private MovementStateMachine _movementStateMachine;
 
-    public float RunSpeed => runSpeed;
-    public float WalkSpeed => walkSpeed;
+    public MovementConfig MovementConfig => movementConfig;
     
     public float VerticalSpeed => characterController.velocity.y;
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
@@ -40,32 +35,35 @@ public class MovementController : MonoBehaviour
     public bool IsGrounded => characterController.isGrounded;
     
     private AnimationController _animationController;
-    public NavMeshMover NavMeshMover => navMeshMover;
 
     public void Init(AnimationController animationController)
     {
         _animationController = animationController;
         navMeshMover = new NavMeshMover(this, navMeshAgent);
+        
+        _movementStateMachine = new MovementStateMachine();
+        _movementStateMachine.SetState(new FreeMovementState(this));
     }
 
     private void Update()
     {
+        _movementStateMachine.Tick();
         navMeshMover.Tick();
         
         ApplyGravity();
 
-        Vector3 move = _moveDirection + Vector3.up * _verticalVelocity + _attackImpulse;
+        Vector3 move = _moveDirection + Vector3.up * _verticalVelocity + _impulse;
         characterController.Move(move * Time.deltaTime);
 
         _animationController.UpdateSpeed(HorizontalSpeed);
         _animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
 
-        RotateTowardsMovement();
+        _movementStateMachine.HandleRotation();
         
-        if (_attackImpulse.sqrMagnitude > 0.01f)
+        if (_impulse.sqrMagnitude > 0.01f)
         {
-            _moveDirection += _attackImpulse;
-            _attackImpulse = Vector3.Lerp(_attackImpulse, Vector3.zero, Time.deltaTime * 5f); // затухание
+            _moveDirection += _impulse;
+            _impulse = Vector3.Lerp(_impulse, Vector3.zero, Time.deltaTime * 5f);
         }
         
         _moveDirection = Vector3.zero; 
@@ -73,14 +71,14 @@ public class MovementController : MonoBehaviour
 
     public void Walk(Vector2 inputDirection)
     {
-        Move(inputDirection, walkSpeed);
+        Move(inputDirection, movementConfig.walkSpeed);
         
         navMeshMover.Stop();
     }
 
     public void Run(Vector2 inputDirection)
     {
-        Move(inputDirection, runSpeed);
+        Move(inputDirection,  movementConfig.runSpeed);
         
         navMeshMover.Stop();
     }
@@ -89,8 +87,7 @@ public class MovementController : MonoBehaviour
     {
         if (!isMove) return;
         
-        ApplyHorizontalMovement(inputDirection);
-        _moveDirection += _smoothDirection * speed;
+        _movementStateMachine.HandleMovement(inputDirection, speed);
     }
     
     public void MoveTo(Vector3 inputDirection, float speed)
@@ -100,37 +97,21 @@ public class MovementController : MonoBehaviour
         navMeshMover.MoveTo(inputDirection);
     }
 
-    private void ApplyHorizontalMovement(Vector2 input)
+    public void ApplyMovement(Vector3 velocity)
     {
-        Vector3 targetDirection = new Vector3(input.x, 0, input.y);
-        _smoothDirection = Vector3.SmoothDamp(_smoothDirection, targetDirection, ref _currentVelocity, smoothTime);
+        _moveDirection += velocity;
     }
-
+    
     private void ApplyGravity()
     {
         if (characterController.isGrounded)
         {
             if (_verticalVelocity < 0)
-                _verticalVelocity = -1f; // оставляем небольшой "прижим"
+                _verticalVelocity = -1f;
         }
         else
         {
             _verticalVelocity += gravity * Time.deltaTime;
-        }
-    }
-
-    private void RotateTowardsMovement()
-    {
-        Vector3 horizontalDir = new Vector3(_smoothDirection.x, 0, _smoothDirection.z);
-
-        if (horizontalDir.sqrMagnitude > 0.001f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(horizontalDir, Vector3.up);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.deltaTime
-            );
         }
     }
 
@@ -153,6 +134,6 @@ public class MovementController : MonoBehaviour
     
     public void ApplyImpulse(Vector3 direction, float strength)
     {
-        _attackImpulse = direction.normalized * strength;
+        _impulse = direction.normalized * strength;
     }
 }
