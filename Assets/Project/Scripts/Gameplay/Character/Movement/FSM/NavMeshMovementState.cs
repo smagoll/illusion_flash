@@ -26,8 +26,6 @@ public class NavMeshMovementState : FreeMovementState, IMoveToTarget
     
     public override void Tick()
     {
-        base.Tick();
-        
         if (_navMeshAgent.remainingDistance <= stoppingDistance && !_navMeshAgent.pathPending)
         {
             Stop();
@@ -47,8 +45,15 @@ public class NavMeshMovementState : FreeMovementState, IMoveToTarget
 
         DebugDrawPath();
     }
-    
-    public void Stop()
+
+    public override void Exit()
+    {
+        base.Exit();
+        
+        Stop();
+    }
+
+    private void Stop()
     {
         _navMeshAgent.isStopped = true;
     }

@@ -2,6 +2,8 @@
 {
     private float _jumpForce;
     
+    public override bool IsFinished => true;
+    
     public JumpAbility(string id, float jumpForce) : base(id)
     {
         _jumpForce = jumpForce;

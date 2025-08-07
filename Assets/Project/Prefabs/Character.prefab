@@ -1096,9 +1096,9 @@ GameObject:
   - component: {fileID: 6963148001467318319}
   - component: {fileID: 2031542026290387615}
   - component: {fileID: 1834296919096618297}
-  - component: {fileID: 8533373309967329}
   - component: {fileID: 8102810475405245728}
   - component: {fileID: 4570766234597673884}
+  - component: {fileID: -812749926996528923}
   m_Layer: 7
   m_Name: Character
   m_TagString: Untagged
@@ -1231,31 +1231,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e6544cc7872334194816590a44a6be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementController: {fileID: 8533373309967329}
+  movementController: {fileID: -812749926996528923}
   animationController: {fileID: 8102810475405245728}
   characterView: {fileID: 4570766234597673884}
   modelFacade: {fileID: 2269614787946389440}
   swordPrefab: {fileID: 5707804782277941865, guid: c7349441bb611af45ad4757004d4542b, type: 3}
   characterConfig: {fileID: 11400000, guid: 5edf1296b0ef00b43b49128ce0310e6c, type: 2}
---- !u!114 &8533373309967329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5349437489821230086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497e506db657bb748ac55520b47445ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterController: {fileID: 2688327369465301060}
-  navMeshAgent: {fileID: 6963148001467318319}
-  runSpeed: 7
-  walkSpeed: 2
-  smoothTime: 0.1
-  rotationSpeed: 20
-  gravity: -9.81
 --- !u!114 &8102810475405245728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,6 +1263,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9d251b22f4460fb628f85bc8355799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-812749926996528923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349437489821230086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497e506db657bb748ac55520b47445ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 2688327369465301060}
+  navMeshAgent: {fileID: 6963148001467318319}
+  movementConfig:
+    runSpeed: 7
+    walkSpeed: 2
+    smoothTime: 0.1
+    rotationSpeed: 20
+  gravity: -9.81
 --- !u!1 &5808886173034804400
 GameObject:
   m_ObjectHideFlags: 0

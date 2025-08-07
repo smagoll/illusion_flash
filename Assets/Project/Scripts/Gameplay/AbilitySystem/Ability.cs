@@ -2,6 +2,8 @@
 {
     public string Id { get; private set; }
     protected Character Character { get; private set; }
+    
+    public abstract bool IsFinished { get; }
 
     public Ability(string id)
     {

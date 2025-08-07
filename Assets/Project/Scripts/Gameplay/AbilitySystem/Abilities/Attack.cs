@@ -7,6 +7,8 @@ public class AttackAbility : Ability
     private MovementController _movementController;
 
     private bool _isAttacking;
+    
+    public override bool IsFinished => !_isAttacking;
 
     public AttackAbility(string id) : base(id)
     {

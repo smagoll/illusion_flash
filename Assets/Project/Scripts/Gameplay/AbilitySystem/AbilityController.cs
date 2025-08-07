@@ -4,6 +4,11 @@ public class AbilityController
 {
     private readonly Dictionary<string, IAbility> _abilities = new();
     private readonly Character _character;
+    
+    public IAbility CurrentAbility { get; private set; }
+    
+    public bool IsPerformingAbility =>
+        CurrentAbility != null && !CurrentAbility.IsFinished;
 
     public AbilityController(Character character, IEnumerable<AbilitySO> abilities)
     {
@@ -24,6 +29,7 @@ public class AbilityController
             if (ability.CanExecute())
             {
                 ability.Execute();
+                CurrentAbility = ability;
                 return true;
             }
         }

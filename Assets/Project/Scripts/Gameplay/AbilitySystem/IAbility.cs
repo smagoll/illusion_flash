@@ -5,4 +5,5 @@
     void Cleanup(Character character);
     public void Execute();
     bool CanExecute();
+    bool IsFinished { get; }
 }

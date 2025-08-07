@@ -36,6 +36,7 @@ public static class BBKeys
     public static readonly BlackboardKey<bool> IsInCombat = new("IsInCombat");
     public static readonly BlackboardKey<float> Health = new("Health");
     public static readonly BlackboardKey<float> MaxHealth = new("MaxHealth");
+    public static readonly BlackboardKey<bool> AttackStarted = new("AttackStarted");
     
     // Environment
     public static readonly BlackboardKey<List<GameObject>> NearbyEnemies = new("NearbyEnemies");
