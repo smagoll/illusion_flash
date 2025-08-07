@@ -44,7 +44,7 @@ public class Character : MonoBehaviour
         weaponController = new WeaponController(animationController, modelFacade.socketHolder);
         abilityController = new AbilityController(this, characterConfig.abilities);
         
-        var sword = new Weapon("Меч", swordPrefab, 200);
+        var sword = new Weapon("Меч", swordPrefab, 200, 2f);
         _inventory.AddItem(sword);
         weaponController.SetWeapon(_inventory.EquippedWeapon);
         

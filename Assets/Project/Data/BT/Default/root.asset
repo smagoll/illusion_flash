@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99355fe753364ccc979539a8f93fc811, type: 3}
-  m_Name: Selector 2
+  m_Name: root
   m_EditorClassIdentifier: 
-  nodeName: Selector
+  nodeName: Root
   description: 
   children:
-  - {fileID: 11400000, guid: 19c449420120f58489685e02f0d26eca, type: 2}
-  - {fileID: 11400000, guid: 248481461c2acc3478753f3d9551f8bf, type: 2}
+  - {fileID: 11400000, guid: efb550e66d8a4dc43bb46df24ab306a9, type: 2}

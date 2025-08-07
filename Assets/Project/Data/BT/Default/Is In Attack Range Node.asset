@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb2ee0d289a24bdfa067d10bb6ec4522, type: 3}
-  m_Name: Default
+  m_Script: {fileID: 11500000, guid: 62e54808fae24dcf9bf5a43cfb2442ca, type: 3}
+  m_Name: Is In Attack Range Node
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 11400000, guid: 0908afe53f3dcf0478996b4cb014bf42, type: 2}
+  nodeName: Is in attack range
+  description: 

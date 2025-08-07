@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb2ee0d289a24bdfa067d10bb6ec4522, type: 3}
-  m_Name: Default
+  m_Script: {fileID: 11500000, guid: 91e66109c6b94817bffdf643619ce7ed, type: 3}
+  m_Name: New Sequence
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 11400000, guid: 0908afe53f3dcf0478996b4cb014bf42, type: 2}
+  nodeName: Node
+  description: 
+  children:
+  - {fileID: 11400000, guid: fa9df55e700b4e845880ea6dd00e37a4, type: 2}
+  - {fileID: 11400000, guid: b1f92a9af1178924380816a4b67ee432, type: 2}

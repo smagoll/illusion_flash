@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91e66109c6b94817bffdf643619ce7ed, type: 3}
-  m_Name: Sequence 3
+  m_Name: If weapon is in hand - attack
   m_EditorClassIdentifier: 
-  nodeName: If no weapon - draw weapon and attack
+  nodeName: If weapon is in hand - attack
   description: 
   children:
-  - {fileID: 11400000, guid: da6f1aa502487124c9eea8e7903c0de6, type: 2}
-  - {fileID: 11400000, guid: 5283bd7cbc641ad409800bde287c3e30, type: 2}
+  - {fileID: 11400000, guid: 5e5bba26ba269c9479be40e38be39c20, type: 2}
   - {fileID: 11400000, guid: 77528880afdd28341b160908c7b18ebe, type: 2}

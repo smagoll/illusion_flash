@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91e66109c6b94817bffdf643619ce7ed, type: 3}
-  m_Name: Sequence
+  m_Name: Attack Sequence
   m_EditorClassIdentifier: 
-  nodeName: Check distance and attack logic
+  nodeName: Attack sequence
   description: 
   children:
-  - {fileID: 11400000, guid: fa9df55e700b4e845880ea6dd00e37a4, type: 2}
-  - {fileID: 11400000, guid: 9a11589040e71d6428fff55b40fa7ba0, type: 2}
-  - {fileID: 11400000, guid: dc1ca96534163e5419212533853635b6, type: 2}
-  - {fileID: 11400000, guid: 73ecaa1e4594a2a41ab2fe81173207b5, type: 2}
+  - {fileID: 11400000, guid: fb7f5c910f6ad194da8d8932abb38414, type: 2}
+  - {fileID: 11400000, guid: 8c3ee211a5fd7c74282a3a9849dce26d, type: 2}

@@ -5,11 +5,6 @@ public class MoveToTargetNode : ActionNode
 {
     [SerializeField] private float stopDistance = 1f;
 
-    public override void OnStart(Character character)
-    {
-        character.MovementController.ResumeMove();
-    }
-
     public override NodeState ExecuteAction(Character character)
     {
         var target = character.Blackboard.GlobalBlackboard.GetValue(BBKeys.PlayerCharacter).gameObject.transform;

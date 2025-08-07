@@ -11,6 +11,8 @@ public class WeaponController
     public bool IsWeaponDrawn { get; private set; }
     public bool IsWeapon => _currentWeapon != null;
 
+    public Weapon CurrentWeapon => _currentWeapon;
+
     public WeaponController(AnimationController animationController, SocketHolder socketHolder)
     {
         _animationController = animationController;
