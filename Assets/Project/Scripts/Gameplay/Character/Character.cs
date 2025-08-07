@@ -1,4 +1,6 @@
 using System;
+using NodeCanvas.BehaviourTrees;
+using NodeCanvas.Framework;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -12,8 +14,11 @@ public class Character : MonoBehaviour
     
     [Header("Model")]
     [SerializeField] private ModelFacade modelFacade;
+    
+    [Header("Blackboard")]
+    [SerializeField] private BehaviourTreeOwner behaviourTreeOwner;
 
-    [Inject] private Blackboard globalBackboard;
+    [Inject] private IGlobalBlackboard globalBackboard;
     
     private ICharacterController _controller;
     private Inventory _inventory;
@@ -26,9 +31,11 @@ public class Character : MonoBehaviour
     public WeaponController WeaponController => weaponController;
     public AbilityController AbilityController => abilityController;
     public AnimationController AnimationController => animationController;
-    
-    
-    public LocalBlackboard Blackboard { get; private set; }
+
+
+    public BehaviourTreeOwner BehaviourTreeOwner => behaviourTreeOwner;
+    public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
+    public IGlobalBlackboard GlobalBlackboard => globalBackboard;
     public CharacterModel Model { get; private set; }
     
     //Tests
@@ -47,8 +54,9 @@ public class Character : MonoBehaviour
         var sword = new Weapon("Меч", swordPrefab, 200, 2f);
         _inventory.AddItem(sword);
         weaponController.SetWeapon(_inventory.EquippedWeapon);
-        
-        Blackboard = new LocalBlackboard(globalBackboard);
+
+        Blackboard.AddVariable(BBKeys.GlobalBlackboard, globalBackboard);
+        Blackboard.AddVariable(BBKeys.PlayerCharacter, this);
         
         _controller = controller;
         _controller.Init(this);

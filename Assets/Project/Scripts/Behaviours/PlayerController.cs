@@ -1,4 +1,5 @@
 ﻿using Input;
+using NodeCanvas.Framework;
 using UnityEngine;
 
 public class PlayerController : ICharacterController
@@ -16,9 +17,8 @@ public class PlayerController : ICharacterController
     public void Init(Character character)
     {
         this.character = character;
-        
-        character.Blackboard.GlobalBlackboard.SetValue(BBKeys.PlayerTransform, character.gameObject.transform);
-        character.Blackboard.GlobalBlackboard.SetValue(BBKeys.PlayerCharacter, character);
+
+        character.GlobalBlackboard.SetVariableValue(BBKeys.PlayerCharacter,  character);
     }
 
     public void Tick()

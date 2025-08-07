@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.54509807, g: 0.7725491, b: 0.76470596, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -1062,6 +1062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputService: {fileID: 656806023}
   _cameraService: {fileID: 257921832}
+  _globalBlackboard: {fileID: 11400000, guid: 360c18c562f004447b8ba69f7f7108cb, type: 2}
 --- !u!1 &1705042889
 GameObject:
   m_ObjectHideFlags: 0

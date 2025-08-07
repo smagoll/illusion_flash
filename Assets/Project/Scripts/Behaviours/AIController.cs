@@ -1,12 +1,11 @@
 ﻿using System;
+using NodeCanvas.BehaviourTrees;
 using Object = UnityEngine.Object;
 
-public class AIController : ICharacterController, IDisposable
+public class AIController : ICharacterController
 {
     private Character _character;
     private readonly BehaviourTree _behaviourTree;
-    
-    private BehaviourTreeAgent _behaviourTreeAgent;
     
     public BehaviourTree BehaviourTree => _behaviourTree;
 
@@ -19,22 +18,11 @@ public class AIController : ICharacterController, IDisposable
     {
         _character = character;
 
-        _behaviourTreeAgent = character.gameObject.AddComponent<BehaviourTreeAgent>();
-        _behaviourTreeAgent.Init(this);
+        character.BehaviourTreeOwner.StartBehaviour();
     }
 
     public void Tick()
     {
-        _behaviourTree.Tick(_character);
-    }
-    
-    public void DebugDraw()
-    {
-        _behaviourTree.DrawGizmos();
-    }
-
-    public void Dispose()
-    {
-        Object.Destroy(_behaviourTreeAgent);
+        //_behaviourTree.Tick(_character);
     }
 }

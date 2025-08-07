@@ -19,9 +19,9 @@ public class BlackboardKey<T>
 public static class BBKeys
 {
     // Player related
-    public static readonly BlackboardKey<Vector3> PlayerPosition = new("PlayerPosition");
-    public static readonly BlackboardKey<Transform> PlayerTransform = new("PlayerTransform");
-    public static readonly BlackboardKey<Character> PlayerCharacter = new("PlayerCharacter");
+    public static readonly string PlayerPosition = new("PlayerPosition");
+    public static readonly string PlayerTransform = new("PlayerTransform");
+    public static readonly string PlayerCharacter = new("PlayerCharacter");
     public static readonly BlackboardKey<Vector3> PlayerLastKnownPosition = new("PlayerLastKnownPosition");
     public static readonly BlackboardKey<bool> IsPlayerVisible = new("IsPlayerVisible");
     public static readonly BlackboardKey<float> DistanceToPlayer = new("DistanceToPlayer");
@@ -36,7 +36,7 @@ public static class BBKeys
     public static readonly BlackboardKey<bool> IsInCombat = new("IsInCombat");
     public static readonly BlackboardKey<float> Health = new("Health");
     public static readonly BlackboardKey<float> MaxHealth = new("MaxHealth");
-    public static readonly BlackboardKey<bool> AttackStarted = new("AttackStarted");
+    public static readonly string AttackStarted = new("AttackStarted");
     
     // Environment
     public static readonly BlackboardKey<List<GameObject>> NearbyEnemies = new("NearbyEnemies");
@@ -44,5 +44,5 @@ public static class BBKeys
     public static readonly BlackboardKey<int> CurrentPatrolIndex = new("CurrentPatrolIndex");
     
     // BT
-    public static readonly BlackboardKey<HashSet<int>> RunningNodesKey = new("BT_RunningNodes");
+    public static readonly string GlobalBlackboard = new("GlobalBlackboard");
 }

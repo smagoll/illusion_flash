@@ -1099,6 +1099,8 @@ GameObject:
   - component: {fileID: 8102810475405245728}
   - component: {fileID: 4570766234597673884}
   - component: {fileID: -812749926996528923}
+  - component: {fileID: 7884005865810496478}
+  - component: {fileID: -262598925526969574}
   m_Layer: 7
   m_Name: Character
   m_TagString: Untagged
@@ -1235,6 +1237,7 @@ MonoBehaviour:
   animationController: {fileID: 8102810475405245728}
   characterView: {fileID: 4570766234597673884}
   modelFacade: {fileID: 2269614787946389440}
+  behaviourTreeOwner: {fileID: 7884005865810496478}
   swordPrefab: {fileID: 5707804782277941865, guid: c7349441bb611af45ad4757004d4542b, type: 3}
   characterConfig: {fileID: 11400000, guid: 5edf1296b0ef00b43b49128ce0310e6c, type: 2}
 --- !u!114 &8102810475405245728
@@ -1283,6 +1286,51 @@ MonoBehaviour:
     smoothTime: 0.1
     rotationSpeed: 20
   gravity: -9.81
+--- !u!114 &7884005865810496478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349437489821230086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedExposedParameters: []
+  _boundGraphSerialization: 
+  _boundGraphObjectReferences: []
+  _boundGraphSource:
+    _version: 0
+    _category: 
+    _comments: 
+    _translation: {x: 0, y: 0}
+    _zoomFactor: 1
+  _firstActivation: 0
+  _enableAction: 1
+  _disableAction: 0
+  _lockBoundGraphPrefabOverrides: 1
+  _preInitializeSubGraphs: 0
+  _updateMode: 0
+  _graph: {fileID: 11400000, guid: c02f4336b9aff09408ec77795d2fe6bc, type: 2}
+  _blackboard: {fileID: -262598925526969574}
+--- !u!114 &-262598925526969574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349437489821230086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentBlackboard: {fileID: 11400000, guid: 1306c89f343602f40befb41ce8cff190, type: 2}
+  _serializedBlackboard: '{"_variables":{}}'
+  _objectReferences: []
+  _serializedVariables: []
 --- !u!1 &5808886173034804400
 GameObject:
   m_ObjectHideFlags: 0
