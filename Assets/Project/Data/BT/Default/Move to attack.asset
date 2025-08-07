@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91e66109c6b94817bffdf643619ce7ed, type: 3}
-  m_Name: Check distance and attack logic
+  m_Name: Move to attack
   m_EditorClassIdentifier: 
-  nodeName: Check distance and attack logic
+  nodeName: Move to attack
   description: 
   children:
   - {fileID: 11400000, guid: fa9df55e700b4e845880ea6dd00e37a4, type: 2}
-  - {fileID: 11400000, guid: 07ab6e7afb129dc47a0fafe1abcceafa, type: 2}
-  - {fileID: 11400000, guid: 9a11589040e71d6428fff55b40fa7ba0, type: 2}
-  - {fileID: 11400000, guid: dc1ca96534163e5419212533853635b6, type: 2}
+  - {fileID: 11400000, guid: b1f92a9af1178924380816a4b67ee432, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99355fe753364ccc979539a8f93fc811, type: 3}
   m_Name: Attack selector
   m_EditorClassIdentifier: 
-  nodeName: Node
+  nodeName: Attack selector
   description: 
   children:
   - {fileID: 11400000, guid: 19c449420120f58489685e02f0d26eca, type: 2}

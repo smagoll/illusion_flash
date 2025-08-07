@@ -13,8 +13,6 @@ public class IsInAttackRangeNode : ConditionNode
         
         float distance = Vector3.Distance(character.transform.position, target.position);
         
-        Debug.Log($"distance: {distance} || range:{character.WeaponController.CurrentWeapon.Range}");
-        
         return distance <= character.WeaponController.CurrentWeapon.Range;
     }
 }
