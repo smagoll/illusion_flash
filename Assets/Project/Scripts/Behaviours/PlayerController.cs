@@ -18,7 +18,7 @@ public class PlayerController : ICharacterController
     {
         this.character = character;
 
-        character.GlobalBlackboard.SetVariableValue(BBKeys.PlayerCharacter,  character);
+        character.GlobalBlackboard.AddVariable(BBKeys.PlayerCharacter,  character);
     }
 
     public void Tick()

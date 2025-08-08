@@ -7,9 +7,6 @@ public class Spawner : MonoBehaviour
     private IFactory<Character> _factory;
     private PlayerController _playerController;
     private ICameraService _cameraService;
-
-    [SerializeField]
-    private BehaviourTree _behaviourTree;
     
     [Inject]
     private void Construct(IFactory<Character> characterFactory, PlayerController playerController, ICameraService cameraService)
@@ -45,6 +42,6 @@ public class Spawner : MonoBehaviour
         
         enemy.transform.position = new Vector3(0, 0, 10);
         
-        enemy.SetController(new AIController(_behaviourTree));
+        enemy.SetController(new AIController());
     }
 }
