@@ -19,6 +19,7 @@ public class PlayerController : ICharacterController
         this.character = character;
 
         character.GlobalBlackboard.AddVariable(BBKeys.PlayerCharacter,  character);
+        character.Model.IsPlayer = true;
     }
 
     public void Tick()
@@ -30,8 +31,6 @@ public class PlayerController : ICharacterController
             character.AbilityController.TryExecute(AbilityKeys.Jump);
         }
 
-        UpdateBlackboard();
-
         if (_input.FirstItemPressed)
         {
             character.WeaponController.ToggleWeapon();
@@ -41,6 +40,8 @@ public class PlayerController : ICharacterController
         {
             character.AbilityController.TryExecute(AbilityKeys.Attack);
         }
+        
+        LockOn();
     }
 
     private void Move()
@@ -65,8 +66,29 @@ public class PlayerController : ICharacterController
         }
     }
 
-    private void UpdateBlackboard()
+    private void LockOn()
     {
-        
+        if (_input.LockOnPressed)
+        {
+            if (character.LockOnTargetSystem.CurrentTarget == null)
+            {
+                character.LockOnTargetSystem.FindTarget(character.transform.position, _cameraService.Forward);
+
+                if (character.LockOnTargetSystem.CurrentTarget != null)
+                {
+                    Debug.Log("Locked on target: " + character.LockOnTargetSystem.CurrentTarget.GetTransform().name);
+                    character.MovementController.LockOn(character.LockOnTargetSystem.CurrentTarget.GetTransform());
+                }
+                else
+                {
+                    Debug.Log("Target not found!");
+                }
+            }
+            else
+            {
+                character.LockOnTargetSystem.Unlock();
+                character.MovementController.Unlock();
+            }
+        }
     }
 }

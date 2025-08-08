@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 public class MovementController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class MovementController : MonoBehaviour
     private MovementState navMeshMovementState;
     private MovementState stunnedMovementState;
 
+    [Inject] public ICameraService CameraService { get; }
+    
     public MovementConfig MovementConfig => movementConfig;
     
     public float VerticalSpeed => characterController.velocity.y;
@@ -129,6 +132,18 @@ public class MovementController : MonoBehaviour
     {
         _movementStateMachine.SetState(freeMovementState);
     }
+    
+    public void LockOn(Transform target)
+    {
+        lockOnMovementState = new LockedOnMovementState(this, target);
+        _movementStateMachine.SetState(lockOnMovementState);
+    }
+
+    public void Unlock()
+    {
+        _movementStateMachine.SetState(freeMovementState);
+    }
+
     
     public void ApplyImpulse(Vector3 direction, float strength)
     {

@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
         
         player.SetController(_playerController);
         
-        _cameraService.SetTarget(player.transform);
+        _cameraService.SetTrackingTarget(player.transform);
     }
 
     private void SpawnEnemy()

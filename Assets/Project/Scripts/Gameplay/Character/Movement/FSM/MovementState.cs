@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class MovementState
 {
-    protected MovementController controller;
+    protected readonly MovementController _controller;
 
-    public MovementState(MovementController controller)
+    protected MovementState(MovementController controller)
     {
-        this.controller = controller;
+        _controller = controller;
     }
 
     public virtual void Enter() { }

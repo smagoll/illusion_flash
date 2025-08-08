@@ -6,6 +6,7 @@ public class CharacterModel
     public Mana Mana { get; }
     
     public bool IsDeath { get; private set; }
+    public bool IsPlayer { get; set; }
 
     public CharacterModel(int maxHealth, int maxMana)
     {

@@ -38,10 +38,10 @@ public class NavMeshMovementState : FreeMovementState, IMoveToTarget
         if (desiredVelocity.sqrMagnitude > 0.01f)
         {
             Vector2 inputDirection = new Vector2(desiredVelocity.x, desiredVelocity.z).normalized;
-            controller.Move(inputDirection, controller.MovementConfig.walkSpeed);
+            _controller.Move(inputDirection, _controller.MovementConfig.walkSpeed);
         }
         
-        _navMeshAgent.nextPosition = controller.transform.position;
+        _navMeshAgent.nextPosition = _controller.transform.position;
 
         DebugDrawPath();
     }

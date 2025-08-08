@@ -10,8 +10,8 @@ public class FreeMovementState : MovementState
     public override void HandleMovement(Vector2 input, float speed)
     {
         Vector3 targetDirection = new Vector3(input.x, 0, input.y);
-        smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, controller.MovementConfig.smoothTime);
-        controller.ApplyMovement(smoothDirection * speed);
+        smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, _controller.MovementConfig.smoothTime);
+        _controller.ApplyMovement(smoothDirection * speed);
     }
 
     public override void HandleRotation()
@@ -21,10 +21,10 @@ public class FreeMovementState : MovementState
         if (horizontalDir.sqrMagnitude > 0.001f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(horizontalDir, Vector3.up);
-            controller.transform.rotation = Quaternion.Slerp(
-                controller.transform.rotation,
+            _controller.transform.rotation = Quaternion.Slerp(
+                _controller.transform.rotation,
                 targetRotation,
-                controller.MovementConfig.rotationSpeed * Time.deltaTime
+                _controller.MovementConfig.rotationSpeed * Time.deltaTime
             );
         }
     }

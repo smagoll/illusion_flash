@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CharacterView : MonoBehaviour, IDamageable
+public class CharacterView : MonoBehaviour, IDamageable, ITargetable
 {
     private CharacterModel _model;
     private AnimationController _animationController;
@@ -25,4 +25,11 @@ public class CharacterView : MonoBehaviour, IDamageable
         _animationController.Death();
         _movementController.StopMove();
     }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+    public bool CanTarget => !_model.IsPlayer && !_model.IsDeath;
 }
