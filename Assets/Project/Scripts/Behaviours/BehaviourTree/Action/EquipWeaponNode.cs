@@ -1,4 +1,4 @@
-﻿public class EquipWeaponNode : CharacterNodeBase
+﻿public class EquipWeaponAction : CharacterActionBase
 {
     protected override void OnExecute()
     {

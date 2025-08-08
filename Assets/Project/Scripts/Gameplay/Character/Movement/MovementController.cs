@@ -89,8 +89,6 @@ public class MovementController : MonoBehaviour
     
     public void MoveTo(Vector3 destination, float speed)
     {
-        if (_movementStateMachine.CurrentState == stunnedMovementState) return;
-        
         _movementStateMachine.SetState(navMeshMovementState);
         
         if (_movementStateMachine.CurrentState is IMoveToTarget moveToState)

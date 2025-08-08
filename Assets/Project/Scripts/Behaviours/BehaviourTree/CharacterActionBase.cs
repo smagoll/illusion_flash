@@ -1,6 +1,6 @@
 using NodeCanvas.Framework;
 
-public abstract class CharacterNodeBase : ActionTask
+public abstract class CharacterActionBase : ActionTask
 {
     protected Character Character { get; set; }
     protected Character Player { get; set; }

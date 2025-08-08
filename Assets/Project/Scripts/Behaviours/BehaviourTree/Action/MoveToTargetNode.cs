@@ -1,19 +1,24 @@
 ﻿using NodeCanvas.Framework;
 using UnityEngine;
 
-public class MoveToTargetNode : CharacterNodeBase
+public class MoveToTargetAction : CharacterActionBase
 {
     public BBParameter<float> stopDistance;
 
+    private Transform target;
+    
     protected override void OnExecute()
-    {
-        var target = Player.transform;
-        if (target == null)
+    { 
+        target = Player != null ? Player.transform : null;
+
+        if (Player == null)
         {
             EndAction(false);
-            return;
         }
+    }
 
+    protected override void OnUpdate()
+    {
         Vector3 direction = target.position - Character.transform.position;
         float distance = direction.magnitude;
 
@@ -22,10 +27,9 @@ public class MoveToTargetNode : CharacterNodeBase
             EndAction(true);
             return;
         }
-
+        
         direction.Normalize();
         Character.MovementController.MoveTo(target.position, 5f);
-        
     }
 
     protected override void OnStop()

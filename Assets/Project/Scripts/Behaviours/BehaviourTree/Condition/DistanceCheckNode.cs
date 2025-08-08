@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DistanceCheckNode : CharacterConditionBase
 {
-    BBParameter<float> maxDistance;
+    public BBParameter<float> maxDistance;
 
     protected override bool OnCheck()
     {
