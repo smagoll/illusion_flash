@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     private WeaponController weaponController;
     private AbilityController abilityController;
     private LockOnTargetSystem lockOnTargetSystem;
+    private CharacterStateMachine stateMachine;
     
     public MovementController MovementController => movementController;
     public WeaponController WeaponController => weaponController;
@@ -34,7 +35,6 @@ public class Character : MonoBehaviour
     public AnimationController AnimationController => animationController;
     public LockOnTargetSystem LockOnTargetSystem => lockOnTargetSystem;
     
-    public BehaviourTreeOwner BehaviourTreeOwner => behaviourTreeOwner;
     public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
     public IGlobalBlackboard GlobalBlackboard => globalBackboard;
     public CharacterModel Model { get; private set; }
@@ -47,13 +47,13 @@ public class Character : MonoBehaviour
     {
         _inventory = new Inventory();
         
-        LayerMask targetLayer = LayerMask.GetMask("Character");
-        lockOnTargetSystem = new LockOnTargetSystem(targetLayer);
-        
         animationController.Init(modelFacade.animator, modelFacade.eventsHandler);
         movementController.Init(animationController);
         weaponController = new WeaponController(animationController, modelFacade.socketHolder);
         abilityController = new AbilityController(this, characterConfig.abilities);
+        
+        LayerMask targetLayer = LayerMask.GetMask("Character");
+        lockOnTargetSystem = new LockOnTargetSystem(targetLayer, movementController);
         
         var sword = new Weapon("Меч", swordPrefab, 200, 2f);
         _inventory.AddItem(sword);
@@ -67,6 +67,8 @@ public class Character : MonoBehaviour
         
         _controller = controller;
         _controller.Init(this);
+
+        stateMachine = new CharacterStateMachine(this);
         
         Debug.Log("Character Initialized");
     }

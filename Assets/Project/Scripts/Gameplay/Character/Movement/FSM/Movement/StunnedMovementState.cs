@@ -8,11 +8,11 @@ public class StunnedMovementState : MovementState
 
     public override void Enter()
     {
-        
+        Debug.Log("enter stun");
     }
 
     public override void Exit()
     {   
-        
+        Debug.Log("exit stun");
     }
 }

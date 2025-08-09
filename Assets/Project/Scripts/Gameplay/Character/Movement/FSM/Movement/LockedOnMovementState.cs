@@ -9,8 +9,6 @@ public class LockedOnMovementState : MovementState
     public LockedOnMovementState(MovementController controller, Transform target) : base(controller)
     {
         _target = target;
-        
-        controller.CameraService.LockOn(target);
     }
 
     public override void HandleMovement(Vector2 input, float speed)
@@ -45,13 +43,5 @@ public class LockedOnMovementState : MovementState
         );
 
         Debug.Log("LockedOnMovementState: Rotating towards target.");
-    }
-
-    public override void Exit()
-    {
-        _target = null;
-        _controller.CameraService.Unlock();
-        
-        base.Exit();
     }
 }

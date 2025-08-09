@@ -70,25 +70,7 @@ public class PlayerController : ICharacterController
     {
         if (_input.LockOnPressed)
         {
-            if (character.LockOnTargetSystem.CurrentTarget == null)
-            {
-                character.LockOnTargetSystem.FindTarget(character.transform.position, _cameraService.Forward);
-
-                if (character.LockOnTargetSystem.CurrentTarget != null)
-                {
-                    Debug.Log("Locked on target: " + character.LockOnTargetSystem.CurrentTarget.GetTransform().name);
-                    character.MovementController.LockOn(character.LockOnTargetSystem.CurrentTarget.GetTransform());
-                }
-                else
-                {
-                    Debug.Log("Target not found!");
-                }
-            }
-            else
-            {
-                character.LockOnTargetSystem.Unlock();
-                character.MovementController.Unlock();
-            }
+            character.LockOnTargetSystem.TriggerLockOn();
         }
     }
 }

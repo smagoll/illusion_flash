@@ -2,17 +2,21 @@
 
 public class LockOnTargetSystem
 {
+    private MovementController _movementController;
     private LayerMask targetLayerMask;
     private float maxDistance;
     private float maxAngle;
+    
+    private ITargetable currentTarget;
 
-    public ITargetable CurrentTarget { get; private set; }
+    public ITargetable CurrentTarget => currentTarget;
 
-    public LockOnTargetSystem(LayerMask targetLayerMask, float maxDistance = 15f, float maxAngle = 45f)
+    public LockOnTargetSystem(LayerMask targetLayerMask, MovementController movementController, float maxDistance = 15f, float maxAngle = 45f)
     {
         this.targetLayerMask = targetLayerMask;
         this.maxDistance = maxDistance;
         this.maxAngle = maxAngle;
+        _movementController = movementController;
     }
 
     public void FindTarget(Vector3 origin, Vector3 forward)
@@ -46,11 +50,41 @@ public class LockOnTargetSystem
             }
         }
 
-        CurrentTarget = bestTarget;
+        currentTarget = bestTarget;
     }
 
     public void Unlock()
     {
-        CurrentTarget = null;
+        currentTarget = null;
+        _movementController.Unlock();
+        _movementController.CameraService.Unlock();
+    }
+
+    public void Lock()
+    {
+        FindTarget(_movementController.transform.position, _movementController.CameraService.Forward);
+
+        if (currentTarget != null)
+        {
+            _movementController.LockOn(currentTarget.GetTransform());
+            _movementController.CameraService.LockOn(currentTarget.GetTransform());
+            Debug.Log("Locked on target: " + currentTarget.GetTransform().name);
+        }
+        else
+        {
+            Debug.Log("Target not found!");
+        }
+    }
+    
+    public void TriggerLockOn()
+    {
+        if (CurrentTarget == null)
+        {
+            Lock();
+        }
+        else
+        {
+            Unlock();
+        }
     }
 }

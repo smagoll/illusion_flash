@@ -130,7 +130,7 @@ public class MovementController : MonoBehaviour
 
     public void ResumeMove()
     {
-        _movementStateMachine.SetState(freeMovementState);
+        _movementStateMachine.RestorePreviousState();
     }
     
     public void LockOn(Transform target)
