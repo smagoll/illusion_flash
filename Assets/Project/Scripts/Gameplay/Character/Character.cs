@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
     public AbilityController AbilityController => abilityController;
     public AnimationController AnimationController => animationController;
     public LockOnTargetSystem LockOnTargetSystem => lockOnTargetSystem;
+    public CharacterStateMachine StateMachine => stateMachine;
     
     public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
     public IGlobalBlackboard GlobalBlackboard => globalBackboard;
@@ -76,5 +77,6 @@ public class Character : MonoBehaviour
     private void Update()
     {
         _controller?.Tick();
+        stateMachine.Update();
     }
 }

@@ -130,6 +130,8 @@ public class MovementController : MonoBehaviour
 
     public void ResumeMove()
     {
+        Debug.Log("Resume move");
+        
         _movementStateMachine.RestorePreviousState();
     }
     

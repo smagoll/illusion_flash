@@ -11,10 +11,9 @@ public class MovementStateMachine
     {
         if (newState == _currentState) return;
         
-        _currentState?.Exit();
-        
         _prevState = _currentState;
         
+        _currentState?.Exit();
         _currentState = newState;
         _currentState?.Enter();
     }
