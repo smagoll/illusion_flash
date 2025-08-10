@@ -11,7 +11,6 @@ public class CharacterAttackState : CharacterState
     public override void Enter()
     {
         _character.AnimationController.Attack();
-        _character.MovementController.StopMove();
         _isAttackFinished = false;
 
         _character.AnimationController.ModelEventsHandler.OnEndAttack += OnAttackFinished;
@@ -41,7 +40,5 @@ public class CharacterAttackState : CharacterState
     {
         _character.AnimationController.ModelEventsHandler.OnEndAttack -= OnAttackFinished;
         _character.AnimationController.ModelEventsHandler.OnImpulse -= OnImpulse;
-
-        _character.MovementController.ResumeMove();
     }
 }

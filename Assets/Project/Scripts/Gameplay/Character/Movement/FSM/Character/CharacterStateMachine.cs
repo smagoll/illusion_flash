@@ -13,6 +13,7 @@ public CharacterStateMachine(Character character)
         Character = character;
 
         AddState(new CharacterIdleState(this));
+        AddState(new CharacterDeathState(this));
         AddState(new CharacterLocomotionState(this));
         AddState(new CharacterStunState(this));
         AddState(new CharacterAttackState(this));

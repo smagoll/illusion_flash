@@ -10,7 +10,7 @@ public class CharacterLocomotionState : CharacterState
 
     public override void Enter()
     {
-        Debug.Log("Character locomotion");
+        _character.MovementController.ResumeMove();
     }
 
     public override void Update()
@@ -20,6 +20,6 @@ public class CharacterLocomotionState : CharacterState
 
     public override void Exit()
     {
-        Debug.Log("locomotion ended");
+        _character.MovementController.StopMove();
     }
 }

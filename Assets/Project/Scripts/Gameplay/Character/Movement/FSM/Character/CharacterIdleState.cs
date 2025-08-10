@@ -6,7 +6,7 @@ public class CharacterIdleState : CharacterState
 
     public override void Enter()
     {
-        Debug.Log("Character entered Idle");
+        _character.MovementController.StopMove();
     }
 
     public override void Update()
