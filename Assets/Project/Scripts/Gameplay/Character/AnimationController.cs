@@ -9,14 +9,18 @@ public class AnimationController : MonoBehaviour
 
     private Animator _animator;
 
+    private static readonly int Speed = Animator.StringToHash("speed");
     private static readonly int Run = Animator.StringToHash("isRun");
     private static readonly int Walk = Animator.StringToHash("isWalk");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
     private static readonly int AttackTrigger = Animator.StringToHash("attack");
     private static readonly int HasWeapon = Animator.StringToHash("hasWeapon");
+    private static readonly int Right = Animator.StringToHash("right");
+    private static readonly int Forward = Animator.StringToHash("forward");
 
-    private static int WeaponLayer;
+    public static int WeaponLayer;
+    public static int LockOn;
     
     public ModelEventsHandler ModelEventsHandler { get; private set; }
 
@@ -34,6 +38,7 @@ public class AnimationController : MonoBehaviour
         _animator.SetBool(Walk, false);
         
         WeaponLayer =  _animator.GetLayerIndex("Weapon Layer");
+        LockOn =  _animator.GetLayerIndex("LockOn");
     }
 
     public void UpdateSpeed(float speed)
@@ -56,6 +61,14 @@ public class AnimationController : MonoBehaviour
         {
             _animator.SetBool(Walk, false);
         }
+
+        _animator.SetFloat(Speed, speed);
+    }
+
+    public void UpdateDirection(Vector2 direction)
+    {
+        _animator.SetFloat(Right, direction.x);
+        _animator.SetFloat(Forward, direction.y);
     }
 
     public void Jump()
@@ -90,5 +103,15 @@ public class AnimationController : MonoBehaviour
     public void Death()
     {
         _animator.SetTrigger("death");
+    }
+
+    public void SetWeightLayer(int layer, float weight)
+    {
+        _animator.SetLayerWeight(layer, weight);
+    }
+
+    public void EnableDisableLockOn(bool isLockOn)
+    {
+        _animator.SetBool("isLockOn", isLockOn);
     }
 }

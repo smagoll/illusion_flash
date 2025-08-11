@@ -39,6 +39,8 @@ public class MovementController : MonoBehaviour
     
     private AnimationController _animationController;
 
+    public AnimationController AnimationController => _animationController;
+
     public void Init(AnimationController animationController)
     {
         _animationController = animationController;
