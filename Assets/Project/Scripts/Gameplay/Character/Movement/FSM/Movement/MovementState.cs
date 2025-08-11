@@ -12,6 +12,6 @@ public abstract class MovementState
     public virtual void Enter() { }
     public virtual void Exit() { }
     public virtual void Tick() { }
-    public virtual void HandleMovement(Vector2 input, float speed) { }
+    public virtual void HandleMovement(Vector2 input) { }
     public virtual void HandleRotation() { }
 }

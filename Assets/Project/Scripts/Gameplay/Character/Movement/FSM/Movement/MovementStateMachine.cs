@@ -19,7 +19,7 @@ public class MovementStateMachine
     }
 
     public void Tick() => _currentState?.Tick();
-    public void HandleMovement(Vector2 input, float speed) => _currentState?.HandleMovement(input, speed);
+    public void HandleMovement(Vector2 input) => _currentState?.HandleMovement(input);
     public void HandleRotation() => _currentState?.HandleRotation();
     
     public void RestorePreviousState()

@@ -43,25 +43,6 @@ public class AnimationController : MonoBehaviour
 
     public void UpdateSpeed(float speed)
     {
-        if (speed > horizontalSpeedForRun)
-        {
-            _animator.SetBool(Run, true);
-            return;
-        }
-        else
-        {
-            _animator.SetBool(Run, false);
-        }
-        
-        if (speed > horizontalSpeedForWalk)
-        {
-            _animator.SetBool(Walk, true);
-        }
-        else
-        {
-            _animator.SetBool(Walk, false);
-        }
-
         _animator.SetFloat(Speed, speed);
     }
 

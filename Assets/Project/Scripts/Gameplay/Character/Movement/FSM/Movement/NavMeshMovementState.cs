@@ -18,6 +18,13 @@ public class NavMeshMovementState : FreeMovementState, IMoveToTarget
         stoppingDistance = _navMeshAgent.stoppingDistance;
     }
 
+    public override void HandleMovement(Vector2 input)
+    {
+        Vector3 targetDirection = new Vector3(input.x, 0, input.y);
+        smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, _controller.MovementConfig.smoothTime);
+        _controller.ApplyMovement(smoothDirection);
+    }
+
     public void MoveTo(Vector3 target)
     {
         _navMeshAgent.SetDestination(target);
@@ -38,7 +45,7 @@ public class NavMeshMovementState : FreeMovementState, IMoveToTarget
         if (desiredVelocity.sqrMagnitude > 0.01f)
         {
             Vector2 inputDirection = new Vector2(desiredVelocity.x, desiredVelocity.z).normalized;
-            _controller.Move(inputDirection, _controller.MovementConfig.walkSpeed);
+            _controller.MoveInput(inputDirection);
         }
         
         _navMeshAgent.nextPosition = _controller.transform.position;

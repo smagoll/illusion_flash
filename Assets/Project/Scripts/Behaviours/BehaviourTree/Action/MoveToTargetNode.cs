@@ -29,7 +29,7 @@ public class MoveToTargetAction : CharacterActionBase
         }
         
         direction.Normalize();
-        Character.MovementController.MoveTo(target.position, 5f);
+        Character.MovementController.MoveTo(target.position);
     }
 
     protected override void OnStop()

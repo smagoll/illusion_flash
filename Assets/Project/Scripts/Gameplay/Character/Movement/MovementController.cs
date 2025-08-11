@@ -19,6 +19,9 @@ public class MovementController : MonoBehaviour
     private Vector3 _moveDirection; // Итоговое накопленное направление
     private Vector3 _impulse;
 
+    private float targetSpeed;
+    private float speedSmoothVelocity;
+
     private MovementStateMachine _movementStateMachine;
     
     private MovementState freeMovementState;
@@ -32,7 +35,8 @@ public class MovementController : MonoBehaviour
     
     public float VerticalSpeed => characterController.velocity.y;
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
-    public float TotalSpeed => characterController.velocity.magnitude;
+    
+    public float CurrentSpeed { get; private set; }
     
     public Vector3 Forward => characterController.transform.forward;
     public bool IsGrounded => characterController.isGrounded;
@@ -60,9 +64,11 @@ public class MovementController : MonoBehaviour
         
         ApplyGravity();
 
-        Vector3 move = _moveDirection + Vector3.up * _verticalVelocity + _impulse;
+        CurrentSpeed = Mathf.SmoothDamp(CurrentSpeed, targetSpeed, ref speedSmoothVelocity, 0.3f);
+        
+        Vector3 move = _moveDirection * CurrentSpeed + Vector3.up * _verticalVelocity + _impulse;
         characterController.Move(move * Time.deltaTime);
-
+        
         _animationController.UpdateSpeed(HorizontalSpeed);
         _animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
 
@@ -79,20 +85,22 @@ public class MovementController : MonoBehaviour
 
     public void Walk(Vector2 inputDirection)
     {
-        Move(inputDirection, movementConfig.walkSpeed);
+        MoveInput(inputDirection);
+        SetSpeed(movementConfig.walkSpeed);
     }
 
     public void Run(Vector2 inputDirection)
     {
-        Move(inputDirection,  movementConfig.runSpeed);
+        MoveInput(inputDirection);
+        SetSpeed(movementConfig.runSpeed);
     }
 
-    public void Move(Vector2 inputDirection, float speed)
+    public void MoveInput(Vector2 inputDirection)
     {
-        _movementStateMachine.HandleMovement(inputDirection, speed);
+        _movementStateMachine.HandleMovement(inputDirection);
     }
     
-    public void MoveTo(Vector3 destination, float speed)
+    public void MoveTo(Vector3 destination)
     {
         _movementStateMachine.SetState(navMeshMovementState);
         
@@ -167,5 +175,10 @@ public class MovementController : MonoBehaviour
         Vector3 moveDir = (camForward * input.y + camRight * input.x).normalized;
 
         return new Vector2(moveDir.x, moveDir.z);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        targetSpeed = speed;
     }
 }

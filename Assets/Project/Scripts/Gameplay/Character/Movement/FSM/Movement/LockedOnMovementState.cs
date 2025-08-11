@@ -11,14 +11,14 @@ public class LockedOnMovementState : MovementState
         _target = target;
     }
 
-    public override void HandleMovement(Vector2 input, float speed)
+    public override void HandleMovement(Vector2 input)
     {
         var inputDirection = _controller.GetInputFromCamera(input);
         
         _controller.AnimationController.UpdateDirection(input);
         Vector3 targetDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
         smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, _controller.MovementConfig.smoothTime);
-        _controller.ApplyMovement(smoothDirection * speed);
+        _controller.ApplyMovement(smoothDirection);
     }
 
     public override void HandleRotation()
