@@ -67,8 +67,8 @@ public class AnimationController : MonoBehaviour
 
     public void UpdateDirection(Vector2 direction)
     {
-        _animator.SetFloat(Right, direction.x);
-        _animator.SetFloat(Forward, direction.y);
+        _animator.SetFloat(Right, direction.y);
+        _animator.SetFloat(Forward, direction.x);
     }
 
     public void Jump()
