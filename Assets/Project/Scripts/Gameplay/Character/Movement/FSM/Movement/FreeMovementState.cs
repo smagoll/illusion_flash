@@ -9,7 +9,9 @@ public class FreeMovementState : MovementState
     
     public override void HandleMovement(Vector2 input, float speed)
     {
-        Vector3 targetDirection = new Vector3(input.x, 0, input.y);
+        var inputDirection = _controller.GetInputFromCamera(input);
+        
+        Vector3 targetDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
         smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, _controller.MovementConfig.smoothTime);
         _controller.ApplyMovement(smoothDirection * speed);
     }

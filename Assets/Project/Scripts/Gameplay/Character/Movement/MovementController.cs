@@ -153,4 +153,19 @@ public class MovementController : MonoBehaviour
     {
         _impulse = direction.normalized * strength;
     }
+
+    public Vector2 GetInputFromCamera(Vector2 input)
+    {
+        Vector3 camForward = CameraService.Forward;
+        Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
+
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+        
+        Vector3 moveDir = (camForward * input.y + camRight * input.x).normalized;
+
+        return new Vector2(moveDir.x, moveDir.z);
+    }
 }

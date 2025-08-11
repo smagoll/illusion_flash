@@ -46,23 +46,13 @@ public class PlayerController : ICharacterController
 
     private void Move()
     {
-        Vector3 camForward = _cameraService.Forward;
-        Vector3 camRight = Vector3.Cross(Vector3.up, camForward);
-
-        camForward.y = 0;
-        camRight.y = 0;
-        camForward.Normalize();
-        camRight.Normalize();
-        
-        Vector3 moveDir = (camForward * _input.MoveAxis.y + camRight * _input.MoveAxis.x).normalized;
-
         if (_input.AltPressed)
         {
-            character.MovementController.Walk(new Vector2(moveDir.x, moveDir.z));
+            character.MovementController.Walk(_input.MoveAxis);
         }
         else
         {
-            character.MovementController.Run(new Vector2(moveDir.x, moveDir.z));   
+            character.MovementController.Run(_input.MoveAxis);   
         }
     }
 

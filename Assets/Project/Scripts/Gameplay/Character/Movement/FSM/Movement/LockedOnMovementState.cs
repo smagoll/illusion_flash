@@ -13,10 +13,12 @@ public class LockedOnMovementState : MovementState
 
     public override void HandleMovement(Vector2 input, float speed)
     {
+        var inputDirection = _controller.GetInputFromCamera(input);
+        
         _controller.AnimationController.UpdateDirection(input);
-        Vector3 targetDirection = new Vector3(input.x, 0, input.y);
+        Vector3 targetDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
         smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, _controller.MovementConfig.smoothTime);
-        _controller.ApplyMovement(smoothDirection * speed / 2);
+        _controller.ApplyMovement(smoothDirection * speed);
     }
 
     public override void HandleRotation()
@@ -32,7 +34,6 @@ public class LockedOnMovementState : MovementState
 
         if (directionToTarget.sqrMagnitude < 0.001f)
         {
-            Debug.Log("LockedOnMovementState: Target too close or at same position.");
             return;
         }
 
@@ -42,19 +43,15 @@ public class LockedOnMovementState : MovementState
             targetRotation,
             _controller.MovementConfig.rotationSpeed * Time.deltaTime
         );
-
-        Debug.Log("LockedOnMovementState: Rotating towards target.");
     }
 
     public override void Enter()
     {
-        //_controller.AnimationController.SetWeightLayer(AnimationController.LockOn, 1f);
         _controller.AnimationController.EnableDisableLockOn(true);
     }
 
     public override void Exit()
     {
-        //_controller.AnimationController.SetWeightLayer(AnimationController.LockOn, 0f);
         _controller.AnimationController.EnableDisableLockOn(false);
     }
 }
