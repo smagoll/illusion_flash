@@ -56,6 +56,8 @@ public class MovementController : MonoBehaviour
         stunnedMovementState = new StunnedMovementState(this);
         
         _movementStateMachine.SetState(new FreeMovementState(this));
+        
+        SetSpeed(movementConfig.normalSpeed);
     }
 
     private void Update()
@@ -86,13 +88,11 @@ public class MovementController : MonoBehaviour
     public void Walk(Vector2 inputDirection)
     {
         MoveInput(inputDirection);
-        SetSpeed(movementConfig.walkSpeed);
     }
 
     public void Run(Vector2 inputDirection)
     {
         MoveInput(inputDirection);
-        SetSpeed(movementConfig.runSpeed);
     }
 
     public void MoveInput(Vector2 inputDirection)

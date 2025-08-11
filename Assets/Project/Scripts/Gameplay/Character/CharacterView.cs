@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class CharacterView : MonoBehaviour, IDamageable, ITargetable
 {
     private CharacterModel _model;
-    private AnimationController _animationController;
-    private MovementController _movementController;
+    
+    private Character _character;
 
     public void Init(Character character)
     {
+        _character = character;
         _model = character.Model;
-        _animationController = character.AnimationController;
-        _movementController = character.MovementController;
 
         _model.Health.OnDeath += OnDeath;
     }
@@ -22,8 +22,7 @@ public class CharacterView : MonoBehaviour, IDamageable, ITargetable
 
     private void OnDeath()
     {
-        _animationController.Death();
-        _movementController.StopMove();
+        _character.StateMachine.SetState<CharacterDeathState>();
     }
 
     public Transform GetTransform()

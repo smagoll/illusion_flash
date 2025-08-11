@@ -6,7 +6,8 @@ public class CharacterDeathState : CharacterState
 
     public override void Enter()
     {
-        Debug.Log("Character entered Death");
+        _character.AnimationController.Death();
+        _character.MovementController.StopMove();
     }
 
     public override void Update()

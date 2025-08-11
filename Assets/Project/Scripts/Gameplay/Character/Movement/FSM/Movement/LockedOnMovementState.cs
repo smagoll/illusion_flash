@@ -5,12 +5,12 @@ public class LockedOnMovementState : MovementState
     private Transform _target;
     private Vector3 smoothDirection;
     private Vector3 currentVelocity;
-
+    
     public LockedOnMovementState(MovementController controller, Transform target) : base(controller)
     {
         _target = target;
     }
-
+    
     public override void HandleMovement(Vector2 input)
     {
         var inputDirection = _controller.GetInputFromCamera(input);
@@ -48,10 +48,12 @@ public class LockedOnMovementState : MovementState
     public override void Enter()
     {
         _controller.AnimationController.EnableDisableLockOn(true);
+        _controller.SetSpeed(_controller.MovementConfig.walkSpeed);
     }
 
     public override void Exit()
     {
         _controller.AnimationController.EnableDisableLockOn(false);
+        _controller.SetSpeed(_controller.MovementConfig.normalSpeed);
     }
 }

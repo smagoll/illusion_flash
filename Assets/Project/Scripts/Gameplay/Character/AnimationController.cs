@@ -2,11 +2,6 @@
 
 public class AnimationController : MonoBehaviour
 {
-    [SerializeField]
-    private float horizontalSpeedForRun = 2.5f;
-    [SerializeField]
-    private float horizontalSpeedForWalk = 0.5f;
-
     private Animator _animator;
 
     private static readonly int Speed = Animator.StringToHash("speed");
@@ -18,10 +13,15 @@ public class AnimationController : MonoBehaviour
     private static readonly int HasWeapon = Animator.StringToHash("hasWeapon");
     private static readonly int Right = Animator.StringToHash("right");
     private static readonly int Forward = Animator.StringToHash("forward");
+    private static readonly int IsDeath = Animator.StringToHash("isDeath");
+    private static readonly int TriggerDeath = Animator.StringToHash("death");
+    private static readonly int EquipWeapon1 = Animator.StringToHash("equipWeapon");
+    private static readonly int UnequipWeapon1 = Animator.StringToHash("unequipWeapon");
 
     public static int WeaponLayer;
     public static int LockOn;
     
+
     public ModelEventsHandler ModelEventsHandler { get; private set; }
 
     public void Init(Animator animator, ModelEventsHandler modelEventsHandler)
@@ -69,24 +69,25 @@ public class AnimationController : MonoBehaviour
 
     public void EquipWeapon()
     {
-        //_animator.SetLayerWeight(WeaponLayer, 1f);
+        SetWeightLayer(WeaponLayer, 1f);
         _animator.SetBool(HasWeapon, true);
-        _animator.SetTrigger("equipWeapon");
+        _animator.SetTrigger(EquipWeapon1);
     }
     
     public void UnequipWeapon()
     {
-        //_animator.SetLayerWeight(WeaponLayer, 0f);
+        SetWeightLayer(WeaponLayer, 0f);
         _animator.SetBool(HasWeapon, false);
-        _animator.SetTrigger("unequipWeapon");
+        _animator.SetTrigger(UnequipWeapon1);
     }
 
     public void Death()
     {
-        _animator.SetTrigger("death");
+        SetWeightLayer(WeaponLayer, 0f);
+        _animator.SetBool(IsDeath, true);
     }
 
-    public void SetWeightLayer(int layer, float weight)
+    private void SetWeightLayer(int layer, float weight)
     {
         _animator.SetLayerWeight(layer, weight);
     }
