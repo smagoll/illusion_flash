@@ -8,6 +8,7 @@ public class CharacterDeathState : CharacterState
     {
         _character.AnimationController.Death();
         _character.MovementController.StopMove();
+        _character.MovementController.Collider.enabled = false;
     }
 
     public override void Update()

@@ -17,6 +17,15 @@ public class CharacterDodgeState : CharacterState
 
         _character.AnimationController.ModelEventsHandler.OnEndDodge += OnDodgeFinished;
         _character.AnimationController.ModelEventsHandler.OnAnimatorMoveRoot += OnAnimationMoveRoot;
+        
+        Vector3 moveDir = _character.MovementController.LastMoveDirection;
+        if (moveDir.sqrMagnitude > 0.001f)
+        {
+            if (moveDir != Vector3.zero)
+            {
+                _character.transform.rotation = Quaternion.LookRotation(new Vector3(moveDir.x, 0, moveDir.y));
+            }
+        }
     }
 
     private void OnDodgeFinished()

@@ -39,6 +39,7 @@ public class MovementController : MonoBehaviour
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
     
     public float CurrentSpeed { get; private set; }
+    public Vector2 LastMoveDirection { get; private set; }
     
     public Vector3 Forward => characterController.transform.forward;
     public bool IsGrounded => characterController.isGrounded;
@@ -107,6 +108,8 @@ public class MovementController : MonoBehaviour
 
     public void MoveInput(Vector2 inputDirection)
     {
+        LastMoveDirection = GetInputFromCamera(inputDirection);
+        
         _movementStateMachine.HandleMovement(inputDirection);
     }
     
