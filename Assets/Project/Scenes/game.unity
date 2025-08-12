@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d953a2d71647c68bb2871af51b1aff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1705042894}
-  freeLookSensitivity: 1
+  _freeLook: {fileID: 1705042894}
+  lockOnCam: {fileID: 1195427372}
   lockOnSmoothTime: 0.2
   lockOnDistance: 5
   lockOnHeight: 1.5
