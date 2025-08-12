@@ -9,6 +9,7 @@ namespace Input
         bool JumpPressed { get; }
         bool AltPressed { get; }
         bool RunPressed { get; }
+        bool DodgePressed { get; }
         bool FirstItemPressed { get; }
         bool AttackPressed { get; }
         bool LockOnPressed { get; }
@@ -24,6 +25,7 @@ namespace Input
         private bool _firstItemPressed;
         private bool _attackPressed;
         private bool _lockOnPressed;
+        private bool _dodgePressed;
 
         public Vector2 MoveAxis => _moveAxis;
         public bool JumpPressed => _jumpPressed;
@@ -32,6 +34,7 @@ namespace Input
         public bool FirstItemPressed => _firstItemPressed;
         public bool AttackPressed => _attackPressed;
         public bool LockOnPressed => _lockOnPressed;
+        public bool DodgePressed => _dodgePressed;
 
         private void Awake()
         {
@@ -43,6 +46,9 @@ namespace Input
 
             // jump
             _inputActions.Player.Jump.performed += _ => _jumpPressed = true;
+            
+            // dodge
+            _inputActions.Player.Dodge.performed += _ => _dodgePressed = true;
             
             // walk
             _inputActions.Player.Walk.performed += _ => _altPressed = true;
@@ -70,6 +76,7 @@ namespace Input
             _firstItemPressed = false;
             _attackPressed = false;
             _lockOnPressed = false;
+            _dodgePressed = false;
         }
     }
 }

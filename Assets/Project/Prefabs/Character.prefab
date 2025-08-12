@@ -676,7 +676,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4257281402156122982}
-  - component: {fileID: 7923179975867980060}
+  - component: {fileID: 5400883130176362475}
   - component: {fileID: 5786013077778005126}
   - component: {fileID: 2269614787946389440}
   - component: {fileID: 1544852842375013164}
@@ -705,7 +705,7 @@ Transform:
   - {fileID: 8690914865634806695}
   m_Father: {fileID: 174083412711810016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7923179975867980060
+--- !u!95 &5400883130176362475
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -716,7 +716,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 83af014b169b613488c3f6e3a26b3257, type: 3}
   m_Controller: {fileID: 9100000, guid: 7e7a4e6b7ad591f488ead72c86ba2298, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6425c527fd124d9e956d9378916263d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7923179975867980060}
+  animator: {fileID: 5400883130176362475}
   footConfig:
     groundMask:
       serializedVersion: 2
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socketHolder: {fileID: 1544852842375013164}
-  animator: {fileID: 7923179975867980060}
+  animator: {fileID: 5400883130176362475}
   eventsHandler: {fileID: 3543113797230214015}
 --- !u!114 &1544852842375013164
 MonoBehaviour:
@@ -1252,8 +1252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613dc3174f6b4a7298198c2b18d36378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeedForRun: 2.5
-  horizontalSpeedForWalk: 0.5
 --- !u!114 &4570766234597673884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1282,6 +1280,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 6963148001467318319}
   movementConfig:
     runSpeed: 7
+    normalSpeed: 4
     walkSpeed: 2
     smoothTime: 0.1
     rotationSpeed: 20

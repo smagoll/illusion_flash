@@ -17,6 +17,7 @@ public CharacterStateMachine(Character character)
         AddState(new CharacterLocomotionState(this));
         AddState(new CharacterStunState(this));
         AddState(new CharacterAttackState(this));
+        AddState(new CharacterDodgeState(this));
 
         SetState<CharacterIdleState>();
     }
@@ -40,6 +41,11 @@ public CharacterStateMachine(Character character)
         CurrentState?.Exit();
         CurrentState = newState;
         CurrentState.Enter();
+    }
+
+    public bool IsState<T>() where T : CharacterState
+    {
+        return GetState<T>() == CurrentState;
     }
 
     public void Update()

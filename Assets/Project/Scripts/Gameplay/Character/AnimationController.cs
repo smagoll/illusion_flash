@@ -10,11 +10,11 @@ public class AnimationController : MonoBehaviour
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
     private static readonly int AttackTrigger = Animator.StringToHash("attack");
+    private static readonly int DodgeTrigger = Animator.StringToHash("dodge");
     private static readonly int HasWeapon = Animator.StringToHash("hasWeapon");
     private static readonly int Right = Animator.StringToHash("right");
     private static readonly int Forward = Animator.StringToHash("forward");
     private static readonly int IsDeath = Animator.StringToHash("isDeath");
-    private static readonly int TriggerDeath = Animator.StringToHash("death");
     private static readonly int EquipWeapon1 = Animator.StringToHash("equipWeapon");
     private static readonly int UnequipWeapon1 = Animator.StringToHash("unequipWeapon");
 
@@ -62,6 +62,11 @@ public class AnimationController : MonoBehaviour
         _animator.SetTrigger(AttackTrigger);
     }
 
+    public void Dodge()
+    {
+        _animator.SetTrigger(DodgeTrigger);
+    }
+
     public void UpdateIsFalling(bool isFalling)
     {
         _animator.SetBool(IsFalling, isFalling);
@@ -69,14 +74,12 @@ public class AnimationController : MonoBehaviour
 
     public void EquipWeapon()
     {
-        SetWeightLayer(WeaponLayer, 1f);
         _animator.SetBool(HasWeapon, true);
         _animator.SetTrigger(EquipWeapon1);
     }
     
     public void UnequipWeapon()
     {
-        SetWeightLayer(WeaponLayer, 0f);
         _animator.SetBool(HasWeapon, false);
         _animator.SetTrigger(UnequipWeapon1);
     }

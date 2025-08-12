@@ -28,7 +28,7 @@ public class PlayerController : ICharacterController
 
         if (_input.JumpPressed)
         {
-            character.AbilityController.TryExecute(AbilityKeys.Jump);
+            //character.AbilityController.TryExecute(AbilityKeys.Jump);
         }
 
         if (_input.FirstItemPressed)
@@ -39,6 +39,11 @@ public class PlayerController : ICharacterController
         if (_input.AttackPressed)
         {
             character.AbilityController.TryExecute(AbilityKeys.Attack);
+        }
+
+        if (_input.DodgePressed)
+        {
+            character.AbilityController.TryExecute(AbilityKeys.Dodge);
         }
         
         LockOn();

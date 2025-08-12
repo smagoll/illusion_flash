@@ -2,4 +2,5 @@
 {
     public static string Attack => "Attack";
     public static string Jump => "Jump";
+    public static string Dodge => "Dodge";
 }
