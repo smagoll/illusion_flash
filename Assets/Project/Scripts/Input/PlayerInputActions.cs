@@ -82,6 +82,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""a27b5e26-6198-49ec-aebf-3eac61ef686e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -194,6 +203,17 @@ namespace Input
                     ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc6620b4-8409-4449-85ad-a6176696044b"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ namespace Input
             m_Player_FirstItem = m_Player.FindAction("FirstItem", throwIfNotFound: true);
             m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
             m_Player_LockOn = m_Player.FindAction("LockOn", throwIfNotFound: true);
+            m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -280,6 +301,7 @@ namespace Input
         private readonly InputAction m_Player_FirstItem;
         private readonly InputAction m_Player_Attack;
         private readonly InputAction m_Player_LockOn;
+        private readonly InputAction m_Player_Run;
         public struct PlayerActions
         {
             private @PlayerInput m_Wrapper;
@@ -290,6 +312,7 @@ namespace Input
             public InputAction @FirstItem => m_Wrapper.m_Player_FirstItem;
             public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputAction @LockOn => m_Wrapper.m_Player_LockOn;
+            public InputAction @Run => m_Wrapper.m_Player_Run;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -317,6 +340,9 @@ namespace Input
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -339,6 +365,9 @@ namespace Input
                 @LockOn.started -= instance.OnLockOn;
                 @LockOn.performed -= instance.OnLockOn;
                 @LockOn.canceled -= instance.OnLockOn;
+                @Run.started -= instance.OnRun;
+                @Run.performed -= instance.OnRun;
+                @Run.canceled -= instance.OnRun;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -364,6 +393,7 @@ namespace Input
             void OnFirstItem(InputAction.CallbackContext context);
             void OnAttack(InputAction.CallbackContext context);
             void OnLockOn(InputAction.CallbackContext context);
+            void OnRun(InputAction.CallbackContext context);
         }
     }
 }

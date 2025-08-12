@@ -8,6 +8,7 @@ namespace Input
         Vector2 MoveAxis { get; }
         bool JumpPressed { get; }
         bool AltPressed { get; }
+        bool RunPressed { get; }
         bool FirstItemPressed { get; }
         bool AttackPressed { get; }
         bool LockOnPressed { get; }
@@ -19,6 +20,7 @@ namespace Input
         private Vector2 _moveAxis;
         private bool _jumpPressed;
         private bool _altPressed;
+        private bool _runPressed;
         private bool _firstItemPressed;
         private bool _attackPressed;
         private bool _lockOnPressed;
@@ -26,6 +28,7 @@ namespace Input
         public Vector2 MoveAxis => _moveAxis;
         public bool JumpPressed => _jumpPressed;
         public bool AltPressed => _altPressed;
+        public bool RunPressed => _runPressed;
         public bool FirstItemPressed => _firstItemPressed;
         public bool AttackPressed => _attackPressed;
         public bool LockOnPressed => _lockOnPressed;
@@ -44,6 +47,10 @@ namespace Input
             // walk
             _inputActions.Player.Walk.performed += _ => _altPressed = true;
             _inputActions.Player.Walk.canceled += _ => _altPressed = false;
+            
+            // run
+            _inputActions.Player.Run.performed += _ => _runPressed = true;
+            _inputActions.Player.Run.canceled += _ => _runPressed = false;
             
             // actions
             _inputActions.Player.Attack.performed += _ => _attackPressed = true;

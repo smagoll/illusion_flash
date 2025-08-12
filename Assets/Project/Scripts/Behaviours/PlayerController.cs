@@ -46,13 +46,20 @@ public class PlayerController : ICharacterController
 
     private void Move()
     {
-        if (_input.AltPressed)
+        if (_input.RunPressed)
         {
-            character.MovementController.Walk(_input.MoveAxis);
+            character.MovementController.Run(_input.MoveAxis);   
         }
         else
         {
-            character.MovementController.Run(_input.MoveAxis);   
+            if (_input.AltPressed)
+            {
+                character.MovementController.Walk(_input.MoveAxis);
+            }
+            else
+            {
+                character.MovementController.NormalRun(_input.MoveAxis);   
+            }
         }
     }
 

@@ -88,11 +88,19 @@ public class MovementController : MonoBehaviour
     public void Walk(Vector2 inputDirection)
     {
         MoveInput(inputDirection);
+        SetSpeed(movementConfig.walkSpeed);
     }
 
+    public void NormalRun(Vector2 inputDirection)
+    {
+        MoveInput(inputDirection);
+        SetSpeed(movementConfig.normalSpeed);
+    }
+    
     public void Run(Vector2 inputDirection)
     {
         MoveInput(inputDirection);
+        SetSpeed(movementConfig.runSpeed);
     }
 
     public void MoveInput(Vector2 inputDirection)
