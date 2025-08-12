@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
     [Header("Components")] 
     [SerializeField] private CharacterController characterController;
     [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private CapsuleCollider col;
 
     [Header("Movement Settings")] 
     [SerializeField] private MovementConfig movementConfig;
@@ -32,6 +33,7 @@ public class MovementController : MonoBehaviour
     [Inject] public ICameraService CameraService { get; }
     
     public MovementConfig MovementConfig => movementConfig;
+    public Collider Collider => col;
     
     public float VerticalSpeed => characterController.velocity.y;
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;

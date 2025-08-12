@@ -47,7 +47,6 @@ public class ModelEventsHandler : MonoBehaviour
     
     public void EndDodge()
     {
-        Debug.Log("end");
         OnEndDodge?.Invoke();
     }
 

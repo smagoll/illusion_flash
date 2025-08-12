@@ -10,6 +10,7 @@ public class CharacterDodgeState : CharacterState
     
     public override void Enter()
     {
+        _character.MovementController.Collider.enabled = false;
         _character.MovementController.StopMove();
         _character.AnimationController.Dodge();
         _isDodgeFinished = false;
@@ -39,6 +40,7 @@ public class CharacterDodgeState : CharacterState
 
     public override void Exit()
     {
+        _character.MovementController.Collider.enabled = true;
         _character.AnimationController.ModelEventsHandler.OnEndAttack -= OnDodgeFinished;
         _character.AnimationController.ModelEventsHandler.OnAnimatorMoveRoot -= OnAnimationMoveRoot;
         

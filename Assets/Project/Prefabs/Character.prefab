@@ -1278,6 +1278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 2688327369465301060}
   navMeshAgent: {fileID: 6963148001467318319}
+  col: {fileID: 2968508256638639389}
   movementConfig:
     runSpeed: 7
     normalSpeed: 4
