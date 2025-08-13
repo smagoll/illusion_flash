@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class LockedOnMovementState : MovementState
+public class StrafeMovementState : MovementState
 {
     private Transform _target;
     private Vector3 smoothDirection;
     private Vector3 currentVelocity;
     
-    public LockedOnMovementState(MovementController controller, Transform target) : base(controller)
+    public StrafeMovementState(MovementController controller, Transform target) : base(controller)
     {
         _target = target;
     }

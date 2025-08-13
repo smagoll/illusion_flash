@@ -58,7 +58,7 @@ public class MovementController : MonoBehaviour
         navMeshMovementState = new NavMeshMovementState(this, navMeshAgent);
         stunnedMovementState = new StunnedMovementState(this);
         
-        _movementStateMachine.SetState(new FreeMovementState(this));
+        _movementStateMachine.SetState(freeMovementState);
         
         SetSpeed(movementConfig.normalSpeed);
     }
@@ -160,7 +160,7 @@ public class MovementController : MonoBehaviour
     
     public void LockOn(Transform target)
     {
-        lockOnMovementState = new LockedOnMovementState(this, target);
+        lockOnMovementState = new StrafeMovementState(this, target);
         _movementStateMachine.SetState(lockOnMovementState);
     }
 
