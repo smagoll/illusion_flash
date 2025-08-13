@@ -2,32 +2,23 @@
 
 public class FreeMovementState : MovementState
 {
-    public FreeMovementState(MovementController controller) : base(controller) { }
+    public FreeMovementState(MovementStateMachine stateMachine, MovementController controller) : base(stateMachine, controller) { }
 
     protected Vector3 smoothDirection;
     protected Vector3 currentVelocity;
     
-    public override void HandleMovement(Vector2 input)
+    public override void Walk(Vector2 input)
     {
-        var inputDirection = _controller.GetInputFromCamera(input);
-        
-        Vector3 targetDirection = new Vector3(inputDirection.x, 0, inputDirection.y);
-        smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, _controller.MovementConfig.smoothTime);
-        _controller.ApplyMovement(smoothDirection);
+        _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
     }
 
-    public override void HandleRotation()
+    public override void NormalRun(Vector2 input)
     {
-        Vector3 horizontalDir = new Vector3(smoothDirection.x, 0, smoothDirection.z);
+        _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
+    }
 
-        if (horizontalDir.sqrMagnitude > 0.001f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(horizontalDir, Vector3.up);
-            _controller.transform.rotation = Quaternion.Slerp(
-                _controller.transform.rotation,
-                targetRotation,
-                _controller.MovementConfig.rotationSpeed * Time.deltaTime
-            );
-        }
+    public override void Run(Vector2 input)
+    {
+        _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
     }
 }

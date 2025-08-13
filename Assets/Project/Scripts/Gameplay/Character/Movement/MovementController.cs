@@ -24,11 +24,6 @@ public class MovementController : MonoBehaviour
     private float speedSmoothVelocity;
 
     private MovementStateMachine _movementStateMachine;
-    
-    private MovementState freeMovementState;
-    private MovementState lockOnMovementState;
-    private MovementState navMeshMovementState;
-    private MovementState stunnedMovementState;
 
     [Inject] public ICameraService CameraService { get; }
     
@@ -52,13 +47,8 @@ public class MovementController : MonoBehaviour
     {
         _animationController = animationController;
         
-        _movementStateMachine = new MovementStateMachine();
-
-        freeMovementState = new FreeMovementState(this);
-        navMeshMovementState = new NavMeshMovementState(this, navMeshAgent);
-        stunnedMovementState = new StunnedMovementState(this);
-        
-        _movementStateMachine.SetState(freeMovementState);
+        _movementStateMachine = new MovementStateMachine(this, navMeshAgent);
+        _movementStateMachine.SetState<FreeMovementState>();
         
         SetSpeed(movementConfig.normalSpeed);
     }
@@ -90,18 +80,21 @@ public class MovementController : MonoBehaviour
 
     public void Walk(Vector2 inputDirection)
     {
+        _movementStateMachine.Walk(inputDirection);
         MoveInput(inputDirection);
         SetSpeed(movementConfig.walkSpeed);
     }
 
     public void NormalRun(Vector2 inputDirection)
     {
+        _movementStateMachine.NormalRun(inputDirection);
         MoveInput(inputDirection);
         SetSpeed(movementConfig.normalSpeed);
     }
     
     public void Run(Vector2 inputDirection)
     {
+        _movementStateMachine.Run(inputDirection);
         MoveInput(inputDirection);
         SetSpeed(movementConfig.runSpeed);
     }
@@ -115,7 +108,7 @@ public class MovementController : MonoBehaviour
     
     public void MoveTo(Vector3 destination)
     {
-        _movementStateMachine.SetState(navMeshMovementState);
+        _movementStateMachine.SetState<NavMeshMovementState>();
         
         if (_movementStateMachine.CurrentState is IMoveToTarget moveToState)
         {
@@ -148,7 +141,7 @@ public class MovementController : MonoBehaviour
 
     public void StopMove()
     {
-        _movementStateMachine.SetState(stunnedMovementState);
+        _movementStateMachine.SetState<StunnedMovementState>();
     }
 
     public void ResumeMove()
@@ -160,13 +153,13 @@ public class MovementController : MonoBehaviour
     
     public void LockOn(Transform target)
     {
-        lockOnMovementState = new StrafeMovementState(this, target);
-        _movementStateMachine.SetState(lockOnMovementState);
+        _movementStateMachine.SetState<LockOnMovementState>();
+        _movementStateMachine.ModeStateMachine.SetTarget(target);
     }
 
     public void Unlock()
     {
-        _movementStateMachine.SetState(freeMovementState);
+        _movementStateMachine.SetState<FreeMovementState>();
     }
 
     

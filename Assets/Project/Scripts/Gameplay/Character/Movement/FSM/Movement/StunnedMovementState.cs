@@ -2,8 +2,23 @@
 
 public class StunnedMovementState : MovementState
 {
-    public StunnedMovementState(MovementController controller) : base(controller)
+    public StunnedMovementState(MovementStateMachine stateMachine, MovementController controller) : base(stateMachine, controller)
     {
+    }
+
+    public override void Walk(Vector2 input)
+    {
+        
+    }
+
+    public override void NormalRun(Vector2 input)
+    {
+        
+    }
+
+    public override void Run(Vector2 input)
+    {
+        
     }
 
     public override void Enter()

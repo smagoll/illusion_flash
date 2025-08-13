@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class StrafeMovementState : MovementState
+public class StrafeMovementMode : MovementMode
 {
     private Transform _target;
     private Vector3 smoothDirection;
     private Vector3 currentVelocity;
     
-    public StrafeMovementState(MovementController controller, Transform target) : base(controller)
+    public StrafeMovementMode(MovementController controller) : base(controller)
     {
-        _target = target;
+        
     }
     
     public override void HandleMovement(Vector2 input)
@@ -43,6 +43,11 @@ public class StrafeMovementState : MovementState
             targetRotation,
             _controller.MovementConfig.rotationSpeed * Time.deltaTime
         );
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
     }
 
     public override void Enter()

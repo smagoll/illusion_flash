@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshMovementState : FreeMovementState, IMoveToTarget
+public class NavMeshMovementState : MovementState, IMoveToTarget
 {
     private NavMeshAgent _navMeshAgent;
     
     private float stoppingDistance;
     
-    public NavMeshMovementState(MovementController controller, NavMeshAgent navMeshAgent) : base(controller)
+    public NavMeshMovementState(MovementStateMachine stateMachine, MovementController controller, NavMeshAgent navMeshAgent) : base(stateMachine, controller)
     {
         _navMeshAgent = navMeshAgent;
 
@@ -17,14 +17,7 @@ public class NavMeshMovementState : FreeMovementState, IMoveToTarget
 
         stoppingDistance = _navMeshAgent.stoppingDistance;
     }
-
-    public override void HandleMovement(Vector2 input)
-    {
-        Vector3 targetDirection = new Vector3(input.x, 0, input.y);
-        smoothDirection = Vector3.SmoothDamp(smoothDirection, targetDirection, ref currentVelocity, _controller.MovementConfig.smoothTime);
-        _controller.ApplyMovement(smoothDirection);
-    }
-
+    
     public void MoveTo(Vector3 target)
     {
         _navMeshAgent.SetDestination(target);
@@ -51,6 +44,21 @@ public class NavMeshMovementState : FreeMovementState, IMoveToTarget
         _navMeshAgent.nextPosition = _controller.transform.position;
 
         DebugDrawPath();
+    }
+
+    public override void Walk(Vector2 input)
+    {
+        _stateMachine.ModeStateMachine.SetState(MovementModeType.NavMesh);
+    }
+
+    public override void NormalRun(Vector2 input)
+    {
+        _stateMachine.ModeStateMachine.SetState(MovementModeType.NavMesh);
+    }
+
+    public override void Run(Vector2 input)
+    {
+        _stateMachine.ModeStateMachine.SetState(MovementModeType.NavMesh);
     }
 
     public override void Exit()
