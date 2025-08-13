@@ -58,6 +58,8 @@ public class LockOnTargetSystem
         currentTarget = null;
         _movementController.Unlock();
         _movementController.CameraService.Unlock();
+        
+        LockOnMarker.Instance.ClearTarget();
     }
 
     public void Lock()
@@ -66,9 +68,13 @@ public class LockOnTargetSystem
 
         if (currentTarget != null)
         {
-            _movementController.LockOn(currentTarget.GetTransform());
-            _movementController.CameraService.LockOn(currentTarget.GetTransform());
-            Debug.Log("Locked on target: " + currentTarget.GetTransform().name);
+            var targetPoint = currentTarget.LockOnPoint == null ? currentTarget.GetTransform() : currentTarget.LockOnPoint;
+            
+            _movementController.LockOn(targetPoint);
+            _movementController.CameraService.LockOn(targetPoint);
+            
+            LockOnMarker.Instance.SetTarget(targetPoint);
+            Debug.Log("Locked on target");
         }
         else
         {

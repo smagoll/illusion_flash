@@ -29,5 +29,7 @@
             return;
 
         Character.StateMachine.SetState<CharacterDodgeState>();
+        
+        Character.Model.UseStamina(10);
     }
 }

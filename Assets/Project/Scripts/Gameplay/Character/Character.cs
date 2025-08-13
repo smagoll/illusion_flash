@@ -63,7 +63,7 @@ public class Character : MonoBehaviour
         Blackboard.AddVariable(BBKeys.GlobalBlackboard, globalBackboard);
         Blackboard.AddVariable(BBKeys.PlayerCharacter, this);
         
-        Model = new CharacterModel(characterConfig.hp, characterConfig.mp);
+        Model = new CharacterModel(characterConfig.hp, characterConfig.mp, characterConfig.stamina);
         characterView.Init(this);
         
         _controller = controller;
@@ -77,6 +77,7 @@ public class Character : MonoBehaviour
     private void Update()
     {
         _controller?.Tick();
+        Model.Tick(Time.deltaTime);
         stateMachine.Update();
     }
 }

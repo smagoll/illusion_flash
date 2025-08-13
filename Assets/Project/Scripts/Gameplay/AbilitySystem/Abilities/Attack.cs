@@ -31,5 +31,7 @@ public class AttackAbility : Ability
             return;
 
         Character.StateMachine.SetState<CharacterAttackState>();
+        
+        Character.Model.UseStamina(10);
     }
 }

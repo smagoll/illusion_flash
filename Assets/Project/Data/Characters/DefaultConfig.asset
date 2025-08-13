@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   mp: 100
+  stamina: 200
   abilities:
   - {fileID: 11400000, guid: 9cd3f8db70dddcd479c690f2db7912e5, type: 2}
   - {fileID: 11400000, guid: 45cd8ed52ce8d1541bec1e52a2e54c04, type: 2}

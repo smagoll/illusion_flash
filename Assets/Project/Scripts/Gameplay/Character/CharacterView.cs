@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CharacterView : MonoBehaviour, IDamageable, ITargetable
 {
+    [SerializeField] private Transform lockOnPoint;
+    
     private CharacterModel _model;
     
     private Character _character;
@@ -31,4 +33,5 @@ public class CharacterView : MonoBehaviour, IDamageable, ITargetable
     }
 
     public bool CanTarget => !_model.IsPlayer && !_model.IsDeath;
+    public Transform LockOnPoint => lockOnPoint;
 }
