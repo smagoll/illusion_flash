@@ -34,6 +34,8 @@ public class Spawner : MonoBehaviour
         player.SetController(_playerController);
         
         _cameraService.SetTrackingTarget(player.transform);
+        
+        UIGameplay.Instance.Init(player);
     }
 
     private void SpawnEnemy()

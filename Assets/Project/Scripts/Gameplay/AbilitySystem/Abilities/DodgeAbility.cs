@@ -2,13 +2,14 @@
 {
     private WeaponController _weaponController;
 
+    private float _stamina;
     private bool _isAttacking;
     
     public override bool IsFinished => !_isAttacking;
 
-    public DodgeAbility(string id) : base(id)
+    public DodgeAbility(string id, float stamina) : base(id)
     {
-        
+        _stamina = stamina;
     }
     
     public override void Initialize(Character character)
@@ -20,7 +21,7 @@
 
     public override bool CanExecute()
     {
-        return Character.StateMachine.IsState<CharacterLocomotionState>() || Character.StateMachine.IsState<CharacterIdleState>();
+        return (Character.StateMachine.IsState<CharacterLocomotionState>() || Character.StateMachine.IsState<CharacterIdleState>()) && Character.Model.Stamina.Current >= _stamina;
     }
 
     public override void Execute()
@@ -30,6 +31,6 @@
 
         Character.StateMachine.SetState<CharacterDodgeState>();
         
-        Character.Model.UseStamina(10);
+        Character.Model.UseStamina(_stamina);
     }
 }

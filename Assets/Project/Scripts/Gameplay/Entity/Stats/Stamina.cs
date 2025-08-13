@@ -2,7 +2,7 @@
 
 public class Stamina
 {
-    public int Current { get; private set; }
+    public float Current { get; private set; }
     public int Max { get; private set; }
 
     public event System.Action OnExhausted;
@@ -22,7 +22,7 @@ public class Stamina
         regenDelay = regenDelaySeconds;
     }
 
-    public void Use(int amount)
+    public void Use(float amount)
     {
         if (amount <= 0) return;
 
@@ -36,14 +36,13 @@ public class Stamina
         }
     }
 
-    public void Restore(int amount)
+    public void Restore(float amount)
     {
         if (amount <= 0) return;
 
-        int prev = Current;
         Current = Mathf.Min(Max, Current + amount);
 
-        if (Current == Max && isExhausted)
+        if (Current >= Max && isExhausted)
         {
             isExhausted = false;
             OnRecovered?.Invoke();
@@ -60,7 +59,7 @@ public class Stamina
 
         if (Current < Max)
         {
-            Restore(Mathf.RoundToInt(regenRate * deltaTime));
+            Restore(regenRate * deltaTime);
         }
     }
 }

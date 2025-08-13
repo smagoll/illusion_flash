@@ -34,7 +34,7 @@ public class CharacterModel
         Mana.Restore(amount);
     }
     
-    public void UseStamina(int amount)
+    public void UseStamina(float amount)
     {
         Stamina.Use(amount);
     }
