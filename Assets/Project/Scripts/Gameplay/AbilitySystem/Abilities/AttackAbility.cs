@@ -23,7 +23,7 @@ public class AttackAbility : Ability
 
     public override bool CanExecute()
     {
-        return !_isAttacking && _weaponController is { IsWeaponDrawn: true } && Character.Model.Stamina.Current >= _stamina;
+        return !_isAttacking && _weaponController is { IsWeaponDrawn: true } && Character.Model.Stamina.Current >= _stamina && !Character.StateMachine.IsState<CharacterAttackState>();
     }
 
     public override void Execute()
