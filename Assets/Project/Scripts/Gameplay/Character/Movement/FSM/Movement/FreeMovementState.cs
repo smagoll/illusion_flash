@@ -4,21 +4,15 @@ public class FreeMovementState : MovementState
 {
     public FreeMovementState(MovementStateMachine stateMachine, MovementController controller) : base(stateMachine, controller) { }
 
-    protected Vector3 smoothDirection;
-    protected Vector3 currentVelocity;
-    
-    public override void Walk(Vector2 input)
+    public override void SetSpeedType(MovementSpeedType speedType)
     {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
-    }
-
-    public override void NormalRun(Vector2 input)
-    {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
-    }
-
-    public override void Run(Vector2 input)
-    {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
+        switch (speedType)
+        {
+            case MovementSpeedType.Walk:
+            case MovementSpeedType.NormalRun:
+            case MovementSpeedType.Run:
+                _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
+                break;
+        }
     }
 }

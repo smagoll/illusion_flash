@@ -47,11 +47,12 @@ public class MovementStateMachine
         _movementModeStateMachine.Tick();
     }
 
-    public void HandleMovement(Vector2 input) => _movementModeStateMachine.HandleMovement(input);
+    public void HandleMovement(Vector2 input, MovementSpeedType speedType)
+    {
+        _currentState.SetSpeedType(speedType);
+        _movementModeStateMachine.HandleMovement(input);
+    }
     public void HandleRotation() => _movementModeStateMachine?.HandleRotation();
-    public void Walk(Vector2 input) => _currentState.Walk(input);
-    public void NormalRun(Vector2 input) => _currentState.NormalRun(input);
-    public void Run(Vector2 input) => _currentState.Run(input);
 
     public void RestorePreviousState()
     {

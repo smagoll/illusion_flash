@@ -10,14 +10,10 @@ public abstract class MovementState
         _controller = controller;
         _stateMachine = stateMachine;
     }
-
-    public abstract void Walk(Vector2 input);
-    public abstract void NormalRun(Vector2 input);
-    public abstract void Run(Vector2 input);
     
     public virtual void Enter() { }
     public virtual void Exit() { }
     public virtual void Tick() { }
-    public virtual void HandleMovement(Vector2 input) { }
+    public abstract void SetSpeedType(MovementSpeedType speedType);
     public virtual void HandleRotation() { }
 }

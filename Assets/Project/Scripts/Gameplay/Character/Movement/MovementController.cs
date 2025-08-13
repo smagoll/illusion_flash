@@ -77,33 +77,25 @@ public class MovementController : MonoBehaviour
         
         _moveDirection = Vector3.zero; 
     }
-
-    public void Walk(Vector2 inputDirection)
-    {
-        _movementStateMachine.Walk(inputDirection);
-        MoveInput(inputDirection);
-        SetSpeed(movementConfig.walkSpeed);
-    }
-
-    public void NormalRun(Vector2 inputDirection)
-    {
-        _movementStateMachine.NormalRun(inputDirection);
-        MoveInput(inputDirection);
-        SetSpeed(movementConfig.normalSpeed);
-    }
     
-    public void Run(Vector2 inputDirection)
+    public void HandleMovement(Vector2 input, MovementSpeedType speedType)
     {
-        _movementStateMachine.Run(inputDirection);
-        MoveInput(inputDirection);
-        SetSpeed(movementConfig.runSpeed);
-    }
+        LastMoveDirection = GetInputFromCamera(input);
 
-    public void MoveInput(Vector2 inputDirection)
-    {
-        LastMoveDirection = GetInputFromCamera(inputDirection);
-        
-        _movementStateMachine.HandleMovement(inputDirection);
+        _movementStateMachine.HandleMovement(input, speedType);
+
+        switch (speedType)
+        {
+            case MovementSpeedType.Walk:
+                SetSpeed(movementConfig.walkSpeed);
+                break;
+            case MovementSpeedType.NormalRun:
+                SetSpeed(movementConfig.normalSpeed);
+                break;
+            case MovementSpeedType.Run:
+                SetSpeed(movementConfig.runSpeed);
+                break;
+        }
     }
     
     public void MoveTo(Vector3 destination)
@@ -161,7 +153,6 @@ public class MovementController : MonoBehaviour
     {
         _movementStateMachine.SetState<FreeMovementState>();
     }
-
     
     public void ApplyImpulse(Vector3 direction, float strength)
     {

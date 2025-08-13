@@ -6,21 +6,6 @@ public class StunnedMovementState : MovementState
     {
     }
 
-    public override void Walk(Vector2 input)
-    {
-        
-    }
-
-    public override void NormalRun(Vector2 input)
-    {
-        
-    }
-
-    public override void Run(Vector2 input)
-    {
-        
-    }
-
     public override void Enter()
     {
         Debug.Log("enter stun");
@@ -29,5 +14,10 @@ public class StunnedMovementState : MovementState
     public override void Exit()
     {   
         Debug.Log("exit stun");
+    }
+
+    public override void SetSpeedType(MovementSpeedType speedType)
+    {
+        
     }
 }

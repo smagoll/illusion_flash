@@ -8,19 +8,19 @@ public class LockOnMovementState : MovementState
     public LockOnMovementState(MovementStateMachine stateMachine, MovementController controller) : base(stateMachine, controller)
     {
     }
-    
-    public override void Walk(Vector2 input)
-    {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.Strafe);
-    }
 
-    public override void NormalRun(Vector2 input)
-    {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.Strafe);
-    }
 
-    public override void Run(Vector2 input)
+    public override void SetSpeedType(MovementSpeedType speedType)
     {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
+        switch (speedType)
+        {
+            case MovementSpeedType.Walk:
+            case MovementSpeedType.NormalRun:
+                _stateMachine.ModeStateMachine.SetState(MovementModeType.Strafe);
+                break;
+            case MovementSpeedType.Run:
+                _stateMachine.ModeStateMachine.SetState(MovementModeType.Free);
+                break;
+        }
     }
 }

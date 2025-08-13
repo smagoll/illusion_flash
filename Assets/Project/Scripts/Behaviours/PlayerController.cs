@@ -53,17 +53,17 @@ public class PlayerController : ICharacterController
     {
         if (_input.RunPressed)
         {
-            character.MovementController.Run(_input.MoveAxis);   
+            character.MovementController.HandleMovement(_input.MoveAxis, MovementSpeedType.Run);   
         }
         else
         {
             if (_input.AltPressed)
             {
-                character.MovementController.Walk(_input.MoveAxis);
+                character.MovementController.HandleMovement(_input.MoveAxis, MovementSpeedType.Walk);
             }
             else
             {
-                character.MovementController.NormalRun(_input.MoveAxis);   
+                character.MovementController.HandleMovement(_input.MoveAxis, MovementSpeedType.NormalRun);   
             }
         }
     }

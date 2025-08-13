@@ -38,7 +38,7 @@ public class NavMeshMovementState : MovementState, IMoveToTarget
         if (desiredVelocity.sqrMagnitude > 0.01f)
         {
             Vector2 inputDirection = new Vector2(desiredVelocity.x, desiredVelocity.z).normalized;
-            _controller.MoveInput(inputDirection);
+            _controller.HandleMovement(inputDirection, MovementSpeedType.Walk);
         }
         
         _navMeshAgent.nextPosition = _controller.transform.position;
@@ -46,19 +46,16 @@ public class NavMeshMovementState : MovementState, IMoveToTarget
         DebugDrawPath();
     }
 
-    public override void Walk(Vector2 input)
+    public override void SetSpeedType(MovementSpeedType speedType)
     {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.NavMesh);
-    }
-
-    public override void NormalRun(Vector2 input)
-    {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.NavMesh);
-    }
-
-    public override void Run(Vector2 input)
-    {
-        _stateMachine.ModeStateMachine.SetState(MovementModeType.NavMesh);
+        switch (speedType)
+        {
+            case MovementSpeedType.Walk:
+            case MovementSpeedType.NormalRun:
+            case MovementSpeedType.Run:
+                _stateMachine.ModeStateMachine.SetState(MovementModeType.NavMesh);
+                break;
+        }
     }
 
     public override void Exit()
