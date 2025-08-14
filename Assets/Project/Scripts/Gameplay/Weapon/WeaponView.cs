@@ -20,11 +20,20 @@ public class WeaponView : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject == _weaponController.Character.gameObject)
+            return;
+        
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
             damageable.TakeDamage(_weaponController.GetDamage());
             
-            VFXSystem.Instance.SpawnImpact(VFXSystem.Instance.library.swordImpact, transform.position, Vector3.zero);
+            Vector3 hitPosition = other.ClosestPoint(transform.position);
+
+            VFXSystem.Instance.SpawnImpact(
+                VFXSystem.Instance.library.swordImpact,
+                hitPosition,
+                Vector3.zero
+            );
         }
     }
 }

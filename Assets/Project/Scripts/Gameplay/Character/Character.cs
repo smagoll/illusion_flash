@@ -50,7 +50,7 @@ public class Character : MonoBehaviour
         
         animationController.Init(modelFacade.animator, modelFacade.eventsHandler);
         movementController.Init(animationController);
-        weaponController = new WeaponController(animationController, modelFacade.socketHolder);
+        weaponController = new WeaponController(animationController, modelFacade.socketHolder, this);
         abilityController = new AbilityController(this, characterConfig.abilities);
         
         LayerMask targetLayer = LayerMask.GetMask("Character");

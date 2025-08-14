@@ -12,11 +12,13 @@ public class WeaponController
     public bool IsWeapon => _currentWeapon != null;
 
     public Weapon CurrentWeapon => _currentWeapon;
+    public Character Character { get; private set; }
 
-    public WeaponController(AnimationController animationController, SocketHolder socketHolder)
+    public WeaponController(AnimationController animationController, SocketHolder socketHolder, Character character)
     {
         _animationController = animationController;
         _socketHolder = socketHolder;
+        Character = character;
         
         RegisterEvents();
     }
