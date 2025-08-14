@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordImpact:
     vfxPrefab: {fileID: 5121211154610084544, guid: 83dfa496fb41ca04d911764994c9a46b, type: 3}
-    sound: {fileID: 8300000, guid: eb7ddffe4ac59404d93608464e1a71ae, type: 3}
+    sound: {fileID: 11400000, guid: 05b90e926af062343848f5e019943b38, type: 2}

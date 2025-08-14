@@ -20,6 +20,6 @@ public class VFXSystem : MonoBehaviour
         var vfxInstance = Instantiate(data.vfxPrefab, position, Quaternion.LookRotation(normal));
 
         if (vfxInstance != null)
-            vfxInstance.Init(data.sound);
+            vfxInstance.Init(data);
     }
 }

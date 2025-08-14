@@ -2,17 +2,17 @@
 
 public class VFXBase : MonoBehaviour
 {
-    private AudioClip audioClip;
+    private VFXData data;
     
-    public void Init(AudioClip audioClip)
+    public void Init(VFXData vfxData)
     {
-        this.audioClip = audioClip;
+        data = vfxData;
         PlaySound();
     }
     
     private void PlaySound()
     {
-        if (audioClip != null)
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
+        if (data != null)
+            AudioSystem.Instance.Play(data.sound.eventName, transform.position);
     }
 }

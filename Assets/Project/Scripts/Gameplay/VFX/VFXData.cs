@@ -5,5 +5,5 @@ using UnityEngine;
 public class VFXData
 {
     public VFXBase vfxPrefab;
-    public AudioClip sound;
+    public SoundData sound;
 }
