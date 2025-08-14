@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
         LayerMask targetLayer = LayerMask.GetMask("Character");
         lockOnTargetSystem = new LockOnTargetSystem(targetLayer, movementController);
         
-        var sword = new Weapon("Меч", swordPrefab, 200, 2f);
+        var sword = new Weapon("Меч", swordPrefab, 10, 2f);
         _inventory.AddItem(sword);
         weaponController.SetWeapon(_inventory.EquippedWeapon);
 

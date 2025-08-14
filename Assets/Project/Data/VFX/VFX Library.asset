@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216ceaf902e04ee6afa321ab7718accd, type: 3}
+  m_Name: VFX Library
+  m_EditorClassIdentifier: 
+  swordImpact:
+    vfxPrefab: {fileID: 5121211154610084544, guid: 83dfa496fb41ca04d911764994c9a46b, type: 3}
+    sound: {fileID: 8300000, guid: eb7ddffe4ac59404d93608464e1a71ae, type: 3}
