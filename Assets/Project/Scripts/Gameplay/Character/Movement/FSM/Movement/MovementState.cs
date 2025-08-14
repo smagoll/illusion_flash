@@ -14,6 +14,6 @@ public abstract class MovementState
     public virtual void Enter() { }
     public virtual void Exit() { }
     public virtual void Tick() { }
-    public abstract void SetSpeedType(MovementSpeedType speedType);
+    public virtual void SetSpeedType(MovementSpeedType speedType){}
     public virtual void HandleRotation() { }
 }

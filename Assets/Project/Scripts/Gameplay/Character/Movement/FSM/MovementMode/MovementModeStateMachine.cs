@@ -8,6 +8,7 @@ public class MovementModeStateMachine
     private FreeMovementMode _freeMovementMode;
     private StrafeMovementMode _strafeMovementMode;
     private NavMeshMovementMode _navMeshMovementMode;
+    private StayMovementMode _stayMovementMode;
 
     public MovementMode CurrentState => _currentState;
 
@@ -16,6 +17,7 @@ public class MovementModeStateMachine
         _freeMovementMode = new FreeMovementMode(controller);
         _strafeMovementMode = new StrafeMovementMode(controller);
         _navMeshMovementMode = new NavMeshMovementMode(controller);
+        _stayMovementMode = new StayMovementMode(controller);
 
         SetState(_freeMovementMode);
     }
@@ -44,6 +46,9 @@ public class MovementModeStateMachine
             case MovementModeType.NavMesh:
                 SetState(_navMeshMovementMode);
                 break;
+            case MovementModeType.Stay:
+                SetState(_stayMovementMode);
+                break;
         }
     }
 
@@ -67,5 +72,6 @@ public enum MovementModeType
 {
     Free,
     Strafe,
-    NavMesh
+    NavMesh,
+    Stay
 }

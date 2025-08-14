@@ -8,16 +8,11 @@ public class StunnedMovementState : MovementState
 
     public override void Enter()
     {
-        Debug.Log("enter stun");
+        _stateMachine.ModeStateMachine.SetState(MovementModeType.Stay);
     }
 
     public override void Exit()
     {   
-        Debug.Log("exit stun");
-    }
-
-    public override void SetSpeedType(MovementSpeedType speedType)
-    {
-        
+        _stateMachine.ModeStateMachine.RestorePreviousState();
     }
 }
