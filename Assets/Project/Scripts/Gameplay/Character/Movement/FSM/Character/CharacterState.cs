@@ -16,5 +16,6 @@ public abstract class CharacterState
     public virtual void Update() { }
     public virtual void OnMoveInput(Vector2 input, MovementSpeedType speedType) { }
     public virtual void OnStopMoveInput() { }
+    public virtual bool CanBeInterruptedBy(CharacterState newState) => true;
     
 }

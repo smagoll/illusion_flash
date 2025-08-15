@@ -35,7 +35,7 @@ public CharacterStateMachine(Character character)
     public void SetState<T>() where T : CharacterState
     {
         var newState = GetState<T>();
-        if (CurrentState == newState)
+        if (CurrentState == newState && !CurrentState.CanBeInterruptedBy(newState))
             return;
 
         CurrentState?.Exit();

@@ -2,24 +2,39 @@
 
 public class CharacterStunState : CharacterState
 {
+    private float _duration;
+    private float _timer;
 
-    public CharacterStunState(CharacterStateMachine characterStateMachine) : base(characterStateMachine)
+    public CharacterStunState(CharacterStateMachine stateMachine) : base(stateMachine) { }
+
+    public void SetDuration(float duration)
     {
-        
+        _duration = duration;
     }
 
     public override void Enter()
     {
-        Debug.Log("Character stunned");
+        _timer = _duration;
+        _character.MovementController.StopMove();
+        // TODO: stun animation
     }
 
     public override void Update()
     {
-        
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
+        {
+            _stateMachine.SetState<CharacterIdleState>();
+        }
     }
 
-    public override void Exit()
+    public override bool CanBeInterruptedBy(CharacterState newState)
     {
-        Debug.Log("Stun ended");
+        return newState is CharacterDeathState;
+    }
+
+    public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
+    {
+        
     }
 }
