@@ -8,19 +8,9 @@ public class CharacterLocomotionState : CharacterState
         
     }
 
-    public override void Enter()
-    {
-        _character.MovementController.ResumeMove();
-    }
-
     public override void Update()
     {
         
-    }
-
-    public override void Exit()
-    {
-        _character.MovementController.StopMove();
     }
     
     public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
@@ -31,5 +21,10 @@ public class CharacterLocomotionState : CharacterState
     public override void OnStopMoveInput()
     {
         _stateMachine.SetState<CharacterIdleState>();
+    }
+
+    public override void Exit()
+    {
+        _character.AnimationController.UpdateDirection(Vector2.zero);
     }
 }
