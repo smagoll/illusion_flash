@@ -22,4 +22,14 @@ public class CharacterLocomotionState : CharacterState
     {
         _character.MovementController.StopMove();
     }
+    
+    public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
+    {
+        _character.MovementController.HandleMovement(input, speedType);
+    }
+
+    public override void OnStopMoveInput()
+    {
+        _stateMachine.SetState<CharacterIdleState>();
+    }
 }

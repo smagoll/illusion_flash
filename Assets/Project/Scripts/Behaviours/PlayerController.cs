@@ -51,20 +51,23 @@ public class PlayerController : ICharacterController
 
     private void Move()
     {
-        if (_input.RunPressed)
+        Vector2 axis = _input.MoveAxis;
+    
+        if (axis.sqrMagnitude > 0.01f)
         {
-            character.MovementController.HandleMovement(_input.MoveAxis, MovementSpeedType.Run);   
+            MovementSpeedType speedType;
+            if (_input.RunPressed)
+                speedType = MovementSpeedType.Run;
+            else if (_input.AltPressed)
+                speedType = MovementSpeedType.Walk;
+            else
+                speedType = MovementSpeedType.NormalRun;
+
+            character.StateMachine.CurrentState.OnMoveInput(axis, speedType);
         }
         else
         {
-            if (_input.AltPressed)
-            {
-                character.MovementController.HandleMovement(_input.MoveAxis, MovementSpeedType.Walk);
-            }
-            else
-            {
-                character.MovementController.HandleMovement(_input.MoveAxis, MovementSpeedType.NormalRun);   
-            }
+            character.StateMachine.CurrentState.OnStopMoveInput();
         }
     }
 

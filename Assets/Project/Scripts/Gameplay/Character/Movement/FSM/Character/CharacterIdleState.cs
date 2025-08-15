@@ -13,4 +13,10 @@ public class CharacterIdleState : CharacterState
     {
         
     }
+    
+    public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
+    {
+        _stateMachine.SetState<CharacterLocomotionState>();
+        _stateMachine.CurrentState.OnMoveInput(input, speedType);
+    }
 }

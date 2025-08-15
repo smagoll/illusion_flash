@@ -1,4 +1,6 @@
-﻿public abstract class CharacterState
+﻿using UnityEngine;
+
+public abstract class CharacterState
 {
     protected readonly CharacterStateMachine _stateMachine;
     protected readonly Character _character;
@@ -12,4 +14,7 @@
     public virtual void Enter() { }
     public virtual void Exit() { }
     public virtual void Update() { }
+    public virtual void OnMoveInput(Vector2 input, MovementSpeedType speedType) { }
+    public virtual void OnStopMoveInput() { }
+    
 }
