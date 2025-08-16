@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class CharacterView : MonoBehaviour, IDamageable, ITargetable
@@ -15,6 +16,7 @@ public class CharacterView : MonoBehaviour, IDamageable, ITargetable
         _model = character.Model;
 
         _model.Health.OnDeath += OnDeath;
+        _model.Health.OnDeath += () => OnTargetLost?.Invoke();
     }
 
     public void TakeDamage(int amount)
@@ -35,4 +37,5 @@ public class CharacterView : MonoBehaviour, IDamageable, ITargetable
 
     public bool CanTarget => !_model.IsPlayer && !_model.IsDeath;
     public Transform LockOnPoint => lockOnPoint;
+    public event Action OnTargetLost;
 }

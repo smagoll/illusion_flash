@@ -15,8 +15,7 @@ public class AnimationController : MonoBehaviour
     private static readonly int Right = Animator.StringToHash("right");
     private static readonly int Forward = Animator.StringToHash("forward");
     private static readonly int IsDeath = Animator.StringToHash("isDeath");
-    private static readonly int EquipWeapon1 = Animator.StringToHash("equipWeapon");
-    private static readonly int UnequipWeapon1 = Animator.StringToHash("unequipWeapon");
+    private static readonly int IsEquipped = Animator.StringToHash("isEquipped");
     private static readonly int IsStun = Animator.StringToHash("isStun");
 
     public static int WeaponLayer;
@@ -78,16 +77,10 @@ public class AnimationController : MonoBehaviour
         _animator.SetBool(IsFalling, isFalling);
     }
 
-    public void EquipWeapon()
+    public void UpdateEquippedWeapon(bool isEquipped)
     {
-        _animator.SetBool(HasWeapon, true);
-        _animator.SetTrigger(EquipWeapon1);
-    }
-    
-    public void UnequipWeapon()
-    {
-        _animator.SetBool(HasWeapon, false);
-        _animator.SetTrigger(UnequipWeapon1);
+        _animator.SetBool(HasWeapon, isEquipped);
+        _animator.SetBool(IsEquipped, isEquipped);
     }
 
     public void Death()

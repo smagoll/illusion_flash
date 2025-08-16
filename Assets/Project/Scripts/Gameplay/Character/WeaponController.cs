@@ -52,14 +52,14 @@ public class WeaponController
     {
         if (_currentWeapon == null || IsWeaponDrawn) return;
         
-        _animationController.EquipWeapon();
+        _animationController.UpdateEquippedWeapon(true);
     }
 
     public void SheatheWeapon()
     {
         if (!IsWeaponDrawn) return;
         
-        _animationController.UnequipWeapon();
+        _animationController.UpdateEquippedWeapon(false);
     }
 
     private void EnableHitbox() => _weaponCollider.enabled = true;

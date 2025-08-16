@@ -55,6 +55,11 @@ public class LockOnTargetSystem
 
     public void Unlock()
     {
+        if (currentTarget != null)
+        {
+            currentTarget.OnTargetLost -= Unlock;
+        }
+        
         currentTarget = null;
         _movementController.Unlock();
         _movementController.CameraService.Unlock();
@@ -70,6 +75,7 @@ public class LockOnTargetSystem
         {
             var targetPoint = currentTarget.LockOnPoint == null ? currentTarget.GetTransform() : currentTarget.LockOnPoint;
             
+            currentTarget.OnTargetLost += Unlock;
             _movementController.LockOn(targetPoint);
             _movementController.CameraService.LockOn(targetPoint);
             
