@@ -65,8 +65,6 @@ public class MovementController : MonoBehaviour
         
         _animationController.UpdateSpeed(HorizontalSpeed);
         _animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
-
-        _movementStateMachine.HandleRotation();
         
         if (_impulse.sqrMagnitude > 0.01f)
         {
@@ -95,6 +93,11 @@ public class MovementController : MonoBehaviour
                 SetSpeed(movementConfig.runSpeed);
                 break;
         }
+    }
+
+    public void Rotation()
+    {
+        _movementStateMachine.HandleRotation();
     }
     
     public void MoveTo(Vector3 destination)

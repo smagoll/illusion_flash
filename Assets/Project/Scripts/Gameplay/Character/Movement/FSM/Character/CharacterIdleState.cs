@@ -14,4 +14,9 @@ public class CharacterIdleState : CharacterState
         _stateMachine.TrySetState<CharacterLocomotionState>();
         _stateMachine.CurrentState.OnMoveInput(input, speedType);
     }
+
+    public override void OnRotation()
+    {
+        _character.MovementController.Rotation();
+    }
 }

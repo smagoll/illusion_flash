@@ -18,6 +18,11 @@ public class CharacterLocomotionState : CharacterState
         _character.MovementController.HandleMovement(input, speedType);
     }
 
+    public override void OnRotation()
+    {
+        _character.MovementController.Rotation();
+    }
+
     public override void OnStopMoveInput()
     {
         _stateMachine.TrySetState<CharacterIdleState>();

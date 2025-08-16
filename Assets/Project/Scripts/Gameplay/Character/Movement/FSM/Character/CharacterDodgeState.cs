@@ -34,8 +34,7 @@ public class CharacterDodgeState : CharacterState
 
     private void OnAnimationMoveRoot(Vector3 position, Quaternion rotation)
     {
-        _character.transform.position += position;
-        _character.transform.rotation *= rotation;
+        _character.transform.position += position * 2;
     }
 
     public override void Update()
@@ -51,7 +50,5 @@ public class CharacterDodgeState : CharacterState
         _character.MovementController.EnableDisableDetectCollisions(true);
         _character.AnimationController.ModelEventsHandler.OnEndAttack -= OnDodgeFinished;
         _character.AnimationController.ModelEventsHandler.OnAnimatorMoveRoot -= OnAnimationMoveRoot;
-        
-        Debug.Log("exit dodge state");
     }
 }
