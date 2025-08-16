@@ -26,7 +26,6 @@ public class CharacterModel
     public void TakeDamage(int amount)
     {
         Health.TakeDamage(amount);
-        Debug.Log("Take damage");
     }
 
     public void RestoreMana(int amount)

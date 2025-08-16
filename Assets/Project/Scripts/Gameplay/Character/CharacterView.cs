@@ -20,7 +20,7 @@ public class CharacterView : MonoBehaviour, IDamageable, ITargetable
     public void TakeDamage(int amount)
     {
         _model.TakeDamage(amount);
-        _character.StatusEffectSystem.AddEffect(new StunEffect(0.3f));
+        _character.StatusEffectSystem.AddEffect(new StunEffect(0.5f));
     }
 
     private void OnDeath()

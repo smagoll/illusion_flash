@@ -17,6 +17,8 @@ public class Health
     
     public void TakeDamage(int amount)
     {
+        if (Current <= 0) return;
+        
         Current = Mathf.Max(Current - amount, 0);
         OnChanged?.Invoke(Current);
 

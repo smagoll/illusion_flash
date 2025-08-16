@@ -17,4 +17,6 @@ public class CharacterDeathState : CharacterState
     {
         
     }
+
+    public override bool CanBeInterruptedBy(CharacterState newState) => false;
 }

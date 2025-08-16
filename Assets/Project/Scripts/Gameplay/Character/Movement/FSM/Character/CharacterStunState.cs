@@ -15,8 +15,7 @@ public class CharacterStunState : CharacterState
     public override void Enter()
     {
         _timer = _duration;
-        _character.MovementController.StopMove();
-        // TODO: stun animation
+        _character.AnimationController.Stun(true);
     }
     
     public override void Update()
@@ -35,6 +34,6 @@ public class CharacterStunState : CharacterState
 
     public override void Exit()
     {
-        _character.MovementController.ResumeMove();
+        _character.AnimationController.Stun(false);
     }
 }

@@ -17,6 +17,7 @@ public class AnimationController : MonoBehaviour
     private static readonly int IsDeath = Animator.StringToHash("isDeath");
     private static readonly int EquipWeapon1 = Animator.StringToHash("equipWeapon");
     private static readonly int UnequipWeapon1 = Animator.StringToHash("unequipWeapon");
+    private static readonly int IsStun = Animator.StringToHash("isStun");
 
     public static int WeaponLayer;
     public static int LockOn;
@@ -65,6 +66,11 @@ public class AnimationController : MonoBehaviour
     public void Dodge()
     {
         _animator.SetTrigger(DodgeTrigger);
+    }
+
+    public void Stun(bool isActive)
+    {
+        _animator.SetBool(IsStun, isActive);
     }
 
     public void UpdateIsFalling(bool isFalling)
