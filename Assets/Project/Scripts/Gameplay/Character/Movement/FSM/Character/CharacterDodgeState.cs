@@ -10,7 +10,7 @@ public class CharacterDodgeState : CharacterState
     
     public override void Enter()
     {
-        _character.MovementController.Collider.enabled = false;
+        _character.MovementController.EnableDisableDetectCollisions(false);
         _character.AnimationController.Dodge();
         _isDodgeFinished = false;
 
@@ -42,14 +42,16 @@ public class CharacterDodgeState : CharacterState
     {
         if (_isDodgeFinished)
         {
-            _stateMachine.SetState<CharacterIdleState>();
+            _stateMachine.TrySetState<CharacterIdleState>();
         }
     }
 
     public override void Exit()
     {
-        _character.MovementController.Collider.enabled = true;
+        _character.MovementController.EnableDisableDetectCollisions(true);
         _character.AnimationController.ModelEventsHandler.OnEndAttack -= OnDodgeFinished;
         _character.AnimationController.ModelEventsHandler.OnAnimatorMoveRoot -= OnAnimationMoveRoot;
+        
+        Debug.Log("exit dodge state");
     }
 }

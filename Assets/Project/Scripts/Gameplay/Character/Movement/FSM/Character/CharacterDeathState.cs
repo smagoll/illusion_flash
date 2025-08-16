@@ -8,7 +8,7 @@ public class CharacterDeathState : CharacterState
     {
         _character.AnimationController.Death();
         _character.MovementController.StopMove();
-        _character.MovementController.Collider.enabled = false;
+        _character.MovementController.EnableDisableDetectCollisions(false);
         
         Debug.Log("CharacterDeathState Enter");
     }

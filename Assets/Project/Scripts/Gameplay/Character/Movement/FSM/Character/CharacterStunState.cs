@@ -23,7 +23,7 @@ public class CharacterStunState : CharacterState
         _timer -= Time.deltaTime;
         if (_timer <= 0)
         {
-            _stateMachine.SetState<CharacterIdleState>();
+            _stateMachine.ForceSetState<CharacterIdleState>();
         }
     }
 

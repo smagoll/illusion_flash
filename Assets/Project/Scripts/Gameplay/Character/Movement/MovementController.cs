@@ -28,7 +28,6 @@ public class MovementController : MonoBehaviour
     [Inject] public ICameraService CameraService { get; }
     
     public MovementConfig MovementConfig => movementConfig;
-    public Collider Collider => col;
     
     public float VerticalSpeed => characterController.velocity.y;
     public float HorizontalSpeed => new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
@@ -175,5 +174,10 @@ public class MovementController : MonoBehaviour
     public void SetSpeed(float speed)
     {
         targetSpeed = speed;
+    }
+
+    public void EnableDisableDetectCollisions(bool enable)
+    {
+        characterController.detectCollisions = enable;
     }
 }

@@ -32,7 +32,7 @@ public class CharacterAttackState : CharacterState
     {
         if (_isAttackFinished)
         {
-            _stateMachine.SetState<CharacterIdleState>();
+            _stateMachine.TrySetState<CharacterIdleState>();
         }
     }
 

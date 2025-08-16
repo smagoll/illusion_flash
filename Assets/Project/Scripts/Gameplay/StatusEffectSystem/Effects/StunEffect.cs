@@ -4,9 +4,9 @@
 
     public override void Apply(Character character)
     {
-        character.StateMachine.SetState<CharacterStunState>();
+        character.StateMachine.TrySetState<CharacterStunState>();
         var stunState = character.StateMachine.GetState<CharacterStunState>();
         stunState.SetDuration(Duration);
-        character.StateMachine.SetState<CharacterStunState>();
+        character.StateMachine.TrySetState<CharacterStunState>();
     }
 }

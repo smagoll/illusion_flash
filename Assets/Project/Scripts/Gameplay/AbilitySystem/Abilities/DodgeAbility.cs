@@ -29,8 +29,7 @@
         if (!CanExecute())
             return;
 
-        Character.StateMachine.SetState<CharacterDodgeState>();
-        
-        Character.Model.UseStamina(_stamina);
+        var success = Character.StateMachine.TrySetState<CharacterDodgeState>();
+        if(success)Character.Model.UseStamina(_stamina);
     }
 }

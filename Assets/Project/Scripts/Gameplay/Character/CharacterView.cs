@@ -25,7 +25,7 @@ public class CharacterView : MonoBehaviour, IDamageable, ITargetable
 
     private void OnDeath()
     {
-        _character.StateMachine.SetState<CharacterDeathState>();
+        _character.StateMachine.TrySetState<CharacterDeathState>();
     }
 
     public Transform GetTransform()

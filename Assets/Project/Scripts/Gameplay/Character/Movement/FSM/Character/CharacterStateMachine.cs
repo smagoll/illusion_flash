@@ -19,7 +19,7 @@ public CharacterStateMachine(Character character)
         AddState(new CharacterAttackState(this));
         AddState(new CharacterDodgeState(this));
 
-        SetState<CharacterIdleState>();
+        TrySetState<CharacterIdleState>();
     }
 
     private void AddState(CharacterState state)
@@ -32,13 +32,25 @@ public CharacterStateMachine(Character character)
         return (T)_states[typeof(T)];
     }
 
-    public void SetState<T>() where T : CharacterState
+    public bool TrySetState<T>() where T : CharacterState
     {
         var newState = GetState<T>();
         
-        if (CurrentState == newState && !CurrentState.CanBeInterruptedBy(newState))
-            return;
+        if (CurrentState == newState)
+            return false;
 
+        if (CurrentState != null)
+            if (!CurrentState.CanBeInterruptedBy(newState)) return false;
+
+        CurrentState?.Exit();
+        CurrentState = newState;
+        CurrentState.Enter();
+        return true;
+    }
+    
+    public void ForceSetState<T>() where T : CharacterState
+    {
+        var newState = GetState<T>();
         CurrentState?.Exit();
         CurrentState = newState;
         CurrentState.Enter();

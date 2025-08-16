@@ -20,7 +20,7 @@ public class CharacterLocomotionState : CharacterState
 
     public override void OnStopMoveInput()
     {
-        _stateMachine.SetState<CharacterIdleState>();
+        _stateMachine.TrySetState<CharacterIdleState>();
     }
 
     public override void Exit()
