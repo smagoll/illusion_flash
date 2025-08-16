@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     private AbilityController abilityController;
     private LockOnTargetSystem lockOnTargetSystem;
     private CharacterStateMachine stateMachine;
+    private StatusEffectSystem statusEffectSystem;
 
     // Public properties
     public MovementController MovementController => movementController;
@@ -34,6 +35,7 @@ public class Character : MonoBehaviour
     public AbilityController AbilityController => abilityController;
     public AnimationController AnimationController => animationController;
     public LockOnTargetSystem LockOnTargetSystem => lockOnTargetSystem;
+    public StatusEffectSystem StatusEffectSystem => statusEffectSystem;
     public CharacterStateMachine StateMachine => stateMachine;
 
     public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
@@ -52,6 +54,7 @@ public class Character : MonoBehaviour
         InitializeWeapons();
         InitializeBlackboard();
         InitializeModelAndView();
+        InitializeStatusEffectSystem();
 
         _controller = controller;
         _controller.Init(this);
@@ -82,6 +85,11 @@ public class Character : MonoBehaviour
         abilityController = new AbilityController(this, characterConfig.abilities);
     }
 
+    private void InitializeStatusEffectSystem()
+    {
+        statusEffectSystem = new StatusEffectSystem(this);
+    }
+    
     private void InitializeLockOnSystem()
     {
         var targetLayer = LayerMask.GetMask("Character");

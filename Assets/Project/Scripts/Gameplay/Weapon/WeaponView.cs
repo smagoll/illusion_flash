@@ -27,6 +27,7 @@ public class WeaponView : MonoBehaviour
         {
             damageable.TakeDamage(_weaponController.GetDamage());
             
+            
             Vector3 hitPosition = other.ClosestPoint(transform.position);
 
             VFXSystem.Instance.SpawnImpact(

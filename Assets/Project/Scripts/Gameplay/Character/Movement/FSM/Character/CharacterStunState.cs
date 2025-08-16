@@ -4,21 +4,21 @@ public class CharacterStunState : CharacterState
 {
     private float _duration;
     private float _timer;
-
+    
     public CharacterStunState(CharacterStateMachine stateMachine) : base(stateMachine) { }
 
     public void SetDuration(float duration)
     {
         _duration = duration;
     }
-
+    
     public override void Enter()
     {
         _timer = _duration;
         _character.MovementController.StopMove();
         // TODO: stun animation
     }
-
+    
     public override void Update()
     {
         _timer -= Time.deltaTime;
@@ -33,8 +33,8 @@ public class CharacterStunState : CharacterState
         return newState is CharacterDeathState;
     }
 
-    public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
+    public override void Exit()
     {
-        
+        _character.MovementController.ResumeMove();
     }
 }
