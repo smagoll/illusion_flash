@@ -2,7 +2,6 @@ using System;
 using NodeCanvas.BehaviourTrees;
 using NodeCanvas.Framework;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 public class Character : MonoBehaviour
@@ -18,59 +17,47 @@ public class Character : MonoBehaviour
     [Header("Blackboard")]
     [SerializeField] private BehaviourTreeOwner behaviourTreeOwner;
 
-    [Inject] private IGlobalBlackboard globalBackboard;
-    
+    [Inject] private IGlobalBlackboard globalBlackboard;
+
     private ICharacterController _controller;
     private Inventory _inventory;
-    
+
     // Controllers
     private WeaponController weaponController;
     private AbilityController abilityController;
     private LockOnTargetSystem lockOnTargetSystem;
     private CharacterStateMachine stateMachine;
-    
+
+    // Public properties
     public MovementController MovementController => movementController;
     public WeaponController WeaponController => weaponController;
     public AbilityController AbilityController => abilityController;
     public AnimationController AnimationController => animationController;
     public LockOnTargetSystem LockOnTargetSystem => lockOnTargetSystem;
     public CharacterStateMachine StateMachine => stateMachine;
-    
+
     public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
-    public IGlobalBlackboard GlobalBlackboard => globalBackboard;
+    public IGlobalBlackboard GlobalBlackboard => globalBlackboard;
     public CharacterModel Model { get; private set; }
-    
-    //Tests
+
+    // Test / Config
     [SerializeField] private WeaponView swordPrefab;
     [SerializeField] private CharacterConfig characterConfig;
-    
+
     public void SetController(ICharacterController controller)
     {
-        _inventory = new Inventory();
-        
-        animationController.Init(modelFacade.animator, modelFacade.eventsHandler);
-        movementController.Init(animationController);
-        weaponController = new WeaponController(animationController, modelFacade.socketHolder, this);
-        abilityController = new AbilityController(this, characterConfig.abilities);
-        
-        LayerMask targetLayer = LayerMask.GetMask("Character");
-        lockOnTargetSystem = new LockOnTargetSystem(targetLayer, movementController);
-        
-        var sword = new Weapon("Меч", swordPrefab, 10, 2f);
-        _inventory.AddItem(sword);
-        weaponController.SetWeapon(_inventory.EquippedWeapon);
+        InitializeInventory();
+        InitializeControllers();
+        InitializeLockOnSystem();
+        InitializeWeapons();
+        InitializeBlackboard();
+        InitializeModelAndView();
 
-        Blackboard.AddVariable(BBKeys.GlobalBlackboard, globalBackboard);
-        Blackboard.AddVariable(BBKeys.PlayerCharacter, this);
-        
-        Model = new CharacterModel(characterConfig.hp, characterConfig.mp, characterConfig.stamina);
-        characterView.Init(this);
-        
         _controller = controller;
         _controller.Init(this);
 
         stateMachine = new CharacterStateMachine(this);
-        
+
         Debug.Log("Character Initialized");
     }
 
@@ -79,5 +66,44 @@ public class Character : MonoBehaviour
         _controller?.Tick();
         Model.Tick(Time.deltaTime);
         stateMachine.Update();
+    }
+
+    private void InitializeInventory()
+    {
+        _inventory = new Inventory();
+    }
+
+    private void InitializeControllers()
+    {
+        animationController.Init(modelFacade.animator, modelFacade.eventsHandler);
+        movementController.Init(animationController);
+
+        weaponController = new WeaponController(animationController, modelFacade.socketHolder, this);
+        abilityController = new AbilityController(this, characterConfig.abilities);
+    }
+
+    private void InitializeLockOnSystem()
+    {
+        var targetLayer = LayerMask.GetMask("Character");
+        lockOnTargetSystem = new LockOnTargetSystem(targetLayer, movementController);
+    }
+
+    private void InitializeWeapons()
+    {
+        var sword = new Weapon("Меч", swordPrefab, 10, 2f);
+        _inventory.AddItem(sword);
+        weaponController.SetWeapon(_inventory.EquippedWeapon);
+    }
+
+    private void InitializeBlackboard()
+    {
+        Blackboard.AddVariable(BBKeys.GlobalBlackboard, globalBlackboard);
+        Blackboard.AddVariable(BBKeys.PlayerCharacter, this);
+    }
+
+    private void InitializeModelAndView()
+    {
+        Model = new CharacterModel(characterConfig.hp, characterConfig.mp, characterConfig.stamina);
+        characterView.Init(this);
     }
 }

@@ -7,6 +7,7 @@ public class WeaponController
     
     private WeaponView _currentWeaponGO;
     private Weapon _currentWeapon;
+    private Collider _weaponCollider;
 
     public bool IsWeaponDrawn { get; private set; }
     public bool IsWeapon => _currentWeapon != null;
@@ -35,6 +36,7 @@ public class WeaponController
         _currentWeaponGO.transform.localRotation = Quaternion.identity;
         _currentWeaponGO.Init(this);
         
+        _weaponCollider = _currentWeaponGO.GetComponent<Collider>();
         IsWeaponDrawn = true;
     }
 
@@ -60,15 +62,8 @@ public class WeaponController
         _animationController.UnequipWeapon();
     }
 
-    private void EnableHitbox()
-    {
-        _currentWeaponGO.gameObject.GetComponent<Collider>().enabled = true;
-    }
-    
-    private void DisableHitbox()
-    {
-        _currentWeaponGO.gameObject.GetComponent<Collider>().enabled = false;
-    }
+    private void EnableHitbox() => _weaponCollider.enabled = true;
+    private void DisableHitbox() => _weaponCollider.enabled = false;
 
     public void ToggleWeapon()
     {
