@@ -24,13 +24,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6579869962225061946}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.91025054, y: 0, z: 0, w: 0.4140579}
-  m_LocalPosition: {x: 0.005, y: -0.097, z: 0.133}
+  m_LocalRotation: {x: 0.71867925, y: -0.04924598, z: -0.69018185, w: -0.06873108}
+  m_LocalPosition: {x: -0.105, y: 0.028, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8953661959167204856}
-  m_LocalEulerAnglesHint: {x: 131.08, y: 0, z: 0}
+  m_Father: {fileID: 8953661959167204810}
+  m_LocalEulerAnglesHint: {x: -9.6, y: -92.2, z: -181.4}
 --- !u!1001 &8953661959166805842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49,7 +49,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: c0c5dd0275493e44d9ef7418695dd3cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.75
+      value: -0.79
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: c0c5dd0275493e44d9ef7418695dd3cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -90,7 +90,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400042, guid: c0c5dd0275493e44d9ef7418695dd3cd, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 400024, guid: c0c5dd0275493e44d9ef7418695dd3cd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6369309781524248471}
     m_AddedComponents:
@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4686dfa24ce3aa499bea044ac424da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8953661959167204856 stripped
+--- !u!4 &8953661959167204810 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400042, guid: c0c5dd0275493e44d9ef7418695dd3cd, type: 3}
+  m_CorrespondingSourceObject: {fileID: 400024, guid: c0c5dd0275493e44d9ef7418695dd3cd, type: 3}
   m_PrefabInstance: {fileID: 8953661959166805842}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8953661959174107698 stripped

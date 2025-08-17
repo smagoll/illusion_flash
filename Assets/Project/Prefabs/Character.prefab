@@ -156,7 +156,7 @@ MonoBehaviour:
   characterView: {fileID: 4570766234597673884}
   modelFacade: {fileID: 1233630648850879102}
   behaviourTreeOwner: {fileID: -4634944092532322999}
-  swordPrefab: {fileID: 5707804782277941865, guid: c7349441bb611af45ad4757004d4542b, type: 3}
+  swordPrefab: {fileID: 8361062347435150488, guid: 112bcd6863294aa4f89da91775cf732c, type: 3}
   characterConfig: {fileID: 11400000, guid: 5edf1296b0ef00b43b49128ce0310e6c, type: 2}
 --- !u!114 &8102810475405245728
 MonoBehaviour:

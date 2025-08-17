@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d97c847e30a19584eb596c9923052789
+guid: c3fa359c5bc521645bc8b66a1c7daa30
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -80,159 +80,162 @@ ModelImporter:
     second: Dummy004
   - first:
       1: 100050
-    second: foot_l
+    second: Dummy006
   - first:
       1: 100052
-    second: foot_r
+    second: foot_l
   - first:
       1: 100054
-    second: //RootNode
+    second: foot_r
   - first:
       1: 100056
-    second: hand_l
+    second: //RootNode
   - first:
       1: 100058
-    second: hand_r
+    second: hand_l
   - first:
       1: 100060
-    second: head
+    second: hand_r
   - first:
       1: 100062
-    second: ik_hand_gun
+    second: head
   - first:
       1: 100064
-    second: ik_hand_l
+    second: ik_hand_gun
   - first:
       1: 100066
-    second: ik_hand_r
+    second: ik_hand_l
   - first:
       1: 100068
-    second: ik_hand_root
+    second: ik_hand_r
   - first:
       1: 100070
-    second: index_01_l
+    second: ik_hand_root
   - first:
       1: 100072
-    second: index_01_r
+    second: index_01_l
   - first:
       1: 100074
-    second: index_02_l
+    second: index_01_r
   - first:
       1: 100076
-    second: index_02_r
+    second: index_02_l
   - first:
       1: 100078
-    second: index_03_l
+    second: index_02_r
   - first:
       1: 100080
-    second: index_03_r
+    second: index_03_l
   - first:
       1: 100082
-    second: lowerarm_l
+    second: index_03_r
   - first:
       1: 100084
-    second: lowerarm_r
+    second: lowerarm_l
   - first:
       1: 100086
-    second: middle_01_l
+    second: lowerarm_r
   - first:
       1: 100088
-    second: middle_01_r
+    second: middle_01_l
   - first:
       1: 100090
-    second: middle_02_l
+    second: middle_01_r
   - first:
       1: 100092
-    second: middle_02_r
+    second: middle_02_l
   - first:
       1: 100094
-    second: middle_03_l
+    second: middle_02_r
   - first:
       1: 100096
-    second: middle_03_r
+    second: middle_03_l
   - first:
       1: 100098
-    second: neck_01
+    second: middle_03_r
   - first:
       1: 100100
-    second: pelvis
+    second: neck_01
   - first:
       1: 100102
-    second: pinky_01_l
+    second: pelvis
   - first:
       1: 100104
-    second: pinky_01_r
+    second: pinky_01_l
   - first:
       1: 100106
-    second: pinky_02_l
+    second: pinky_01_r
   - first:
       1: 100108
-    second: pinky_02_r
+    second: pinky_02_l
   - first:
       1: 100110
-    second: pinky_03_l
+    second: pinky_02_r
   - first:
       1: 100112
-    second: pinky_03_r
+    second: pinky_03_l
   - first:
       1: 100114
-    second: ring_01_l
+    second: pinky_03_r
   - first:
       1: 100116
-    second: ring_01_r
+    second: ring_01_l
   - first:
       1: 100118
-    second: ring_02_l
+    second: ring_01_r
   - first:
       1: 100120
-    second: ring_02_r
+    second: ring_02_l
   - first:
       1: 100122
-    second: ring_03_l
+    second: ring_02_r
   - first:
       1: 100124
-    second: ring_03_r
+    second: ring_03_l
   - first:
       1: 100126
-    second: root
+    second: ring_03_r
   - first:
       1: 100128
-    second: spine_01
+    second: root
   - first:
       1: 100130
-    second: spine_02
+    second: spine_01
   - first:
       1: 100132
-    second: spine_03
+    second: spine_02
   - first:
       1: 100134
-    second: thigh_l
+    second: spine_03
   - first:
       1: 100136
-    second: thigh_r
+    second: thigh_l
   - first:
       1: 100138
-    second: thumb_01_l
+    second: thigh_r
   - first:
       1: 100140
-    second: thumb_01_r
+    second: thumb_01_l
   - first:
       1: 100142
-    second: thumb_02_l
+    second: thumb_01_r
   - first:
       1: 100144
-    second: thumb_02_r
+    second: thumb_02_l
   - first:
       1: 100146
-    second: thumb_03_l
+    second: thumb_02_r
   - first:
       1: 100148
-    second: thumb_03_r
+    second: thumb_03_l
   - first:
       1: 100150
-    second: upperarm_l
+    second: thumb_03_r
   - first:
       1: 100152
+    second: upperarm_l
+  - first:
+      1: 100154
     second: upperarm_r
   - first:
       4: 400000
@@ -311,163 +314,166 @@ ModelImporter:
     second: Dummy004
   - first:
       4: 400050
-    second: foot_l
+    second: Dummy006
   - first:
       4: 400052
-    second: foot_r
+    second: foot_l
   - first:
       4: 400054
-    second: //RootNode
+    second: foot_r
   - first:
       4: 400056
-    second: hand_l
+    second: //RootNode
   - first:
       4: 400058
-    second: hand_r
+    second: hand_l
   - first:
       4: 400060
-    second: head
+    second: hand_r
   - first:
       4: 400062
-    second: ik_hand_gun
+    second: head
   - first:
       4: 400064
-    second: ik_hand_l
+    second: ik_hand_gun
   - first:
       4: 400066
-    second: ik_hand_r
+    second: ik_hand_l
   - first:
       4: 400068
-    second: ik_hand_root
+    second: ik_hand_r
   - first:
       4: 400070
-    second: index_01_l
+    second: ik_hand_root
   - first:
       4: 400072
-    second: index_01_r
+    second: index_01_l
   - first:
       4: 400074
-    second: index_02_l
+    second: index_01_r
   - first:
       4: 400076
-    second: index_02_r
+    second: index_02_l
   - first:
       4: 400078
-    second: index_03_l
+    second: index_02_r
   - first:
       4: 400080
-    second: index_03_r
+    second: index_03_l
   - first:
       4: 400082
-    second: lowerarm_l
+    second: index_03_r
   - first:
       4: 400084
-    second: lowerarm_r
+    second: lowerarm_l
   - first:
       4: 400086
-    second: middle_01_l
+    second: lowerarm_r
   - first:
       4: 400088
-    second: middle_01_r
+    second: middle_01_l
   - first:
       4: 400090
-    second: middle_02_l
+    second: middle_01_r
   - first:
       4: 400092
-    second: middle_02_r
+    second: middle_02_l
   - first:
       4: 400094
-    second: middle_03_l
+    second: middle_02_r
   - first:
       4: 400096
-    second: middle_03_r
+    second: middle_03_l
   - first:
       4: 400098
-    second: neck_01
+    second: middle_03_r
   - first:
       4: 400100
-    second: pelvis
+    second: neck_01
   - first:
       4: 400102
-    second: pinky_01_l
+    second: pelvis
   - first:
       4: 400104
-    second: pinky_01_r
+    second: pinky_01_l
   - first:
       4: 400106
-    second: pinky_02_l
+    second: pinky_01_r
   - first:
       4: 400108
-    second: pinky_02_r
+    second: pinky_02_l
   - first:
       4: 400110
-    second: pinky_03_l
+    second: pinky_02_r
   - first:
       4: 400112
-    second: pinky_03_r
+    second: pinky_03_l
   - first:
       4: 400114
-    second: ring_01_l
+    second: pinky_03_r
   - first:
       4: 400116
-    second: ring_01_r
+    second: ring_01_l
   - first:
       4: 400118
-    second: ring_02_l
+    second: ring_01_r
   - first:
       4: 400120
-    second: ring_02_r
+    second: ring_02_l
   - first:
       4: 400122
-    second: ring_03_l
+    second: ring_02_r
   - first:
       4: 400124
-    second: ring_03_r
+    second: ring_03_l
   - first:
       4: 400126
-    second: root
+    second: ring_03_r
   - first:
       4: 400128
-    second: spine_01
+    second: root
   - first:
       4: 400130
-    second: spine_02
+    second: spine_01
   - first:
       4: 400132
-    second: spine_03
+    second: spine_02
   - first:
       4: 400134
-    second: thigh_l
+    second: spine_03
   - first:
       4: 400136
-    second: thigh_r
+    second: thigh_l
   - first:
       4: 400138
-    second: thumb_01_l
+    second: thigh_r
   - first:
       4: 400140
-    second: thumb_01_r
+    second: thumb_01_l
   - first:
       4: 400142
-    second: thumb_02_l
+    second: thumb_01_r
   - first:
       4: 400144
-    second: thumb_02_r
+    second: thumb_02_l
   - first:
       4: 400146
-    second: thumb_03_l
+    second: thumb_02_r
   - first:
       4: 400148
-    second: thumb_03_r
+    second: thumb_03_l
   - first:
       4: 400150
-    second: upperarm_l
+    second: thumb_03_r
   - first:
       4: 400152
+    second: upperarm_l
+  - first:
+      4: 400154
     second: upperarm_r
   - first:
       74: 7400000
-    second: GreatSword_Slide_Start
+    second: GreatSword_Unarm
   - first:
       95: 9500000
     second: //RootNode
@@ -499,11 +505,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: GreatSword_Slide_Start
+      name: GreatSword_Unarm
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 13
+      lastFrame: 96
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -512,9 +518,9 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -522,7 +528,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.548583
+        functionName: UnequipWeapon
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
