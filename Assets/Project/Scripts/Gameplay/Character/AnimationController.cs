@@ -17,11 +17,7 @@ public class AnimationController : MonoBehaviour
     private static readonly int IsDeath = Animator.StringToHash("isDeath");
     private static readonly int IsEquipped = Animator.StringToHash("isEquipped");
     private static readonly int IsStun = Animator.StringToHash("isStun");
-
-    public static int WeaponLayer;
-    public static int LockOn;
     
-
     public ModelEventsHandler ModelEventsHandler { get; private set; }
 
     public void Init(Animator animator, ModelEventsHandler modelEventsHandler)
@@ -36,9 +32,6 @@ public class AnimationController : MonoBehaviour
     {
         _animator.SetBool(Run, false);
         _animator.SetBool(Walk, false);
-        
-        WeaponLayer =  _animator.GetLayerIndex("Weapon Layer");
-        LockOn =  _animator.GetLayerIndex("LockOn");
     }
 
     public void UpdateSpeed(float speed)
@@ -57,9 +50,9 @@ public class AnimationController : MonoBehaviour
         _animator.SetTrigger(JumpTrigger);
     }
     
-    public void Attack()
+    public void Attack(string animationName)
     {
-        _animator.SetTrigger(AttackTrigger);
+        _animator.Play(animationName);
     }
 
     public void Dodge()
@@ -85,7 +78,6 @@ public class AnimationController : MonoBehaviour
 
     public void Death()
     {
-        SetWeightLayer(WeaponLayer, 0f);
         _animator.SetBool(IsDeath, true);
     }
 
@@ -97,5 +89,16 @@ public class AnimationController : MonoBehaviour
     public void EnableDisableLockOn(bool isLockOn)
     {
         _animator.SetBool("isLockOn", isLockOn);
+    }
+
+    public float GetAnimationLength(string animationName)
+    {
+        var clips = _animator.runtimeAnimatorController.animationClips;
+        foreach (var clip in clips)
+        {
+            if (clip.name == animationName)
+                return clip.length;
+        }
+        return 0f;
     }
 }

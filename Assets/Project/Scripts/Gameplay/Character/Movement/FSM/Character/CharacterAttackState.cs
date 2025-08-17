@@ -10,11 +10,27 @@ public class CharacterAttackState : CharacterState
 
     public override void Enter()
     {
-        _character.AnimationController.Attack();
-        _isAttackFinished = false;
-
+        Attack();
+        
         _character.AnimationController.ModelEventsHandler.OnEndAttack += OnAttackFinished;
         _character.AnimationController.ModelEventsHandler.OnImpulse += OnImpulse;
+    }
+
+    public void Attack()
+    {
+        var attack = _character.WeaponController.ComboSystem.GetCurrentAttack();
+        
+        if (attack == null)
+        {
+            _stateMachine.TrySetState<CharacterIdleState>();
+            return;
+        }
+        
+        Debug.Log(attack.AnimationName);
+        
+        _character.AnimationController.Attack(attack.AnimationName);
+        _character.WeaponController.ComboSystem.OnAttack();
+        _isAttackFinished = false;
     }
 
     private void OnAttackFinished()
@@ -30,15 +46,24 @@ public class CharacterAttackState : CharacterState
 
     public override void Update()
     {
+        _character.WeaponController.ComboSystem.AllowNext();
+        
         if (_isAttackFinished)
         {
             _stateMachine.TrySetState<CharacterIdleState>();
         }
     }
 
+    public bool TryNextAttack()
+    {
+        return _character.WeaponController.ComboSystem.CanContinue;
+    }
+
     public override void Exit()
     {
         _character.AnimationController.ModelEventsHandler.OnEndAttack -= OnAttackFinished;
         _character.AnimationController.ModelEventsHandler.OnImpulse -= OnImpulse;
+        
+        _character.WeaponController.ComboSystem.ResetCombo();
     }
 }

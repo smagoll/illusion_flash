@@ -98,7 +98,15 @@ public class Character : MonoBehaviour
 
     private void InitializeWeapons()
     {
-        var sword = new Weapon("Меч", swordPrefab, 10, 2f);
+        var sword = new Weapon("Меч", swordPrefab, 10, 2f, new WeaponCombo()
+        {
+            Attacks = new []
+            {
+                new AttackData("Attack1", 5),
+                new AttackData("Attack2", 5),
+                new AttackData("Attack3", 5)
+            }
+        });
         _inventory.AddItem(sword);
         weaponController.SetWeapon(_inventory.EquippedWeapon);
     }
