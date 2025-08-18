@@ -75,6 +75,8 @@ public class AnimationController : MonoBehaviour
     {
         _animator.SetBool(HasWeapon, isEquipped);
         _animator.SetBool(IsEquipped, isEquipped);
+
+        _animator.SetTrigger(isEquipped ? "drawWeapon" : "sheathWeapon");
     }
 
     public void Death()
