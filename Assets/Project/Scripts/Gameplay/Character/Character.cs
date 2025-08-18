@@ -37,6 +37,7 @@ public class Character : MonoBehaviour
     public LockOnTargetSystem LockOnTargetSystem => lockOnTargetSystem;
     public StatusEffectSystem StatusEffectSystem => statusEffectSystem;
     public CharacterStateMachine StateMachine => stateMachine;
+    public CombatSystem CombatSystem { get; private set; }
 
     public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
     public IGlobalBlackboard GlobalBlackboard => globalBlackboard;
@@ -49,6 +50,7 @@ public class Character : MonoBehaviour
     public void SetController(ICharacterController controller)
     {
         InitializeInventory();
+        InitializeCombatSystem();
         InitializeControllers();
         InitializeLockOnSystem();
         InitializeWeapons();
@@ -89,6 +91,11 @@ public class Character : MonoBehaviour
     {
         statusEffectSystem = new StatusEffectSystem(this);
     }
+
+    private void InitializeCombatSystem()
+    {
+        CombatSystem = new CombatSystem(this);
+    }
     
     private void InitializeLockOnSystem()
     {
@@ -121,5 +128,15 @@ public class Character : MonoBehaviour
     {
         Model = new CharacterModel(characterConfig.hp, characterConfig.mp, characterConfig.stamina);
         characterView.Init(this);
+    }
+
+    public void Block(bool isActive)
+    {
+        if (isActive)
+        {
+            stateMachine.TrySetState<CharacterBlockState>();
+        }
+        
+        CombatSystem.Block(isActive);
     }
 }

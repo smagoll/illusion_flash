@@ -5,13 +5,11 @@ using UnityEngine;
 public class PlayerController : ICharacterController
 {
     private readonly IInputService _input;
-    private readonly ICameraService _cameraService;
     private Character character;
 
-    public PlayerController(IInputService input, ICameraService cameraService)
+    public PlayerController(IInputService input)
     {
         _input = input;
-        _cameraService = cameraService;
     }
 
     public void Init(Character character)
@@ -45,6 +43,8 @@ public class PlayerController : ICharacterController
         {
             character.AbilityController.TryExecute(AbilityKeys.Dodge);
         }
+        
+        character.Block(_input.BlockPressed);
         
         LockOn();
     }

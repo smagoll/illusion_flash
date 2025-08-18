@@ -100,6 +100,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""dffda296-d96b-4bc9-ab17-89fe4cb58477"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -234,6 +243,17 @@ namespace Input
                     ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""993dea06-7dfb-4e93-899c-d22a41e592e0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,6 +270,7 @@ namespace Input
             m_Player_LockOn = m_Player.FindAction("LockOn", throwIfNotFound: true);
             m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
             m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
+            m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -324,6 +345,7 @@ namespace Input
         private readonly InputAction m_Player_LockOn;
         private readonly InputAction m_Player_Run;
         private readonly InputAction m_Player_Dodge;
+        private readonly InputAction m_Player_Block;
         public struct PlayerActions
         {
             private @PlayerInput m_Wrapper;
@@ -336,6 +358,7 @@ namespace Input
             public InputAction @LockOn => m_Wrapper.m_Player_LockOn;
             public InputAction @Run => m_Wrapper.m_Player_Run;
             public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
+            public InputAction @Block => m_Wrapper.m_Player_Block;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -369,6 +392,9 @@ namespace Input
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
+                @Block.started += instance.OnBlock;
+                @Block.performed += instance.OnBlock;
+                @Block.canceled += instance.OnBlock;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -397,6 +423,9 @@ namespace Input
                 @Dodge.started -= instance.OnDodge;
                 @Dodge.performed -= instance.OnDodge;
                 @Dodge.canceled -= instance.OnDodge;
+                @Block.started -= instance.OnBlock;
+                @Block.performed -= instance.OnBlock;
+                @Block.canceled -= instance.OnBlock;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -424,6 +453,7 @@ namespace Input
             void OnLockOn(InputAction.CallbackContext context);
             void OnRun(InputAction.CallbackContext context);
             void OnDodge(InputAction.CallbackContext context);
+            void OnBlock(InputAction.CallbackContext context);
         }
     }
 }

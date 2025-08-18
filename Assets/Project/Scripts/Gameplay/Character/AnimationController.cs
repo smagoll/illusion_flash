@@ -4,18 +4,25 @@ public class AnimationController : MonoBehaviour
 {
     private Animator _animator;
 
+    // Movement
     private static readonly int Speed = Animator.StringToHash("speed");
     private static readonly int Run = Animator.StringToHash("isRun");
     private static readonly int Walk = Animator.StringToHash("isWalk");
     private static readonly int IsFalling = Animator.StringToHash("isFalling");
     private static readonly int JumpTrigger = Animator.StringToHash("jump");
-    private static readonly int AttackTrigger = Animator.StringToHash("attack");
     private static readonly int DodgeTrigger = Animator.StringToHash("dodge");
-    private static readonly int HasWeapon = Animator.StringToHash("hasWeapon");
     private static readonly int Right = Animator.StringToHash("right");
     private static readonly int Forward = Animator.StringToHash("forward");
-    private static readonly int IsDeath = Animator.StringToHash("isDeath");
+    
+    // Attack
+    private static readonly int AttackTrigger = Animator.StringToHash("attack");
+    private static readonly int DrawWeaponTrigger = Animator.StringToHash("drawWeapon");
+    private static readonly int SheathWeaponTrigger = Animator.StringToHash("sheathWeapon");
+    private static readonly int HasWeapon = Animator.StringToHash("hasWeapon");
     private static readonly int IsEquipped = Animator.StringToHash("isEquipped");
+    
+    // States
+    private static readonly int IsDeath = Animator.StringToHash("isDeath");
     private static readonly int IsStun = Animator.StringToHash("isStun");
     
     public ModelEventsHandler ModelEventsHandler { get; private set; }
@@ -66,6 +73,16 @@ public class AnimationController : MonoBehaviour
         _animator.SetBool(IsStun, isActive);
     }
 
+    public void Block(bool isActive)
+    {
+        
+    }
+    
+    public void ParrySuccess()
+    {
+        
+    }
+
     public void UpdateIsFalling(bool isFalling)
     {
         _animator.SetBool(IsFalling, isFalling);
@@ -75,8 +92,7 @@ public class AnimationController : MonoBehaviour
     {
         _animator.SetBool(HasWeapon, isEquipped);
         _animator.SetBool(IsEquipped, isEquipped);
-
-        _animator.SetTrigger(isEquipped ? "drawWeapon" : "sheathWeapon");
+        _animator.SetTrigger(isEquipped ? DrawWeaponTrigger : SheathWeaponTrigger);
     }
 
     public void Death()
@@ -84,24 +100,8 @@ public class AnimationController : MonoBehaviour
         _animator.SetBool(IsDeath, true);
     }
 
-    private void SetWeightLayer(int layer, float weight)
-    {
-        _animator.SetLayerWeight(layer, weight);
-    }
-
     public void EnableDisableLockOn(bool isLockOn)
     {
         _animator.SetBool("isLockOn", isLockOn);
-    }
-
-    public float GetAnimationLength(string animationName)
-    {
-        var clips = _animator.runtimeAnimatorController.animationClips;
-        foreach (var clip in clips)
-        {
-            if (clip.name == animationName)
-                return clip.length;
-        }
-        return 0f;
     }
 }

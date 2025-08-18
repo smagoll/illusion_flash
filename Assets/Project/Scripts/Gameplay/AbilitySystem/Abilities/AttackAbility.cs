@@ -26,7 +26,7 @@ public class AttackAbility : Ability
         if (_isAttacking) return false;
         if (_weaponController?.IsWeaponDrawn != true) return false;
         
-        var attack = _weaponController.ComboSystem.GetCurrentAttack();
+        var attack = Character.CombatSystem.ComboSystem.GetCurrentAttack();
         if (attack == null) return false;
         
         return Character.Model.Stamina.Current >= _stamina;

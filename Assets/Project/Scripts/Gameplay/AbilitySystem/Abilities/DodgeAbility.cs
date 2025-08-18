@@ -1,9 +1,8 @@
 ﻿public class DodgeAbility : Ability
 {
     private float _stamina;
-    private bool _isAttacking;
     
-    public override bool IsFinished => !_isAttacking;
+    public override bool IsFinished => true;
 
     public DodgeAbility(string id, float stamina) : base(id)
     {

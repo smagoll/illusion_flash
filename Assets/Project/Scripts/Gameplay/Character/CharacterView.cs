@@ -19,10 +19,9 @@ public class CharacterView : MonoBehaviour, IDamageable, ITargetable
         _model.Health.OnDeath += () => OnTargetLost?.Invoke();
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(DamageData damageData)
     {
-        _model.TakeDamage(amount);
-        _character.StatusEffectSystem.AddEffect(new StunEffect(0.5f));
+        _character.CombatSystem.HandleIncomingDamage(damageData);
     }
 
     private void OnDeath()

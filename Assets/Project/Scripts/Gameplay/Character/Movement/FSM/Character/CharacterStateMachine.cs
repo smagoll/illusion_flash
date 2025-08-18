@@ -18,6 +18,7 @@ public CharacterStateMachine(Character character)
         AddState(new CharacterStunState(this));
         AddState(new CharacterAttackState(this));
         AddState(new CharacterDodgeState(this));
+        AddState(new CharacterBlockState(this));
 
         TrySetState<CharacterIdleState>();
     }

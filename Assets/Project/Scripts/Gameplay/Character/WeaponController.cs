@@ -5,7 +5,6 @@ public class WeaponController
     private AnimationController _animationController;
     private SocketHolder _socketHolder;
     
-    private ComboSystem _comboSystem;
     private WeaponView _currentWeaponGO;
     private Weapon _currentWeapon;
     private Collider _weaponCollider;
@@ -15,13 +14,11 @@ public class WeaponController
 
     public Weapon CurrentWeapon => _currentWeapon;
     public Character Character { get; private set; }
-    public ComboSystem ComboSystem => _comboSystem;
 
     public WeaponController(AnimationController animationController, SocketHolder socketHolder, Character character)
     {
         _animationController = animationController;
         _socketHolder = socketHolder;
-        _comboSystem = new ComboSystem();
         Character = character;
         
         RegisterEvents();
@@ -30,7 +27,7 @@ public class WeaponController
     public void SetWeapon(Weapon weapon)
     {
         _currentWeapon = weapon;
-        _comboSystem.SetCombo(weapon.Combo);
+        Character.CombatSystem.ComboSystem.SetCombo(weapon.Combo);
     }
 
     private void CreateWeapon()
@@ -85,8 +82,8 @@ public class WeaponController
         _animationController.ModelEventsHandler.OnUnequipWeapon += DestroyWeapon;
     }
 
-    public int GetDamage()
+    public DamageData GetDamage()
     {
-        return _currentWeapon.Damage;
+        return new DamageData(_currentWeapon.Damage, Character);
     }
 }

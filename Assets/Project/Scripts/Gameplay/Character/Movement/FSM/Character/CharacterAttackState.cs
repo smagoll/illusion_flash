@@ -22,7 +22,7 @@ public class CharacterAttackState : CharacterState
 
     public void HandleAttack()
     {
-        if (_character.WeaponController.ComboSystem.CanContinue && !_isAttackHandle)
+        if (_character.CombatSystem.ComboSystem.CanContinue && !_isAttackHandle)
         {
             _isAttackHandle = true;
         }
@@ -30,7 +30,7 @@ public class CharacterAttackState : CharacterState
     
     private void Attack()
     {
-        var attack = _character.WeaponController.ComboSystem.GetCurrentAttack();
+        var attack = _character.CombatSystem.ComboSystem.GetCurrentAttack();
         
         if (attack == null)
         {
@@ -41,7 +41,7 @@ public class CharacterAttackState : CharacterState
         Debug.Log(attack.AnimationName);
         
         _character.AnimationController.Attack();
-        _character.WeaponController.ComboSystem.OnAttack();
+        _character.CombatSystem.ComboSystem.OnAttack();
         _isAttackFinished = false;
     }
 
@@ -58,14 +58,14 @@ public class CharacterAttackState : CharacterState
 
     private void OnOpenComboWindow()
     {
-        _character.WeaponController.ComboSystem.AllowNext();
+        _character.CombatSystem.ComboSystem.AllowNext();
     }
     
     private void OnCloseComboWindow()
     {
         if (_isAttackHandle)
         {
-            _character.WeaponController.ComboSystem.NextStep();
+            _character.CombatSystem.ComboSystem.NextStep();
             Attack();
             _isAttackHandle = false;
         }
@@ -81,7 +81,7 @@ public class CharacterAttackState : CharacterState
 
     public bool TryNextAttack()
     {
-        return _character.WeaponController.ComboSystem.CanContinue;
+        return _character.CombatSystem.ComboSystem.CanContinue;
     }
 
     public override void Exit()
@@ -95,6 +95,6 @@ public class CharacterAttackState : CharacterState
         _isAttackFinished = false;
         _isAttackHandle = false;
         
-        _character.WeaponController.ComboSystem.ResetCombo();
+        _character.CombatSystem.ComboSystem.ResetCombo();
     }
 }
