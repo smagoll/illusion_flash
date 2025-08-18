@@ -14,6 +14,8 @@ public class ModelEventsHandler : MonoBehaviour
     public event Action OnEndAttack;
     public event Action OnEndDodge;
     public event Action OnImpulse;
+    public event Action OnOpenComboWindow;
+    public event Action OnCloseComboWindow;
 
     private void Awake()
     {
@@ -58,5 +60,15 @@ public class ModelEventsHandler : MonoBehaviour
     public void OnAnimatorMove()
     {
         OnAnimatorMoveRoot?.Invoke(_animator.deltaPosition, _animator.deltaRotation);
+    }
+
+    public void OpenCombo()
+    {
+        OnOpenComboWindow?.Invoke();
+    }
+    
+    public void CloseCombo()
+    {
+        OnCloseComboWindow?.Invoke();
     }
 }

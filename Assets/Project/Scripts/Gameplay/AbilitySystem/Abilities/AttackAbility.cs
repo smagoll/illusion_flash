@@ -48,7 +48,7 @@ public class AttackAbility : Ability
             {
                 if (attackState.TryNextAttack())
                 {
-                    attackState.Attack();
+                    attackState.HandleAttack();
                     UseAttack();
                 }
             }

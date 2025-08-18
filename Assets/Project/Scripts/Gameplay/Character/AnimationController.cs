@@ -32,6 +32,7 @@ public class AnimationController : MonoBehaviour
     {
         _animator.SetBool(Run, false);
         _animator.SetBool(Walk, false);
+        UpdateIsFalling(false);
     }
 
     public void UpdateSpeed(float speed)
@@ -50,9 +51,9 @@ public class AnimationController : MonoBehaviour
         _animator.SetTrigger(JumpTrigger);
     }
     
-    public void Attack(string animationName)
+    public void Attack()
     {
-        _animator.Play(animationName);
+        _animator.SetTrigger(AttackTrigger);
     }
 
     public void Dodge()

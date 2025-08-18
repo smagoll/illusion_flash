@@ -6,7 +6,7 @@ public class ComboSystem
     private int _currentStep = 0;
 
     private bool _canContinue;
-    
+
     public bool CanContinue => _canContinue;
 
     public void SetCombo(WeaponCombo combo)
@@ -24,10 +24,14 @@ public class ComboSystem
 
     public void OnAttack()
     {
-            _canContinue = false;
-            _currentStep++;
-            if (_combo == null || _currentStep >= _combo.Attacks.Length)
-                ResetCombo();
+        _canContinue = false;
+    }
+
+    public void NextStep()
+    {
+        _currentStep++;
+        if (_combo == null || _currentStep >= _combo.Attacks.Length)
+            ResetCombo();
     }
 
     public void AllowNext() => _canContinue = true;
