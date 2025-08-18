@@ -75,7 +75,7 @@ public class AnimationController : MonoBehaviour
 
     public void Block(bool isActive)
     {
-        
+        _animator.SetBool("isBlock", isActive);
     }
     
     public void ParrySuccess()
