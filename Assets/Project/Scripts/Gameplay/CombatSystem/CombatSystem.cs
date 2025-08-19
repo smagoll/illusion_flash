@@ -42,6 +42,7 @@ public class CombatSystem
                 return;
             }
             
+            _character.AnimationController.BlockDamage();
             int reducedDamage = BlockSystem.ReduceDamage(damageData.Damage);
             _character.Model.TakeDamage(reducedDamage);
             return;

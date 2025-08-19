@@ -77,6 +77,11 @@ public class AnimationController : MonoBehaviour
     {
         _animator.SetBool("isBlock", isActive);
     }
+
+    public void BlockDamage()
+    {
+        _animator.SetTrigger("blockDamage");
+    }
     
     public void ParrySuccess()
     {
