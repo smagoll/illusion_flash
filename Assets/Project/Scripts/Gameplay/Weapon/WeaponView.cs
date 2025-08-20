@@ -25,16 +25,13 @@ public class WeaponView : MonoBehaviour
         
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable.TakeDamage(_weaponController.GetDamage());
-            
-            
-            Vector3 hitPosition = other.ClosestPoint(transform.position);
+            var damageData = _weaponController.GetDamage();
 
-            VFXSystem.Instance.SpawnImpact(
-                VFXSystem.Instance.library.swordImpact,
-                hitPosition,
-                Vector3.zero
-            );
+            var hitPosition = other.ClosestPoint(transform.position);
+            Vector3 hitNormal = (hitPosition - other.bounds.center).normalized;
+            
+            damageData.SetHit(hitPosition, hitNormal);
+            damageable.TakeDamage(damageData);
         }
     }
 }

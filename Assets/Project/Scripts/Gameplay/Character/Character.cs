@@ -42,6 +42,7 @@ public class Character : MonoBehaviour
     public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
     public IGlobalBlackboard GlobalBlackboard => globalBlackboard;
     public CharacterModel Model { get; private set; }
+    public VFXHandler VFXHandler { get; private set; }
 
     // Test / Config
     [SerializeField] private WeaponView swordPrefab;
@@ -57,6 +58,7 @@ public class Character : MonoBehaviour
         InitializeBlackboard();
         InitializeModelAndView();
         InitializeStatusEffectSystem();
+        InitializeSystems();
 
         _controller = controller;
         _controller.Init(this);
@@ -76,6 +78,11 @@ public class Character : MonoBehaviour
     private void InitializeInventory()
     {
         _inventory = new Inventory();
+    }
+    
+    private void InitializeSystems()
+    {
+        VFXHandler = new VFXHandler(this);
     }
 
     private void InitializeControllers()
