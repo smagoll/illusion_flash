@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 [RequireComponent(typeof(Animator))]
 public class ModelEventsHandler : MonoBehaviour
@@ -70,5 +71,11 @@ public class ModelEventsHandler : MonoBehaviour
     public void CloseCombo()
     {
         OnCloseComboWindow?.Invoke();
+    }
+
+    public void audio(Object soundDataObject)
+    {
+        SoundData soundData = soundDataObject as SoundData;
+        AudioSystem.Instance.Play(soundData.eventName, Vector3.zero);
     }
 }

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7fa9fa8ccf416782b065ee941ffa87, type: 3}
+  m_Name: CarpetFootSteps
+  m_EditorClassIdentifier: 
+  eventName: carpet_foot_steps
+  variations:
+  - {fileID: 8300000, guid: 416278093ea315340bc5ee9c16d0eb59, type: 3}
+  - {fileID: 8300000, guid: 295ab8b1504245a48a75d0e909e15685, type: 3}
+  - {fileID: 8300000, guid: 5d7842adf16703349956efe4f46f504f, type: 3}
+  - {fileID: 8300000, guid: 36504523dc64dc94bad7df77a9541c40, type: 3}
+  - {fileID: 8300000, guid: f11c4d1f04efd8a4caab4da1ccccc3e2, type: 3}
+  - {fileID: 8300000, guid: 7304406a3dbb28047b3de9cc7aa269e6, type: 3}
+  - {fileID: 8300000, guid: bcdd1b0022355174f89d8ead3d20dc2f, type: 3}
+  - {fileID: 8300000, guid: 54e87755f19c71e4f9ad91e492c9fe3d, type: 3}
+  - {fileID: 8300000, guid: bb1b5a3c8627bc8428f1bcc2461308e1, type: 3}
+  - {fileID: 8300000, guid: 0acf71978e8a96943ae918ebcb199665, type: 3}
+  - {fileID: 8300000, guid: 6e3cc37886e10634d85ad29ffd05355f, type: 3}
+  - {fileID: 8300000, guid: f9fbbfb004fcda94287ba14b170cda5d, type: 3}
+  - {fileID: 8300000, guid: b086fa5c8bd41b743a57e4c6a72f2550, type: 3}
+  - {fileID: 8300000, guid: 09994dae7080a21438fb3d45c2fe034e, type: 3}
+  - {fileID: 8300000, guid: 9da78baa926868d41b079bfe0df7d764, type: 3}
+  - {fileID: 8300000, guid: 4ce387940b2127c48bfc6ab7c2a092aa, type: 3}
+  - {fileID: 8300000, guid: fe56f89fa6e34b44d818ee77353d6a45, type: 3}
+  - {fileID: 8300000, guid: 5819255f81c593945ab3e4ee130b03cd, type: 3}
+  - {fileID: 8300000, guid: 825c51842ed8a3149aec84953081cce7, type: 3}
+  - {fileID: 8300000, guid: 0c978441cc70ecb4a81cb2ffaa88250b, type: 3}
+  - {fileID: 8300000, guid: 632f4933d424f4246a55752c07820dea, type: 3}
+  mixerGroup: {fileID: 6857859659758380165, guid: 0e018bb30172be94ebbfc7ef44d6cdb0, type: 2}
+  is3D: 1
+  volume: 1
+  pitchRandom: 0.05
+  maxDistance: 50
