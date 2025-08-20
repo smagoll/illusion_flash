@@ -17,18 +17,16 @@ public class CombatSystem
         BlockSystem = new BlockSystem();
     }
 
-    public void Block(bool isActive)
+    public void ActivateBlock(bool isActive)
     {
-        if (BlockSystem.IsBlocked)
+        BlockSystem.Block(isActive);
+
+        if (isActive)
         {
-            BlockSystem.Block(isActive);
-        }
-        else
-        {
-            BlockSystem.Block(isActive);
             ParrySystem.TryParry();
         }
     }
+
     
     public void HandleIncomingDamage(DamageData damageData)
     {
@@ -37,7 +35,6 @@ public class CombatSystem
             if (ParrySystem.IsParryActive)
             {
                 _character.AnimationController.ParrySuccess();
-                damageData.Character.StateMachine.TrySetState<CharacterStunState>();
                 Debug.Log("Парирование успешно!");
                 return;
             }

@@ -36,6 +36,7 @@ public class CharacterBlockState : CharacterState
 
     public override void Exit()
     {
+        _character.CombatSystem.ParrySystem.TryParry();
         _character.AnimationController.Block(false);
     }
 }

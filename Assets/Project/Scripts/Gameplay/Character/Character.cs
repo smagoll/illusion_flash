@@ -137,6 +137,6 @@ public class Character : MonoBehaviour
             stateMachine.TrySetState<CharacterBlockState>();
         }
         
-        CombatSystem.Block(isActive);
+        CombatSystem.ActivateBlock(isActive);
     }
 }
