@@ -89,12 +89,12 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":-33.255035400390628,\"y\":53.87116241455078,\"z\":-66.75688171386719}}"
+                "value": "{\"m_Value\":{\"x\":-4.345476150512695,\"y\":23.72785758972168,\"z\":-34.73954772949219}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Plane",
-                "value": "{\"m_Value\":{\"x\":-26.393922805786134,\"y\":0.0,\"z\":-74.70598602294922}}"
+                "value": "{\"m_Value\":{\"x\":-16.942970275878908,\"y\":0.0,\"z\":14.184389114379883}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -104,12 +104,12 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Stairs",
-                "value": "{\"m_Value\":{\"x\":-43.13967514038086,\"y\":4.147521018981934,\"z\":24.60797119140625}}"
+                "value": "{\"m_Value\":{\"x\":3.712550401687622,\"y\":3.626426935195923,\"z\":6.740837097167969}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Arch",
-                "value": "{\"m_Value\":{\"x\":-25.593040466308595,\"y\":24.575876235961915,\"z\":26.961151123046876}}"
+                "value": "{\"m_Value\":{\"x\":6.861000061035156,\"y\":13.233478546142579,\"z\":-14.405620574951172}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
