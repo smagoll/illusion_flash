@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioSystem : MonoBehaviour
 {
@@ -10,10 +9,9 @@ public class AudioSystem : MonoBehaviour
     [SerializeField] private AudioSource audioSourcePrefab;
     [SerializeField] private int poolSize = 20;
 
-    [Header("Sound Library")]
-    [SerializeField] private List<SoundData> soundLibrary;
+    [Header("Sound Bank")]
+    [SerializeField] private SoundBankCollection soundBanks;
 
-    private Dictionary<string, SoundData> soundMap;
     private Queue<AudioSource> pool = new();
 
     private void Awake()
@@ -21,12 +19,7 @@ public class AudioSystem : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
-        soundMap = new Dictionary<string, SoundData>();
-        foreach (var s in soundLibrary)
-        {
-            if (!string.IsNullOrEmpty(s.eventName))
-                soundMap[s.eventName] = s;
-        }
+        soundBanks?.Initialize();
 
         for (int i = 0; i < poolSize; i++)
             CreateSource();
@@ -59,9 +52,9 @@ public class AudioSystem : MonoBehaviour
 
     public void Play(string eventName, Vector3 position)
     {
-        if (!soundMap.TryGetValue(eventName, out var def))
+        if (!soundBanks.TryGetSound(eventName, out var def))
         {
-            Debug.LogWarning($"Sound '{eventName}' not found!");
+            Debug.LogWarning($"Sound '{eventName}' not found in SoundBank!");
             return;
         }
 

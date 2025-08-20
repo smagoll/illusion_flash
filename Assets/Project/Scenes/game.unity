@@ -1502,8 +1502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSourcePrefab: {fileID: 854576945993945029, guid: eb2dc05495a79f34086b60137c83bfaa, type: 3}
   poolSize: 20
-  soundLibrary:
-  - {fileID: 11400000, guid: 05b90e926af062343848f5e019943b38, type: 2}
+  soundBanks: {fileID: 11400000, guid: 2e3ea2007f839d2438f985c935038ddc, type: 2}
 --- !u!1 &1154163972
 GameObject:
   m_ObjectHideFlags: 0
