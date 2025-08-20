@@ -146,4 +146,9 @@ public class Character : MonoBehaviour
         
         CombatSystem.ActivateBlock(isActive);
     }
+
+    private void OnDestroy()
+    {
+        VFXHandler.Dispose();
+    }
 }
