@@ -147,6 +147,11 @@ public class Character : MonoBehaviour
         CombatSystem.ActivateBlock(isActive);
     }
 
+    public void Stun(float duration)
+    {
+        statusEffectSystem.AddEffect(new StunEffect(duration));
+    }
+
     private void OnDestroy()
     {
         VFXHandler.Dispose();

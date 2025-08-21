@@ -60,6 +60,7 @@ public class CombatSystem
         }
 
         _character.Model.TakeDamage(damageData.Damage);
+        _character.Stun(0.1f);
 
         OnCombatEvent?.Invoke(hitInfo);
     }
