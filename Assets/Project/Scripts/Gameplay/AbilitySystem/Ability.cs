@@ -15,7 +15,7 @@
         Character = character;
     }
     
-    public virtual void Cleanup(Character character)
+    public virtual void Cleanup()
     {
         Character = null;
     }

@@ -25,4 +25,9 @@ public class Health
         if (Current == 0)
             OnDeath?.Invoke();
     }
+
+    public void Heal(int amount)
+    {
+        Current = Mathf.Max(Current + amount, Max);
+    }
 }

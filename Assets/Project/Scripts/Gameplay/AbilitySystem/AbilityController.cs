@@ -41,7 +41,7 @@ public class AbilityController
     {
         foreach (var ability in _abilities.Values)
         {
-            ability.Cleanup(_character);
+            ability.Cleanup();
         }
 
         _abilities.Clear();
@@ -60,7 +60,7 @@ public class AbilityController
     {
         if (_abilities.TryGetValue(id, out var ability))
         {
-            ability.Cleanup(_character);
+            ability.Cleanup();
             _abilities.Remove(id);
             return true;
         }
