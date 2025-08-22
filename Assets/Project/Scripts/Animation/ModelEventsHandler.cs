@@ -73,7 +73,7 @@ public class ModelEventsHandler : MonoBehaviour
         OnCloseComboWindow?.Invoke();
     }
 
-    public void audio(Object soundDataObject)
+    public void PlaySound(Object soundDataObject)
     {
         SoundData soundData = soundDataObject as SoundData;
         AudioSystem.Instance.Play(soundData.eventName, Vector3.zero);

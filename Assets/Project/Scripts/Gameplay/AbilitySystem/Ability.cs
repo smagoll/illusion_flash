@@ -21,6 +21,11 @@
     }
     
     public abstract void Execute();
+    
+    public virtual void OnUpdate()
+    {
+        
+    }
 
     public virtual bool CanExecute()
     {
