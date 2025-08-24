@@ -28,9 +28,20 @@ public class AbilityController
         {
             if (ability.CanExecute())
             {
-                ability.Execute();
-                CurrentAbility = ability;
-                return true;
+                if (_character.StateMachine.TrySetState<CharacterAbilityState>())
+                {
+                    var abilityState = _character.StateMachine.GetState<CharacterAbilityState>();
+                    abilityState.UseAbility(ability);
+                    CurrentAbility = ability;
+                    return true;
+                }
+
+                if (CurrentAbility == ability)
+                {
+                    ability.HandleAlreadyInState();
+                    CurrentAbility = ability;
+                    return true;
+                }
             }
         }
 

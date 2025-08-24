@@ -1,6 +1,5 @@
 ﻿public class CharacterAbilityState : CharacterState
 {
-    
     private IAbility _currentAbility;
     
     public CharacterAbilityState(CharacterStateMachine stateMachine) : base(stateMachine)

@@ -1,4 +1,6 @@
-﻿public abstract class Ability : IAbility
+﻿using System;
+
+public abstract class Ability : IAbility
 {
     public string Id { get; private set; }
     protected Character Character { get; private set; }
@@ -17,11 +19,14 @@
     
     public virtual void Cleanup()
     {
-        Character = null;
     }
     
     public abstract void Execute();
-    
+    public virtual void HandleAlreadyInState()
+    {
+        
+    }
+
     public virtual void OnUpdate()
     {
         
