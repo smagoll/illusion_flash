@@ -57,6 +57,7 @@ public class MovementController : MonoBehaviour
         _movementStateMachine.Tick();
         
         ApplyGravity();
+        Rotation();
 
         CurrentSpeed = Mathf.SmoothDamp(CurrentSpeed, targetSpeed, ref speedSmoothVelocity, 0.3f);
         

@@ -16,6 +16,7 @@ public class CharacterStunState : CharacterState
     {
         _timer = _duration;
         _character.AnimationController.Stun(true);
+        _character.MovementController.StopMove();
     }
     
     public override void Update()
@@ -35,5 +36,6 @@ public class CharacterStunState : CharacterState
     public override void Exit()
     {
         _character.AnimationController.Stun(false);
+        _character.MovementController.ResumeMove();
     }
 }

@@ -7,7 +7,8 @@ public class BottleHealAbility : Ability
     private float _cooldown;
     private bool _isOnCooldown;
 
-    public override bool IsFinished => true; // Можно сделать управление через анимацию
+    public override bool IsFinished => true;
+    public override bool IsMove => true;
 
     public BottleHealAbility(string id, int healAmount, float staminaCost, float cooldown) : base(id)
     {

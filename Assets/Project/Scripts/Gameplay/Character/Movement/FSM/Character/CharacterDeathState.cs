@@ -13,6 +13,12 @@ public class CharacterDeathState : CharacterState
         Debug.Log("CharacterDeathState Enter");
     }
 
+    public override void Exit()
+    {
+        _character.MovementController.EnableDisableDetectCollisions(true);
+        _character.MovementController.ResumeMove();
+    }
+
     public override void Update()
     {
         

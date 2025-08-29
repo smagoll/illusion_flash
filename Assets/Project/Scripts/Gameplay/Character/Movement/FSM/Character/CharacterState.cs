@@ -14,9 +14,6 @@ public abstract class CharacterState
     public virtual void Enter() { }
     public virtual void Exit() { }
     public virtual void Update() { }
-    public virtual void OnMoveInput(Vector2 input, MovementSpeedType speedType) { }
-    public virtual void OnRotation() { }
-    public virtual void OnStopMoveInput() { }
     public virtual bool CanBeInterruptedBy(CharacterState newState) => true;
     
 }

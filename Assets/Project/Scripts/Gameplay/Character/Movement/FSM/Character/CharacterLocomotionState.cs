@@ -10,22 +10,10 @@ public class CharacterLocomotionState : CharacterState
 
     public override void Update()
     {
-        
-    }
-    
-    public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
-    {
-        _character.MovementController.HandleMovement(input, speedType);
-    }
-
-    public override void OnRotation()
-    {
-        _character.MovementController.Rotation();
-    }
-
-    public override void OnStopMoveInput()
-    {
-        _stateMachine.TrySetState<CharacterIdleState>();
+        if (_character.MovementController.CurrentSpeed < 0.01f)
+        {
+            _stateMachine.TrySetState<CharacterIdleState>();
+        }
     }
 
     public override void Exit()

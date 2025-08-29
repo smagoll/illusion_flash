@@ -6,6 +6,7 @@ public abstract class Ability : IAbility
     protected Character Character { get; private set; }
     
     public abstract bool IsFinished { get; }
+    public abstract bool IsMove { get; }
 
     public Ability(string id)
     {

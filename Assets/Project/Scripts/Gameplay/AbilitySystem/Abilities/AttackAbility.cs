@@ -12,6 +12,7 @@ public class AttackAbility : Ability
     private float _stamina;
 
     public override bool IsFinished => _isAttackFinished;
+    public override bool IsMove => false;
 
     public AttackAbility(string id, float stamina) : base(id)
     {

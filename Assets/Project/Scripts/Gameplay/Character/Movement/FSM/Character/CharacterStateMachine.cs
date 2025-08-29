@@ -64,6 +64,5 @@ public CharacterStateMachine(Character character)
     public void Update()
     {
         CurrentState?.Update();
-        CurrentState?.OnRotation();
     }
 }

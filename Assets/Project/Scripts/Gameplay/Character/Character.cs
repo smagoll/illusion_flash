@@ -152,6 +152,11 @@ public class Character : MonoBehaviour
         statusEffectSystem.AddEffect(new StunEffect(duration));
     }
 
+    public void Move(Vector2 input, MovementSpeedType speedType)
+    {
+        MovementController.HandleMovement(input, speedType);
+    }
+
     private void OnDestroy()
     {
         VFXHandler.Dispose();

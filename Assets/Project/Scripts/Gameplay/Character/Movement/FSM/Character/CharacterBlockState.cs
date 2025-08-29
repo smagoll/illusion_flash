@@ -19,21 +19,6 @@ public class CharacterBlockState : CharacterState
         }
     }
 
-    public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
-    {
-        _character.MovementController.HandleMovement(input, speedType);
-    }
-
-    public override void OnStopMoveInput()
-    {
-        _character.MovementController.HandleMovement(Vector2.zero, MovementSpeedType.Walk);
-    }
-
-    public override void OnRotation()
-    {
-        _character.MovementController.Rotation();
-    }
-
     public override void Exit()
     {
         _character.CombatSystem.ParrySystem.TryParry();

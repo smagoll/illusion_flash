@@ -5,6 +5,7 @@
     private float _stamina;
     
     public override bool IsFinished => true;
+    public override bool IsMove => false;
     
     public JumpAbility(string id, float jumpForce, float stamina) : base(id)
     {

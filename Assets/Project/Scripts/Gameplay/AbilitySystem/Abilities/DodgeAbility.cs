@@ -6,6 +6,7 @@ public class DodgeAbility : Ability
     private bool _isDodgeFinished;
 
     public override bool IsFinished => _isDodgeFinished;
+    public override bool IsMove => false;
 
     public DodgeAbility(string id, float stamina) : base(id)
     {

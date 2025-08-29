@@ -10,4 +10,5 @@ public interface IAbility
     void OnUpdate();
     bool CanExecute();
     bool IsFinished { get; }
+    bool IsMove { get; }
 }

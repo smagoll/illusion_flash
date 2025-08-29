@@ -6,17 +6,9 @@ public class CharacterIdleState : CharacterState
 
     public override void Update()
     {
-        
-    }
-    
-    public override void OnMoveInput(Vector2 input, MovementSpeedType speedType)
-    {
-        _stateMachine.TrySetState<CharacterLocomotionState>();
-        _stateMachine.CurrentState.OnMoveInput(input, speedType);
-    }
-
-    public override void OnRotation()
-    {
-        _character.MovementController.Rotation();
+        if (_character.MovementController.CurrentSpeed > 0.01f)
+        {
+            _stateMachine.TrySetState<CharacterLocomotionState>();
+        }
     }
 }

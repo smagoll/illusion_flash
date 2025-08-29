@@ -10,6 +10,8 @@
     {
         _currentAbility = ability;
         _currentAbility.Execute();
+
+        if (!_currentAbility.IsMove) _character.MovementController.StopMove();
     }
 
     public override void Update()
@@ -22,6 +24,7 @@
 
     public override void Exit()
     {
+        if (!_currentAbility.IsMove) _character.MovementController.ResumeMove();
         _currentAbility?.Cleanup();
         _currentAbility = null;
     }
