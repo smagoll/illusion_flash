@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-
-public abstract class CharacterState
+﻿public abstract class CharacterState
 {
     protected readonly CharacterStateMachine _stateMachine;
     protected readonly Character _character;
+    
+    public virtual bool CanEnterState => true;
 
     public CharacterState(CharacterStateMachine stateMachine)
     {

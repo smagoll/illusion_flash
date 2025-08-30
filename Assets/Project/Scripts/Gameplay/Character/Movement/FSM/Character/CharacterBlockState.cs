@@ -5,7 +5,9 @@ public class CharacterBlockState : CharacterState
     public CharacterBlockState(CharacterStateMachine stateMachine) : base(stateMachine)
     {
     }
-    
+
+    public override bool CanEnterState => _character.WeaponController.IsWeaponDrawn;
+
     public override void Enter()
     {
         _character.AnimationController.Block(true);

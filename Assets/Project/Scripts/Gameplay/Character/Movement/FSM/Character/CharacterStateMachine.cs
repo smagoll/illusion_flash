@@ -39,8 +39,12 @@ public CharacterStateMachine(Character character)
         if (CurrentState == newState)
             return false;
 
+        if (!newState.CanEnterState) return false;
+
         if (CurrentState != null)
+        {
             if (!CurrentState.CanBeInterruptedBy(newState)) return false;
+        }
 
         CurrentState?.Exit();
         CurrentState = newState;

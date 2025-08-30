@@ -141,10 +141,15 @@ public class Character : MonoBehaviour
     {
         if (isActive)
         {
-            stateMachine.TrySetState<CharacterBlockState>();
+            if (stateMachine.TrySetState<CharacterBlockState>())
+            {
+                CombatSystem.ActivateBlock(true);
+            }
         }
-        
-        CombatSystem.ActivateBlock(isActive);
+        else
+        {
+            CombatSystem.ActivateBlock(false);
+        }
     }
 
     public void Stun(float duration)
