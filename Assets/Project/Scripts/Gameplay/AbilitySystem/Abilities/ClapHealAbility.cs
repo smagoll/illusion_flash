@@ -3,41 +3,41 @@ using UnityEngine;
 
 public class ClapHealAbility : Ability
 {
+    private bool isFinished;
     private int _healAmount;
-    private float _cooldown;
-    private bool _isOnCooldown;
 
-    public override bool IsFinished => true;
+    public override bool IsFinished => isFinished;
     public override bool IsMove => true;
 
-    public ClapHealAbility(string id, int healAmount, float staminaCost, float cooldown) : base(id)
+    public ClapHealAbility(string id, int healAmount) : base(id)
     {
         _healAmount = healAmount;
-        _cooldown = cooldown;
     }
 
     public override bool CanExecute()
     {
-        bool canUse = !_isOnCooldown &&
-                      (Character.StateMachine.IsState<CharacterIdleState>() || Character.StateMachine.IsState<CharacterLocomotionState>());
+        bool canUse =
+            Character.StateMachine.IsState<CharacterIdleState>() ||
+            Character.StateMachine.IsState<CharacterLocomotionState>();
+        
         return canUse;
     }
 
     public override void Execute()
     {
-        if (!CanExecute())
-            return;
+        Character.AnimationController.Clap();
 
-        Character.Model.Health.Heal(_healAmount);
-        
-
-        Character.StartCoroutine(CooldownCoroutine());
+        Character.AnimationController.ModelEventsHandler.OnEndAbility += Finish;
     }
 
-    private IEnumerator CooldownCoroutine()
+    public override void Cleanup()
     {
-        _isOnCooldown = true;
-        yield return new WaitForSeconds(_cooldown);
-        _isOnCooldown = false;
+        Character.AnimationController.ModelEventsHandler.OnEndAbility -= Finish;
+    }
+
+    private void Finish()
+    {
+        Character.Model.Health.Heal(_healAmount);
+        isFinished = true;
     }
 }

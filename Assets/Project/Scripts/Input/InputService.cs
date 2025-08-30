@@ -14,6 +14,7 @@ namespace Input
         bool AttackPressed { get; }
         bool LockOnPressed { get; }
         bool BlockPressed { get; }
+        bool UseItemPressed { get; }
     }
 
     public class InputService : MonoBehaviour, IInputService
@@ -28,6 +29,7 @@ namespace Input
         private bool _lockOnPressed;
         private bool _dodgePressed;
         private bool _blockPressed;
+        private bool _useItemPressed;
 
         public Vector2 MoveAxis => _moveAxis;
         public bool JumpPressed => _jumpPressed;
@@ -38,6 +40,7 @@ namespace Input
         public bool LockOnPressed => _lockOnPressed;
         public bool DodgePressed => _dodgePressed;
         public bool BlockPressed => _blockPressed;
+        public bool UseItemPressed => _useItemPressed;
 
         private void Awake()
         {
@@ -61,8 +64,13 @@ namespace Input
             _inputActions.Player.Run.performed += _ => _runPressed = true;
             _inputActions.Player.Run.canceled += _ => _runPressed = false;
             
-            // actions
+            // attack
             _inputActions.Player.Attack.performed += _ => _attackPressed = true;
+            
+            // use item
+            _inputActions.Player.UseItem.performed += _ => _useItemPressed = true;
+            
+            // lock on
             _inputActions.Player.LockOn.performed += _ => _lockOnPressed = true;
             
             // block
@@ -84,6 +92,7 @@ namespace Input
             _attackPressed = false;
             _lockOnPressed = false;
             _dodgePressed = false;
+            _useItemPressed = false;
         }
     }
 }

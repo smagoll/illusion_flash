@@ -38,6 +38,11 @@ public class PlayerController : ICharacterController
         {
             character.AbilityController.TryExecute(AbilityKeys.Attack);
         }
+        
+        if (_input.UseItemPressed)
+        {
+            character.AbilityController.TryExecute(AbilityKeys.Clap);
+        }
 
         if (_input.DodgePressed)
         {

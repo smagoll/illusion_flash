@@ -17,6 +17,7 @@ public class ModelEventsHandler : MonoBehaviour
     public event Action OnImpulse;
     public event Action OnOpenComboWindow;
     public event Action OnCloseComboWindow;
+    public event Action OnEndAbility;
 
     private void Awake()
     {
@@ -77,5 +78,10 @@ public class ModelEventsHandler : MonoBehaviour
     {
         SoundData soundData = soundDataObject as SoundData;
         AudioSystem.Instance.Play(soundData.eventName, Vector3.zero);
+    }
+
+    public void EndAbility()
+    {
+        OnEndAbility?.Invoke();
     }
 }

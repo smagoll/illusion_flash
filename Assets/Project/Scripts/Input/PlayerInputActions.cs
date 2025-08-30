@@ -109,6 +109,15 @@ namespace Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""17b49c19-f0b4-4b4e-9c77-56620c6a94c2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -254,6 +263,17 @@ namespace Input
                     ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ff34dfb-bac8-4350-97c5-b9610ff1bad3"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +291,7 @@ namespace Input
             m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
             m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
             m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
+            m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         }
 
         ~@PlayerInput()
@@ -346,6 +367,7 @@ namespace Input
         private readonly InputAction m_Player_Run;
         private readonly InputAction m_Player_Dodge;
         private readonly InputAction m_Player_Block;
+        private readonly InputAction m_Player_UseItem;
         public struct PlayerActions
         {
             private @PlayerInput m_Wrapper;
@@ -359,6 +381,7 @@ namespace Input
             public InputAction @Run => m_Wrapper.m_Player_Run;
             public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
             public InputAction @Block => m_Wrapper.m_Player_Block;
+            public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -395,6 +418,9 @@ namespace Input
                 @Block.started += instance.OnBlock;
                 @Block.performed += instance.OnBlock;
                 @Block.canceled += instance.OnBlock;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -426,6 +452,9 @@ namespace Input
                 @Block.started -= instance.OnBlock;
                 @Block.performed -= instance.OnBlock;
                 @Block.canceled -= instance.OnBlock;
+                @UseItem.started -= instance.OnUseItem;
+                @UseItem.performed -= instance.OnUseItem;
+                @UseItem.canceled -= instance.OnUseItem;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -454,6 +483,7 @@ namespace Input
             void OnRun(InputAction.CallbackContext context);
             void OnDodge(InputAction.CallbackContext context);
             void OnBlock(InputAction.CallbackContext context);
+            void OnUseItem(InputAction.CallbackContext context);
         }
     }
 }
