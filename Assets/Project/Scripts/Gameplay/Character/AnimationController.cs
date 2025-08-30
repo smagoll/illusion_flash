@@ -87,6 +87,11 @@ public class AnimationController : MonoBehaviour
     {
         
     }
+    
+    public void Clap()
+    {
+        _animator.SetTrigger("clap");
+    }
 
     public void UpdateIsFalling(bool isFalling)
     {

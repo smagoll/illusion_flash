@@ -75,15 +75,6 @@ public class AttackAbility : Ability
         }
     }
 
-    public override void OnUpdate()
-    {
-        if (_isAttackFinished)
-        {
-            UnsubscribeEvents();
-            Character.StateMachine.TrySetState<CharacterIdleState>();
-        }
-    }
-
     private void SubscribeEvents()
     {
         _events.OnEndAttack += OnAttackFinished;

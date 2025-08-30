@@ -60,14 +60,6 @@ public class DodgeAbility : Ability
         Character.transform.position += position * 2;
     }
 
-    public override void OnUpdate()
-    {
-        if (_isDodgeFinished)
-        {
-            Character.StateMachine.TrySetState<CharacterIdleState>();
-        }
-    }
-
     public override void Cleanup()
     {
         Character.MovementController.EnableDisableDetectCollisions(true);

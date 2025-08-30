@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class BottleHealAbility : Ability
+public class ClapHealAbility : Ability
 {
     private int _healAmount;
     private float _cooldown;
@@ -10,7 +10,7 @@ public class BottleHealAbility : Ability
     public override bool IsFinished => true;
     public override bool IsMove => true;
 
-    public BottleHealAbility(string id, int healAmount, float staminaCost, float cooldown) : base(id)
+    public ClapHealAbility(string id, int healAmount, float staminaCost, float cooldown) : base(id)
     {
         _healAmount = healAmount;
         _cooldown = cooldown;
@@ -29,8 +29,7 @@ public class BottleHealAbility : Ability
             return;
 
         Character.Model.Health.Heal(_healAmount);
-
-        //Character.StateMachine.TrySetState<CharacterBottleHealState>();
+        
 
         Character.StartCoroutine(CooldownCoroutine());
     }
