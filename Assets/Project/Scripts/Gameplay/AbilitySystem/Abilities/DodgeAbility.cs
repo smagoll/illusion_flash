@@ -57,7 +57,7 @@ public class DodgeAbility : Ability
 
     private void OnAnimationMoveRoot(Vector3 position, Quaternion rotation)
     {
-        Character.transform.position += position * 2;
+        Character.transform.position += position;
     }
 
     public override void Cleanup()
