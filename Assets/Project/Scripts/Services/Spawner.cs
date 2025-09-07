@@ -4,12 +4,15 @@ using Zenject;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField] private Transform spawnPoint;
+
     private IFactory<Character> _factory;
     private PlayerController _playerController;
     private ICameraService _cameraService;
-    
+
     [Inject]
-    private void Construct(IFactory<Character> characterFactory, PlayerController playerController, ICameraService cameraService)
+    private void Construct(IFactory<Character> characterFactory, PlayerController playerController,
+        ICameraService cameraService)
     {
         _factory = characterFactory;
         _playerController = playerController;
@@ -20,7 +23,7 @@ public class Spawner : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
+
         SpawnPlayer();
         SpawnEnemy();
     }
@@ -28,22 +31,22 @@ public class Spawner : MonoBehaviour
     private void SpawnPlayer()
     {
         var player = _factory.Create();
-        
-        player.transform.position = new Vector3(0, 0, 0);
-        
+
+        player.transform.position = spawnPoint.position;
+
         player.SetController(_playerController);
-        
+
         _cameraService.SetTrackingTarget(player.transform);
-        
+
         UIGameplay.Instance.Init(player);
     }
 
     private void SpawnEnemy()
     {
         var enemy = _factory.Create();
-        
-        enemy.transform.position = new Vector3(0, 0, 10);
-        
+
+        enemy.transform.position = spawnPoint.position + new Vector3(0, 0, 10);
+
         enemy.SetController(new AIController());
     }
 }
