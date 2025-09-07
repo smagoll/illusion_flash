@@ -8,8 +8,7 @@ public class AbilityController
     
     public IAbility CurrentAbility { get; private set; }
     
-    public bool IsPerformingAbility =>
-        CurrentAbility != null && !CurrentAbility.IsFinished;
+    public bool IsPerformingAbility => CurrentAbility is { IsFinished: false };
 
     public AbilityController(Character character, IEnumerable<AbilitySO> abilities)
     {
