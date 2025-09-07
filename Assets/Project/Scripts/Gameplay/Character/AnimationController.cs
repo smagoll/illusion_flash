@@ -3,6 +3,8 @@
 public class AnimationController : MonoBehaviour
 {
     private Animator _animator;
+    
+    private FallDelayHandler _fallHandler;
 
     // Movement
     private static readonly int Speed = Animator.StringToHash("speed");
@@ -32,6 +34,8 @@ public class AnimationController : MonoBehaviour
         _animator = animator;
         ModelEventsHandler = modelEventsHandler;
         
+        _fallHandler = new FallDelayHandler(_animator, "isFalling", 0.7f);
+        
         Setup();
     }
     
@@ -39,7 +43,7 @@ public class AnimationController : MonoBehaviour
     {
         _animator.SetBool(Run, false);
         _animator.SetBool(Walk, false);
-        UpdateIsFalling(false);
+        UpdateFallState(false, -1);
     }
 
     public void UpdateSpeed(float speed)
@@ -93,9 +97,9 @@ public class AnimationController : MonoBehaviour
         _animator.SetTrigger("clap");
     }
 
-    public void UpdateIsFalling(bool isFalling)
+    public void UpdateFallState(bool isGrounded, float verticalSpeed)
     {
-        _animator.SetBool(IsFalling, isFalling);
+        _fallHandler.UpdateFallState(isGrounded, verticalSpeed);
     }
 
     public void UpdateEquippedWeapon(bool isEquipped)

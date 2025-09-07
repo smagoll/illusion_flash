@@ -65,7 +65,7 @@ public class MovementController : MonoBehaviour
         characterController.Move(move * Time.deltaTime);
         
         _animationController.UpdateSpeed(HorizontalSpeed);
-        _animationController.UpdateIsFalling(!characterController.isGrounded && VerticalSpeed < -1);
+        _animationController.UpdateFallState(characterController.isGrounded, VerticalSpeed);
         
         if (_impulse.sqrMagnitude > 0.01f)
         {
