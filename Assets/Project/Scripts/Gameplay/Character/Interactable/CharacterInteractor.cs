@@ -39,6 +39,8 @@ public class CharacterInteractor : MonoBehaviour
         {
             if (!hit.TryGetComponent(out IInteractable interactable))
                 continue;
+            
+            if (interactable.CanInteractable) continue;
 
             float dist = Vector3.Distance(
                 transform.position,

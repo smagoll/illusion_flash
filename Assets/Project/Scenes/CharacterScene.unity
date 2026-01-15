@@ -297,10 +297,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135838779931987494, guid: 9ad147ffc19fa8f47a3b358a114142ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3758962360375510598, guid: 9ad147ffc19fa8f47a3b358a114142ef, type: 3}
       propertyPath: m_Name
       value: Bonfire
       objectReference: {fileID: 0}
+    - target: {fileID: 3935764226247100949, guid: 9ad147ffc19fa8f47a3b358a114142ef, type: 3}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 472773625}
     - target: {fileID: 4380145455538123843, guid: 9ad147ffc19fa8f47a3b358a114142ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7830765
@@ -467,6 +475,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &472773625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 135838779931987494, guid: 9ad147ffc19fa8f47a3b358a114142ef, type: 3}
+  m_PrefabInstance: {fileID: 402222250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
