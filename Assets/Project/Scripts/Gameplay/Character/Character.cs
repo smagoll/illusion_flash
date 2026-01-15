@@ -10,6 +10,7 @@ public class Character : MonoBehaviour
     [SerializeField] private MovementController movementController;
     [SerializeField] private AnimationController animationController;
     [SerializeField] private CharacterView characterView;
+    [SerializeField] private CharacterInteractor characterInteractor;
     
     [Header("Model")]
     [SerializeField] private ModelFacade modelFacade;
@@ -38,6 +39,7 @@ public class Character : MonoBehaviour
     public StatusEffectSystem StatusEffectSystem => statusEffectSystem;
     public CharacterStateMachine StateMachine => stateMachine;
     public CombatSystem CombatSystem { get; private set; }
+    public CharacterInteractor CharacterInteractor => characterInteractor;
 
     public IBlackboard Blackboard => behaviourTreeOwner.blackboard;
     public IGlobalBlackboard GlobalBlackboard => globalBlackboard;

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1834296919096618297}
   - component: {fileID: 8102810475405245728}
   - component: {fileID: 4570766234597673884}
+  - component: {fileID: 1108529443423732398}
   - component: {fileID: -812749926996528923}
   - component: {fileID: -4634944092532322999}
   - component: {fileID: 7672015166473254283}
@@ -154,6 +155,7 @@ MonoBehaviour:
   movementController: {fileID: -812749926996528923}
   animationController: {fileID: 8102810475405245728}
   characterView: {fileID: 4570766234597673884}
+  characterInteractor: {fileID: 1108529443423732398}
   modelFacade: {fileID: 1233630648850879102}
   behaviourTreeOwner: {fileID: -4634944092532322999}
   swordPrefab: {fileID: 8361062347435150488, guid: 112bcd6863294aa4f89da91775cf732c, type: 3}
@@ -183,6 +185,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnPoint: {fileID: 0}
+--- !u!114 &1108529443423732398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349437489821230086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70a2b3aef2bf4e8caa5bf64c3e82b992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: 2
+  scanInterval: 0.1
 --- !u!114 &-812749926996528923
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -49,6 +49,11 @@ public class PlayerController : ICharacterController
             character.AbilityController.TryExecute(AbilityKeys.Dodge);
         }
         
+        if (_input.InteractPressed)
+        {
+            character.CharacterInteractor.TryInteract();
+        }
+        
         character.Block(_input.BlockPressed);
         
         LockOn();
